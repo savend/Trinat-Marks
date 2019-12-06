@@ -9,13 +9,14 @@ public class Mark {
     private String markName; //Name of the Mark
     private double mark;    //Value of Mark in french system
     private double coefficient; //Mark coefficient
-    private int markConvLine;
+    private int markConvLine; //Line of MarkTable
+
 
     /*-----CONSTRUCTORS-----*/
 
 
-
-    public Mark() { //Default constructor *best Mark* *Coefficient 0*
+    //Default constructor *best Mark* *Coefficient 0*
+    public Mark() {
         System.out.println("Create new mark with default Values");
         this.markName = "NoName";
         this.mark = 16;
@@ -23,16 +24,18 @@ public class Mark {
 
     }
 
-    public Mark(String markName, double mark, double coefficient) { //Constructor if mark are given in FRENCH
+    //Constructor if mark are given in FRENCH
+    public Mark(String markName, double mark, double coefficient) {
         System.out.println("Create new mark with no specific language (FRENCH)");
         this.markName = markName;
-        this.mark = mark; //directly assign the mark to instance variable
+        this.mark = roundMark(mark); //directly assign the mark to instance variable
         this.coefficient = coefficient;
         setMarkConvLine(this.mark, MARK_FR); //set the markConvLine from given mark
 
     }
 
-    public Mark(String markName, double rawMark, int markLanguage, double coefficient) { //Constructor if mark are given in specific language
+    //Constructor if mark are given in specific language
+    public Mark(String markName, double rawMark, int markLanguage, double coefficient) {
         System.out.println("Create new mark with specific language");
         setMarkConvLine(rawMark, markLanguage); //set the MarkConvLine to initialise the right mark
         this.markName = markName;
@@ -70,10 +73,13 @@ public class Mark {
     }
 
     public void setMark(double mark) {
-        this.mark = mark;
+        this.mark = roundMark(mark); //Force new mark
+        this.setMarkConvLine(this.mark); //update MarkConvLine
     }
+
+    //Setter if another marklanguage are given
     public void setMark() {
-        this.mark = markTable[markConvLine][MARK_FR]; //Setter if another marklanguage are given
+        this.mark = markTable[markConvLine][MARK_FR];
     }
 
     public void setCoefficient(double coefficient) {
@@ -83,13 +89,23 @@ public class Mark {
     public void setMarkConvLine(int markConvLine) {
         this.markConvLine = markConvLine;
     }
-    public void setMarkConvLine(double markValue, int markLanguage) { //Setter of MarkConvLine for constructor from a given language
+
+    //Setter of MarkConvLine when new mark are setted
+    public void setMarkConvLine(double mark) {
+        for (int i = 0; i < markTable.length; i++) {
+            if (roundMark(mark) == markTable[i][MARK_FR]) {
+                this.setMarkConvLine(i);
+            }
+        }
+    }
+
+    //Setter of MarkConvLine for constructor from a given language
+    public void setMarkConvLine(double markValue, int markLanguage) {
 
         System.out.println("Mark conversion, Set the Object markConvLine, ( for Mark Object constructor ) ");
-        for (int i = 0 ; i < markTable.length ; i++) {
-            if(markValue == markTable[i][markLanguage]){
+        for (int i = 0; i < markTable.length; i++) {
+            if (roundMark(markValue) == markTable[i][markLanguage]) {
                 this.setMarkConvLine(i);
-
             }
         }
 
@@ -97,6 +113,7 @@ public class Mark {
 
 
     /*-----PRINT-----*/
+
 
     public String toString() {
         return "Mark{" +
@@ -107,17 +124,30 @@ public class Mark {
                 '}';
     }
 
+
     /*-----MARK CONVERSION METHODS-----*/
 
 
-    public double markConversion(int outMarkLanguage) { //Method to return a mark in specific language
+    //Method to return a mark in specific language
+    public double markConversion(int outMarkLanguage) {
         System.out.println("Mark conversion, Get the Object markConvLine, return the specific Language Mark ");
         return markTable[this.getMarkConvLine()][outMarkLanguage];
     }
 
+
+    /*-----ROUND MARK METHOD-----*/
+
+
+    public double roundMark(double mark) {
+        return ((double) Math.round(mark * 10)) / 10;
+    }
+
+
     /*-----MARK TABLE-----*/
 
-    private static double [][] markTable = new double [][] { //markTable[value][language]
+
+    //markTable[value][language]
+    private static double[][] markTable = new double[][]{
             {16.0, 1.0, 6.0},   //french //German //Swiss
             {15.9, 1.1, 5.9},
             {15.8, 1.1, 5.9},
