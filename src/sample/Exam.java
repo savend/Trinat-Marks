@@ -20,7 +20,7 @@ public class Exam extends Mark {
         super(markName, mark, coefficient);
         this.markArrayList = marks;
     }
-
+//
     //Constructor to force construction of Exam
     public Exam(String markName, double rawMark, int markLanguage, double coefficient, ArrayList<Mark> marks) {
         super(markName, rawMark, markLanguage, coefficient);
