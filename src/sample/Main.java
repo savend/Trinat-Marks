@@ -2,8 +2,10 @@ package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.util.Vector;
@@ -16,10 +18,16 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+    	Group grid = new Group();    
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        
+        MarkInterface note = new MarkInterface();
+        grid.getChildren().add(note);
+        primaryStage.setScene(new Scene(grid, 1200, 500));
         primaryStage.show();
+        
+        
     }
 
 
@@ -37,6 +45,8 @@ public class Main extends Application {
         mathe.addMark(new Mark("test2", 4, MARK_CH, 0.4));
         System.out.println(mathe.getMark() + " DE : " + mathe.markConversion(MARK_DE)); //display average of the Exam in FRENch and German
         launch(args);
+        
+        
 
     }
 }
