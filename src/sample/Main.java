@@ -26,7 +26,7 @@ public class Main extends Application {
     public static void main(String[] args) {
 
 
-        System.out.println("Hello World");
+        System.out.println("salut");
         Mark mark = new Mark("Mathe", 5, 0.5); //creation of a simple mark
         System.out.println("note fr : " + mark.getMark() + "\nnote de : " + mark.markConversion(MARK_DE) + "\nnote CH : " + mark.markConversion(MARK_CH)); //display all language of the mark
         System.out.println(mark.toString()); //display Object caracteristics of the mark
