@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -53,7 +55,7 @@ public class MarkInterface extends Parent {
 
 		/*-----Eventhandler-----*/
 
-		//Event Handler for french entry
+		//Event Handler for french mark entry
 		EventHandler<ActionEvent> eventHandlerFField = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -65,15 +67,16 @@ public class MarkInterface extends Parent {
 					markFField.setText(String.valueOf(mark.getMark()));
 					markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
 					markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
+					warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
+					warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
 				}
 
-				warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
 
 				System.out.println(mark.toString());
 			}
 		};
 
-		//Event Handler for german entry
+		//Event Handler for german mark entry
 		EventHandler<ActionEvent> eventHandlerDField = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -85,15 +88,16 @@ public class MarkInterface extends Parent {
 					markFField.setText(String.valueOf(mark.getMark()));
 					markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
 					markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
+					warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
+					warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
 				}
 
-				warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
 
 				System.out.println(mark.toString());
 			}
 		};
 
-		//Event Handler for swiss entry
+		//Event Handler for swiss mark entry
 		EventHandler<ActionEvent> eventHandlerCHField = new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -105,9 +109,10 @@ public class MarkInterface extends Parent {
 					markFField.setText(String.valueOf(mark.getMark()));
 					markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
 					markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
+					warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
+					warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
 				}
 
-				warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
 
 				System.out.println(mark.toString());
 			}
@@ -119,24 +124,80 @@ public class MarkInterface extends Parent {
 			public void handle(ActionEvent event) {
 				System.out.println("Name or coefficient field activated");
 				mark.setMarkName(markNameField.getText());
-				if (!markFField.getText().isEmpty()) {
-					eventHandlerFField.handle(event);
-				} else if (!markDField.getText().isEmpty()) {
-					eventHandlerDField.handle(event);
-				} else if (!markCHField.getText().isEmpty()) {
-					eventHandlerCHField.handle(event);
-				} else
-					warnLabel.setText("Enter Mark !!");
-
-
+				warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
 				warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
-
 
 				System.out.println(mark.toString());
 			}
 		};
 
-		//Set Event Handler on Textfields
+		//Event Handler for french mark no anymore focus
+		markFField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+
+				if (oldValue)
+					if (!markFField.getText().equals(String.valueOf(mark.getMark()))) {
+						ActionEvent event = null;
+						eventHandlerFField.handle(event);
+
+					}
+			}
+		});
+
+		//Event Handler for german mark no anymore focus
+		markDField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+
+				if (oldValue)
+					if (!markDField.getText().equals(String.valueOf(mark.markConversion(MARK_DE)))) {
+						ActionEvent event = null;
+						eventHandlerDField.handle(event);
+
+					}
+			}
+		});
+
+		//Event Handler for Swiss mark no anymore focus
+		markCHField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+
+				if (oldValue)
+					if (!markCHField.getText().equals(String.valueOf(mark.markConversion(MARK_CH)))) {
+						ActionEvent event = null;
+						eventHandlerCHField.handle(event);
+
+					}
+			}
+		});
+
+		//Event Handler for coefficientField no anymore focus
+		coefficientField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if (!coefficientField.getText().equals(String.valueOf(mark.getCoefficient()))) {
+					ActionEvent event = null;
+					eventHandlerField.handle(event);
+				}
+
+			}
+		});
+
+		//Event Handler for nameField no anymore focus
+		markNameField.focusedProperty().addListener(new ChangeListener<Boolean>() {
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if (!markNameField.getText().equals(String.valueOf(mark.getMarkName()))) {
+					ActionEvent event = null;
+					eventHandlerField.handle(event);
+				}
+
+			}
+		});
+
+		//Set Event Handler entry on Textfields
 		markNameField.setOnAction(eventHandlerField);
 		coefficientField.setOnAction(eventHandlerField);
 		markFField.setOnAction(eventHandlerFField);
@@ -159,13 +220,32 @@ public class MarkInterface extends Parent {
 	private String verifyCoefficient(TextField textfield, String warnLabel) {
 		System.out.println("Verification of coefficient entered or not");
 		if (!(textfield.getText().isEmpty()) && (Double.parseDouble(textfield.getText()) >= 0) && (Double.parseDouble(textfield.getText()) <= 1.0)) {
+			System.out.println("yes");
 			mark.setCoefficient(Double.parseDouble(textfield.getText()));
-			if (warnLabel.equals("Enter coefficient !!"))
+			if (warnLabel.contains("Enter coefficient !!"))
 				return "";
 			else
 				return (warnLabel + "");
-		} else
-			return (warnLabel + "Enter coefficient !!");
+		} else {
+			System.out.println("no");
+			if (warnLabel.contains("Enter coefficient !!") && warnLabel.contains("Enter Mark !!"))
+				return "Enter Mark !! Enter coefficient !!";
+			else
+				return (warnLabel + " Enter coefficient !!");
+		}
+	}
+
+	private String verifyMark(TextField textField, String warnLabel) {
+		System.out.println("Verification of mark entered or not");
+		if (!textField.getText().isEmpty()) {
+			System.out.println("yes");
+			return (warnLabel + "");
+		} else {
+			System.out.println("no");
+			return warnLabel + " Enter Mark !!";
+
+		}
+
 	}
 
 
