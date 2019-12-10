@@ -108,6 +108,7 @@ public class Mark {
                 this.setMarkConvLine(i);
             }
         }
+        this.setMark();
 
     }
 

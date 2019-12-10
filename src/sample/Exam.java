@@ -20,7 +20,7 @@ public class Exam extends Mark {
         super(markName, mark, coefficient);
         this.markArrayList = marks;
     }
-//
+
     //Constructor to force construction of Exam
     public Exam(String markName, double rawMark, int markLanguage, double coefficient, ArrayList<Mark> marks) {
         super(markName, rawMark, markLanguage, coefficient);
@@ -37,6 +37,23 @@ public class Exam extends Mark {
 
     public void setMarkArrayList(ArrayList<Mark> markArrayList) {
         this.markArrayList = markArrayList;
+    }
+
+    @Override
+    public double getMark() {
+        average();
+        return super.getMark();
+    }
+
+    /*-----PRINT-----*/
+
+
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "markArrayList=" + markArrayList +
+                "average=" + this.getMark() +
+                '}';
     }
 
 

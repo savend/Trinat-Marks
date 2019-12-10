@@ -1,11 +1,17 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.swing.text.LabelView;
 import java.util.Vector;
 
 public class Main extends Application {
@@ -15,14 +21,25 @@ public class Main extends Application {
     private static final int MARK_CH = 2;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-    	Group grid = new Group();
+        VBox root = new VBox();
         primaryStage.setTitle("Hello World");
 
-        MarkInterface note = new MarkInterface();
-        grid.getChildren().add(note);
-        primaryStage.setScene(new Scene(grid, 1200, 500));
+        Exam physik = new Exam("physik");
+        MarkInterface note = new MarkInterface(physik);
+        MarkInterface note2 = new MarkInterface(physik);
+        MarkInterface note3 = new MarkInterface(physik);
+        Label average = new Label("average" + physik.getMark());
+        root.getChildren().addAll(note, note2, note3, average);
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println(physik.toString());
+                average.setText("average" + physik.getMark());
+            }
+        });
+        primaryStage.setScene(new Scene(root, 1200, 500));
         primaryStage.show();
 
 
