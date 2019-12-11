@@ -10,6 +10,11 @@ public class Exam extends Mark {
 
     /*------CONSTRUCTORS-----*/
 
+    //Default constructor *NoName* *best Mark* *Coefficient 0*
+    public Exam() {
+        super();
+    }
+
     //Constructor to initialise a new Exam only with a Name
     public Exam(String markName) {
         super(markName, 0, 1);
@@ -76,6 +81,10 @@ public class Exam extends Mark {
         }
 
         this.setMark(total);
+    }
+
+    public void deleteMark(int index) {
+        this.markArrayList.remove(index);
     }
 
 }
