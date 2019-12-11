@@ -83,4 +83,8 @@ public class Exam extends Mark {
         this.setMark(total);
     }
 
+    public void deleteMark(int index) {
+        this.markArrayList.remove(index);
+    }
+
 }
