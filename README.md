@@ -7,9 +7,13 @@
 Adrian Rosser, Audric Strümpler, David Buchleither, Remy Meyer, Thomas Penner 
 
 
-# Introduction, goals, boundary conditions
+# Introduction
 
-Our project is a grade calculator.
+The project "Trinat Marks" and the corresponding Git repository was developed as part of a project work in the course Software Engineering in the study course Mechatronics trinational. The implementation was realized with Java. 
+
+# Goals, boundary conditions
+
+The aim is to translate the competences learned in the subjects Programing and Software Engineering into an independent student project. Our project is a grade calculator.
 
 The goal is to give the student an overview of his academic achievements.
 
@@ -21,16 +25,31 @@ The passed modules are highlighted in green, the failed modules in red.
 
 In addition, it is possible to save the scores that have been inserted and completed.
 
+We want to divide the program into different classes and structure them with methods.
+
 The condition is that this program can be used by any device.
 
 
 
 # Build Instructions
 
-// Buildanleitung noch schreiben 
+1) Download the file from our repository in Github.
+
+2) Extract the downloaded file into the desired folder.
+
+3) Copy the path of the desired version file (.jar) to the clipboard.
+
+4) Open the console of your computer
+
+5) Enter java -jar followed by the copied path (.jar).
+
+6) Confirm your entry with Enter.
 
 
 # Operation manual
+
+A short functional description of our calculator:
+
 
 // Bedienungsanleitung noch schreiben (besser wenn das Programm fertig ist)
 
@@ -94,5 +113,18 @@ The condition is that this program can be used by any device.
 
 # Documentation Sprint 1
 
+x
+x
+x
+x
+
 
 # Documentation Sprint 2
+
+x
+x
+x
+x
+
+
+# Dokumentation wichtier Code Snippets
