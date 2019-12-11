@@ -1,4 +1,4 @@
-# JAVA-Grades-calculator
+# Trinat-Marks
 
 
 
