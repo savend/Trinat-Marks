@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 
 public class ExamInterface extends Parent {
 
@@ -53,14 +55,46 @@ public class ExamInterface extends Parent {
 
         System.out.println("Constructeur of ExamInterface");
 
-        VBox vBox = new VBox();
+        //Layout Page
+        VBox vBox = new VBox(10);
+
+        //Layout Title line
+        HBox hBoxTitleButton = new HBox(30);
+        hBoxTitleButton.setAlignment(Pos.CENTER_LEFT);
+
+        //Layout Subtiles
+        HBox hBoxSubtitle = new HBox(30);
+        hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
+
+        //Layout Marks and delet boxees
         GridPane gridPane = new GridPane();
         //gridPane.setGridLinesVisible(true);
-        gridPane.setPadding(new Insets(10, 10, 10, 10));
+        gridPane.setPadding(new Insets(0, 0, 0, 0));
+        gridPane.setAlignment(Pos.TOP_LEFT);
         gridPane.setHgap(10);
         gridPane.setVgap(10);
 
+        //Labels
+        Label title = new Label(" Mathematik");
+        title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+        Label topic = new Label("   Fach                          ");
+        topic.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+        Label coefficient = new Label("Koeffizient");
+        coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+        Label fMark = new Label("F   ");
+        fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+        Label dMark = new Label("D ");
+        dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+        Label chMark = new Label("CH");
+        chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+
+        //Buttons
         Button neueNoteButton = new Button("Add Mark");
+
+
+        //------- Set hBox----------
+        hBoxTitleButton.getChildren().addAll(title, neueNoteButton);
+        hBoxSubtitle.getChildren().addAll(topic, coefficient, fMark, dMark, chMark);
 
 
         //------- Set GridPane------
@@ -87,7 +121,8 @@ public class ExamInterface extends Parent {
 
         //------ Print GridPane--------
 
-        vBox.getChildren().addAll(gridPane, examAverage);
+
+        vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, gridPane, examAverage);
         this.getChildren().add(vBox);
         /* ADDING EXAM MARK TO PRECEDENT CLASS : SUBJECT */
     }
