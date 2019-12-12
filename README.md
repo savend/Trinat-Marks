@@ -133,19 +133,30 @@ A short functional description of our calculator:
 
 
 # Documentation Sprint 1
-
-x
-x
-x
-x
+|User Story|short description|Time estimation in minutes|
+|:-:|:-:|:-:|
+|10|||
+|9|||
+|8|||
+|6|||
 
 
 # Documentation Sprint 2
+|User Story|short description|Time estimation in minutes|
+|:-:|:-:|:-:|
+|3|||
+|5|||
+|7|||
 
-x
-x
-x
-x
+
+# Documentation Sprint 3
+|User Story|short description|Time estimation in minutes|
+|:-:|:-:|:-:|
+|1|||
+|2|||
+|4|||
+
+
 
 
 # Dokumentation wichtier Code Snippets
