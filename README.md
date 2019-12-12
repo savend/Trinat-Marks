@@ -58,9 +58,9 @@ A short functional description of our calculator:
 
 | User Story 1 | prioritisation | Story Point | acceptance criterium |
 |-|-|-|-|
-||high|2||
+||high|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on
-|||kriterium schreiben|
+||||
 
 -As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on
 
