@@ -60,7 +60,7 @@ A short functional description of our calculator:
 |-|-|-|-|
 ||high|2||
 |As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on
-|||kriterium schreiben|
+|kriterium schreiben|
 
 -As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on
 
