@@ -129,7 +129,18 @@ A short functional description of our calculator:
 
 # Release plan
 
-// Einfügen über trello
+|Userstory|Release 1|Relese 2|Realese 3|
+|:-:|:-:|:-:|:-:|
+|1|||Expansion stage 2|
+|2|||Expansion stage 2|
+|3||Expansion stage 1||
+|4|||Expansion stage 4|
+|5||Expansion stage 1||
+|6|Basic requirement|||
+|7||Expansion stage 1||
+|8|Basic requirement|||
+|9|Basic requirement|||
+|10|Basic requirement|||
 
 
 # Documentation Sprint 1
