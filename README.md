@@ -135,26 +135,26 @@ A short functional description of our calculator:
 # Documentation Sprint 1
 |User Story|short description|Time estimation in minutes|
 |:-:|:-:|:-:|
-|10|||
-|9|||
-|8|||
-|6|||
+|10||40|
+|9||160|
+|8||40|
+|6||40|
 
 
 # Documentation Sprint 2
 |User Story|short description|Time estimation in minutes|
 |:-:|:-:|:-:|
-|3|||
-|5|||
-|7|||
+|3||200|
+|5||160|
+|7||60|
 
 
 # Documentation Sprint 3
 |User Story|short description|Time estimation in minutes|
 |:-:|:-:|:-:|
-|1|||
-|2|||
-|4|||
+|1||20|
+|2||200|
+|4||60|
 
 
 
