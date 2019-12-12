@@ -48,6 +48,7 @@ public class Exam extends Mark {
     public double getMark() {
         average();
         return super.getMark();
+
     }
 
     /*-----PRINT-----*/

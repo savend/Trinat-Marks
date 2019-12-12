@@ -18,10 +18,12 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         VBox root = new VBox();
+        VBox vBox = new VBox();
         primaryStage.setTitle("Trinat Marks (in development)");
 
         Subject mathe = new Subject();
         ExamInterface physik = new ExamInterface(mathe);
+        vBox.getChildren().addAll()
 
         root.getChildren().addAll(physik);
 

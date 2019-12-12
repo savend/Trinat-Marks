@@ -13,15 +13,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ExamInterface extends Parent {
+public class SubjectInterface extends Parent {
 
 
     private static final int MARK_FR = 0;
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
 
-    public Exam exam = new Exam();
-    private ArrayList<MarkInterface> markInterfaceArrayList = new ArrayList<>();
+    public Subject subject = new Exam();
+    private ArrayList<ExamInterface> ExamInterfaceArrayList = new ArrayList<>();
 
 
     /*------CLASS-----*/
