@@ -2,7 +2,9 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.Parent;
@@ -26,30 +28,35 @@ public class MarkInterface extends Parent {
 		System.out.println("Constructor of MarkInterface");
 		HBox hBox = new HBox(10); //Horizontal Box with 10px spacing
 
-		hBox.setPadding(new Insets(10, 10, 10, 10)); //padding
+		hBox.setPadding(new Insets(0, 0, 0, 0)); //padding
+		hBox.setAlignment(Pos.CENTER_LEFT);
 
 		/*----Labels for Textfield description----*/
 
-		Label markF = new Label("F Mark");
-		Label markD = new Label("D Mark");
-		Label markCH = new Label("CH Mark");
 		Label warnLabel = new Label("");
+		Label procent = new Label("%    ");
+		procent.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
 
 
 		/*----Textfields----*/
 
 		TextField markNameField = new TextField();
 		markNameField.setPromptText("Name Test");
+		markNameField.setPrefWidth(150);
 
 		TextField coefficientField = new TextField();
 		coefficientField.setPromptText(String.valueOf(mark.getCoefficient()));
+		coefficientField.setMaxWidth(40);
 
 		TextField markFField = new TextField();
 		markFField.setPromptText(String.valueOf(mark.getMark()));
+		markFField.setMaxWidth(40);
 		TextField markDField = new TextField();
 		markDField.setPromptText(String.valueOf(mark.markConversion(MARK_DE)));
+		markDField.setMaxWidth(40);
 		TextField markCHField = new TextField();
 		markCHField.setPromptText(String.valueOf(mark.markConversion(MARK_CH)));
+		markCHField.setMaxWidth(40);
 
 		/*-----Eventhandler-----*/
 
@@ -147,7 +154,7 @@ public class MarkInterface extends Parent {
 		//add mark to exam
 		exam.addMark(mark);
 		//add all elements to hBox
-		hBox.getChildren().addAll(markNameField, coefficientField, markF, markFField, markD, markDField, markCH, markCHField, warnLabel);
+		hBox.getChildren().addAll(markNameField, coefficientField, procent, markFField, markDField, markCHField, warnLabel);
 		//add HBox to the actual object
 		this.getChildren().add(hBox);
 	}
