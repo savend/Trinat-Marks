@@ -21,11 +21,16 @@ public class Main extends Application {
         VBox vBox = new VBox();
         primaryStage.setTitle("Trinat Marks (in development)");
 
-        Subject mathe = new Subject();
-        ExamInterface physik = new ExamInterface(mathe);
-        vBox.getChildren().addAll()
+        SubjectInterface mathe = new SubjectInterface();
+        Subject mathematik = new Subject();
+        ExamInterface physik = new ExamInterface(mathematik);
+        if (mathe.getClass().equals(new SubjectInterface().getClass()))
+            System.out.println("SUBJEEEECECT");
+        else
+            System.out.println("Fuckyou");
 
-        root.getChildren().addAll(physik);
+
+        root.getChildren().addAll(mathe);
 
         primaryStage.setScene(new Scene(root, 1200, 500));
         primaryStage.show();

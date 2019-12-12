@@ -31,18 +31,19 @@ public class ExamInterface extends Parent {
     class DeleteButtonEvent implements EventHandler<ActionEvent> {
 
         private final int number;
-        GridPane gridPane;
+        VBox vbox;
 
-        DeleteButtonEvent(int number, GridPane grid) {
-            this.gridPane = grid;
+        DeleteButtonEvent(int number, VBox box) {
+            this.vbox = box;
             this.number = number;
         }
 
         @Override
         public void handle(ActionEvent event) {
-            gridPane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == number);
+            // gridPane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == number);
             markInterfaceArrayList.remove(number);
             exam.deleteMark(number);
+            generateVBox(vbox, markInterfaceArrayList);
         }
     }
 
@@ -56,6 +57,7 @@ public class ExamInterface extends Parent {
 
         //Layout Page
         VBox vBox = new VBox(10);
+        vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
 
         //Layout Title line
         HBox hBoxTitleButton = new HBox(30);
@@ -98,10 +100,12 @@ public class ExamInterface extends Parent {
 
         //------- Set GridPane------
 
-        gridPane.add(neueNoteButton, 0, 0);
-        markInterfaceArrayList.add(new MarkInterface(exam, false));
-        gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
-        gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);
+        VBox vBoxMarks = new VBox();
+        vBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+        //markInterfaceArrayList.add(new MarkInterface(exam, false));
+        //generateVBox(vBoxMarks, markInterfaceArrayList);
+        /*gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
+        gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);*/
 
 
         //-----Action Buttons (Neue Note) -----
@@ -110,8 +114,9 @@ public class ExamInterface extends Parent {
         neueNoteButton.setOnAction(e -> {
 
             markInterfaceArrayList.add(new MarkInterface(exam, false));
-            gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
-            gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);
+            generateVBox(vBoxMarks, markInterfaceArrayList);
+            /*gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
+            gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);*/
 
         });
 
@@ -121,16 +126,27 @@ public class ExamInterface extends Parent {
         //------ Print GridPane--------
 
 
-        vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, gridPane, examAverage);
+        vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, neueNoteButton, vBoxMarks, examAverage);
         this.getChildren().add(vBox);
         //add exam Mark to Subject
         subject.addMark(exam.getMarkObject());
     }
 
-    public Button createDeleteButton(int number, GridPane gridPane) {
+    public Button createDeleteButton(int number, VBox vBox) {
         Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(new DeleteButtonEvent(number, gridPane));
+        deleteButton.setOnAction(new DeleteButtonEvent(number, vBox));
         return deleteButton;
+    }
+
+    public void generateVBox(VBox vBox, ArrayList<MarkInterface> markInterfaceArrayList) {
+        vBox.getChildren().clear();
+        for (int i = 0; i < markInterfaceArrayList.size(); i++) {
+            HBox hBox = new HBox();
+            hBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+            hBox.getChildren().add(markInterfaceArrayList.get(i));
+            hBox.getChildren().add(createDeleteButton(i, vBox));
+            vBox.getChildren().add(hBox);
+        }
     }
 
 }

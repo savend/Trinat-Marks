@@ -20,8 +20,8 @@ public class SubjectInterface extends Parent {
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
 
-    public Subject subject = new Exam();
-    private ArrayList<ExamInterface> ExamInterfaceArrayList = new ArrayList<>();
+    public Subject subject = new Subject();
+    private ArrayList<ExamInterface> examInterfaceArrayList = new ArrayList<>();
 
 
     /*------CLASS-----*/
@@ -41,8 +41,8 @@ public class SubjectInterface extends Parent {
         @Override
         public void handle(ActionEvent event) {
             gridPane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == number);
-            markInterfaceArrayList.remove(number);
-            exam.deleteMark(number);
+            examInterfaceArrayList.remove(number);
+            subject.deleteMark(number);
         }
     }
 
@@ -50,12 +50,13 @@ public class SubjectInterface extends Parent {
     /*------CONSTRUCTOR------*/
 
 
-    public ExamInterface(Subject subject) {
+    public SubjectInterface() {
 
         System.out.println("Constructeur of ExamInterface");
 
         //Layout Page
         VBox vBox = new VBox(10);
+        vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
 
         //Layout Title line
         HBox hBoxTitleButton = new HBox(30);
@@ -74,34 +75,26 @@ public class SubjectInterface extends Parent {
         gridPane.setVgap(10);
 
         //Labels
-        Label title = new Label(" Mathematik");
+        Label title = new Label("Module");
         title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
-        Label topic = new Label("   Fach                          ");
-        topic.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label coefficient = new Label("Koeffizient");
-        coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label fMark = new Label("F   ");
-        fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label dMark = new Label("D ");
-        dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label chMark = new Label("CH");
-        chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+
+        /*-----Add average Mark-----*/
+        MarkInterface examAverage = new MarkInterface(subject, true);
 
         //Buttons
-        Button neueNoteButton = new Button("Add Mark");
+        Button neueNoteButton = new Button("Add Subject");
 
 
         //------- Set hBox----------
         hBoxTitleButton.getChildren().addAll(title, neueNoteButton);
-        hBoxSubtitle.getChildren().addAll(topic, coefficient, fMark, dMark, chMark);
 
 
         //------- Set GridPane------
 
         gridPane.add(neueNoteButton, 0, 0);
-        markInterfaceArrayList.add(new MarkInterface(exam, false));
-        gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
-        gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);
+        examInterfaceArrayList.add(new ExamInterface(subject));
+        gridPane.add(createDeleteButton(examInterfaceArrayList.size() + 1, gridPane), 1, examInterfaceArrayList.size() + 1);
+        gridPane.add(examInterfaceArrayList.get(examInterfaceArrayList.size() - 1), 0, examInterfaceArrayList.size() + 1);
 
 
         //-----Action Buttons (Neue Note) -----
@@ -109,22 +102,19 @@ public class SubjectInterface extends Parent {
 
         neueNoteButton.setOnAction(e -> {
 
-            markInterfaceArrayList.add(new MarkInterface(exam, false));
-            gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
-            gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);
+            examInterfaceArrayList.add(new ExamInterface(subject));
+            gridPane.add(createDeleteButton(examInterfaceArrayList.size() + 1, gridPane), 1, examInterfaceArrayList.size() + 1);
+            gridPane.add(examInterfaceArrayList.get(examInterfaceArrayList.size() - 1), 0, examInterfaceArrayList.size() + 1);
 
         });
 
-        /*-----Add average Mark-----*/
-        MarkInterface examAverage = new MarkInterface(exam, true);
+
 
         //------ Print GridPane--------
 
 
-        vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, gridPane, examAverage);
+        vBox.getChildren().addAll(hBoxTitleButton, examAverage, hBoxSubtitle, gridPane);
         this.getChildren().add(vBox);
-        //add exam Mark to Subject
-        subject.addMark(exam.getMarkObject());
     }
 
     public Button createDeleteButton(int number, GridPane gridPane) {
