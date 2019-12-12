@@ -56,9 +56,10 @@ A short functional description of our calculator:
 
 # User Stories
 
-| Spalte | Spalte |
-|--------|--------|
-|texte   |text    |
+| User Story 1 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+|As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on
+|high|2|kriterium schreiben|
 
 -As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on
 
