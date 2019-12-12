@@ -169,4 +169,9 @@ public class MarkInterface extends Parent {
 	}
 
 
+	public Mark getMark() {
+		return mark;
+	}
+
+
 }
