@@ -58,58 +58,73 @@ A short functional description of our calculator:
 
 | User Story 1 | prioritisation | Story Point | acceptance criterium |
 |-|-|-|-|
-||high|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||high(2)|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on
 ||||
 
--As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on
 
-(Story Points:1 Prioritization:2)
-
-
--As a classleader I want to save a semester configuration to share it to all the class
-
-(Story Points:13 Prioritization:4)
+| User Story 2 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+||low(4)|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|As a classleader I want to save a semester configuration to share it to all the class
+||||
 
 
--As a user I want to save my marks to not reenter all the time my results
-
-(Story Points:13 Prioritization:3)
-
-
--The Semester schould be configurable as I want for a sustainable programm
-
-(Story Points:5 Prioritization:2)
+| User Story 3 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+||low(3)|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|As a user I want to save my marks to not reenter all the time my results
+||||
 
 
--As a student, I want to delete marks, modules and semesters
-
-(Story Points:8 Prioritization:3)
-
-
--As a student, I want to add new marks
-
-(Story Points:2 Prioritization:2)
+| User Story 4 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+||high(2)|5|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|The Semester schould be configurable as I want for a sustainable programm
+||||
 
 
--As a student I would like to have my grade average displayed to know if I have passed my modul
-
-(Story Points:3 Prioritization:2)
-
-
--As a student I want to define a coefficent for each topic and mark
-
-(Story Points:2 Prioritization:2)
+| User Story 5 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+||low(3)|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|As a student, I want to delete marks, modules and semesters
+||||
 
 
--As a student, I want to get from 1 input mark the other two marks
+| User Story 6 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+||high(2)|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|As a student, I want to add new marks
+||||
 
-(Story Points:8 Prioritization:1)
+
+| User Story 7 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+||high(2)|3|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|As a student I would like to have my grade average displayed to know if I have passed my modul
+||||
 
 
--As a User I want to enter with a interface a mark in all nationalities to be flexible
+| User Story 8 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+||high(2)|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|As a student I want to define a coefficent for each topic and mark
+||||
 
-(Story Points:2 Prioritization:1)
+
+| User Story 9 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+||realy high(1)|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|As a student, I want to get from 1 input mark the other two marks
+||||
+
+
+| User Story 10 | prioritisation | Story Point | acceptance criterium |
+|-|-|-|-|
+||high(2)|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|As a User I want to enter with a interface a mark in all nationalities to be flexible
+||||
+
 
 
 # Release plan
