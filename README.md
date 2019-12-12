@@ -134,7 +134,7 @@ A short functional description of our calculator:
 |1|||Expansion stage 2|
 |2|||Expansion stage 2|
 |3||Expansion stage 1||
-|4|||Expansion stage 4|
+|4|||Expansion stage 2|
 |5||Expansion stage 1||
 |6|Basic requirement|||
 |7||Expansion stage 1||
@@ -168,6 +168,3 @@ A short functional description of our calculator:
 |4||60|
 
 
-
-
-# Dokumentation wichtier Code Snippets
