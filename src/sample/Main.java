@@ -20,23 +20,13 @@ public class Main extends Application {
         VBox root = new VBox();
         primaryStage.setTitle("Trinat Marks (in development)");
 
-        ExamInterface physik = new ExamInterface();
-      /*  Exam physik = new Exam("physik");
-        MarkInterface note = new MarkInterface(physik);
-        MarkInterface note2 = new MarkInterface(physik);
-        MarkInterface note3 = new MarkInterface(physik); 
-        Label average = new Label("average" + physik.getMark());*/
+        Subject mathe = new Subject();
+        ExamInterface physik = new ExamInterface(mathe);
+
         root.getChildren().addAll(physik);
-     //   root.setOnMousePressed(new EventHandler<MouseEvent>() {
-      //      @Override
-      /*      public void handle(MouseEvent event) {
-                System.out.println(physik.toString());
-                average.setText("average" + physik.getMark());*/
-       //     }
-        //});
+
         primaryStage.setScene(new Scene(root, 1200, 500));
         primaryStage.show();
-
 
     }
 

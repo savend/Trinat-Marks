@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Exam extends Mark {
 
     //Arraylist to stock the marks
-    private ArrayList<Mark> markArrayList = new ArrayList<>();
+    protected ArrayList<Mark> markArrayList = new ArrayList<>();
 
 
     /*------CONSTRUCTORS-----*/
@@ -81,6 +81,7 @@ public class Exam extends Mark {
         }
 
         this.setMark(total);
+        System.out.println("average" + total);
     }
 
     public void deleteMark(int index) {

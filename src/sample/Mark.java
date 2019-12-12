@@ -64,6 +64,10 @@ public class Mark {
         return markConvLine;
     }
 
+    public Mark getMarkObject() {
+        return this;
+    }
+
 
     /*-----SETTER-----*/
 

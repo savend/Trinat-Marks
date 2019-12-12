@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 import javafx.scene.layout.HBox;
 
+import javax.xml.soap.Text;
+
 public class MarkInterface extends Parent {
 
 
@@ -18,13 +20,19 @@ public class MarkInterface extends Parent {
 	private static final int MARK_CH = 2;
 
 
-	Mark mark = new Mark();
+	Mark mark;
 
 
 	/*------CONSTRUCTOR------*/
 
 
-	public MarkInterface(Exam exam) {
+	public MarkInterface(Exam exam, boolean examAverage) {
+		//Calculation of a new mark or of a existing mark ( average )
+		if (examAverage)
+			mark = exam.getMarkObject();
+		else
+			mark = new Mark();
+
 		System.out.println("Constructor of MarkInterface");
 		HBox hBox = new HBox(10); //Horizontal Box with 10px spacing
 
@@ -55,6 +63,7 @@ public class MarkInterface extends Parent {
 
 		/*-----Eventhandler-----*/
 
+
 		//Event Handler for french mark entry
 		EventHandler<ActionEvent> eventHandlerFField = new EventHandler<ActionEvent>() {
 			@Override
@@ -62,13 +71,16 @@ public class MarkInterface extends Parent {
 				mark.setMarkName(markNameField.getText());
 				System.out.println("French field activated");
 				if (!markFField.getText().isEmpty()) {
-					System.out.println("French field activated with a mark");
+					System.out.println("French field activated with a new mark");
 					mark.setMark(Double.parseDouble(markFField.getText()));
 					markFField.setText(String.valueOf(mark.getMark()));
 					markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
 					markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
 					warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
 					warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
+				}
+				if (examAverage) {
+					updateAverage(markFField, markDField, markCHField);
 				}
 
 
@@ -83,13 +95,16 @@ public class MarkInterface extends Parent {
 				mark.setMarkName(markNameField.getText());
 				System.out.println("German field activated");
 				if (!markDField.getText().isEmpty()) {
-					System.out.println("German field activated with a mark");
+					System.out.println("German field activated with a new mark");
 					mark.setMarkConvLine(Double.parseDouble(markDField.getText()), MARK_DE);
 					markFField.setText(String.valueOf(mark.getMark()));
 					markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
 					markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
 					warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
 					warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
+				}
+				if (examAverage) {
+					updateAverage(markFField, markDField, markCHField);
 				}
 
 
@@ -104,13 +119,16 @@ public class MarkInterface extends Parent {
 				System.out.println("Swiss field activated");
 				mark.setMarkName(markNameField.getText());
 				if (!markCHField.getText().isEmpty()) {
-					System.out.println("Swiss field activated with a mark");
+					System.out.println("Swiss field activated with a new mark");
 					mark.setMarkConvLine(Double.parseDouble(markCHField.getText()), MARK_CH);
 					markFField.setText(String.valueOf(mark.getMark()));
 					markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
 					markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
 					warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
 					warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
+				}
+				if (examAverage) {
+					updateAverage(markFField, markDField, markCHField);
 				}
 
 
@@ -126,7 +144,9 @@ public class MarkInterface extends Parent {
 				mark.setMarkName(markNameField.getText());
 				warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
 				warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
-
+				if (examAverage) {
+					updateAverage(markFField, markDField, markCHField);
+				}
 				System.out.println(mark.toString());
 			}
 		};
@@ -142,6 +162,9 @@ public class MarkInterface extends Parent {
 						eventHandlerFField.handle(event);
 
 					}
+				if (examAverage) {
+					updateAverage(markFField, markDField, markCHField);
+				}
 			}
 		});
 
@@ -156,6 +179,9 @@ public class MarkInterface extends Parent {
 						eventHandlerDField.handle(event);
 
 					}
+				if (examAverage) {
+					updateAverage(markFField, markDField, markCHField);
+				}
 			}
 		});
 
@@ -170,6 +196,9 @@ public class MarkInterface extends Parent {
 						eventHandlerCHField.handle(event);
 
 					}
+				if (examAverage) {
+					updateAverage(markFField, markDField, markCHField);
+				}
 			}
 		});
 
@@ -180,6 +209,9 @@ public class MarkInterface extends Parent {
 				if (!coefficientField.getText().equals(String.valueOf(mark.getCoefficient()))) {
 					ActionEvent event = null;
 					eventHandlerField.handle(event);
+				}
+				if (examAverage) {
+					updateAverage(markFField, markDField, markCHField);
 				}
 
 			}
@@ -193,9 +225,14 @@ public class MarkInterface extends Parent {
 					ActionEvent event = null;
 					eventHandlerField.handle(event);
 				}
+				if (examAverage) {
+					updateAverage(markFField, markDField, markCHField);
+				}
+
 
 			}
 		});
+
 
 		//Set Event Handler entry on Textfields
 		markNameField.setOnAction(eventHandlerField);
@@ -206,7 +243,8 @@ public class MarkInterface extends Parent {
 
 
 		//add mark to exam
-		exam.addMark(mark);
+		if (!examAverage)
+			exam.addMark(mark);
 		//add all elements to hBox
 		hBox.getChildren().addAll(markNameField, coefficientField, markF, markFField, markD, markDField, markCH, markCHField, warnLabel);
 		//add HBox to the actual object
@@ -246,6 +284,13 @@ public class MarkInterface extends Parent {
 
 		}
 
+
+	}
+
+	public void updateAverage(TextField markFField, TextField markDField, TextField markCHField) {
+		markFField.setText(String.valueOf(mark.getMark()));
+		markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
+		markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
 	}
 
 
