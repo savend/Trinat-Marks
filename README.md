@@ -1,5 +1,7 @@
 <h1>Trinat-Marks<h1>
 
+<br>
+
 # Table of contents
 1) [Members](<https://github.com/savend/Trinat-Marks#members>)
 2) [Introduction](https://github.com/savend/Trinat-Marks#introduction)
@@ -80,78 +82,66 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 | **User Story 1** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-||High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on**
-||||
+|**As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on**|High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
+<br>
 
 | **User Story 2** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-||Realy low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**As a classleader I want to save a semester configuration to share it to all the class**
-||||
+|**As a classleader I want to save a semester configuration to share it to all the class**|Realy low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
+<br>
 
 | **User Story 3** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-||Low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**As a user I want to save my marks to not reenter all the time my results**
-||||
+|**As a user I want to save my marks to not reenter all the time my results**|Low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
+<br>
 
 | **User Story 4** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-||High|5|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**The Semester schould be configurable as I want for a sustainable programm**
-||||
+|**The Semester schould be configurable as I want for a sustainable programm**|High|5|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
+<br>
 
 | **User Story 5** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-||Low|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**As a student, I want to delete marks, modules and semesters**
-||||
+|**As a student, I want to delete marks, modules and semesters**|Low|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
+<br>
 
 | **User Story 6** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-||High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**As a student, I want to add new marks**
-||||
+|**As a student, I want to add new marks**|High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
+<br>
 
 | **User Story 7** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |-|-|-|-|
-||High|3|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**As a student I would like to have my grade average displayed to know if I have passed my modul**
-||||
+|**As a student I would like to have my grade average displayed to know if I have passed my modul**|High|3|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
+<br>
 
 | **User Story 8** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-||High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**As a student I want to define a coefficent for each topic and mark**
-||||
+|**As a student I want to define a coefficent for each topic and mark**|High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
+<br>
 
 | **User Story 9** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-||Realy high|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**As a student, I want to get from 1 input mark the other two marks**
-||||
+|**As a student, I want to get from 1 input mark the other two marks**|Realy high|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
+<br>
 
 | **User Story 10** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-||High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
-|**As a User I want to enter with a interface a mark in all nationalities to be flexible**
-||||
-
+|**As a User I want to enter with a interface a mark in all nationalities to be flexible**|High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 
 
 # Release plan
 
-|**Userstory**|**Release 1**|**Relese 2**|**Realese 3**|
+|**Userstory**|**Release 1**|**Release 2**|**Release 3**|
 |:-:|:-:|:-:|:-:|
 |**1**|||Expansion stage 2|
 |**2**|||Expansion stage 2|
