@@ -2,6 +2,7 @@ package sample;
 
 import java.util.ArrayList;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -153,9 +154,32 @@ public class ExamInterface extends Parent {
         for (int i = 0; i < markInterfaceArrayList.size(); i++) {
             HBox hBox = new HBox();
             hBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
-            hBox.getChildren().add(markInterfaceArrayList.get(i));
-            hBox.getChildren().add(createDeleteButton(i, vBox));
+            //hBox.getChildren().add(markInterfaceArrayList.get(i));
+            int finalI = i;
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    hBox.getChildren().add(markInterfaceArrayList.get(finalI));
+                }
+
+            });
+            //hBox.getChildren().add(createDeleteButton(i, vBox));
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    hBox.getChildren().add(createDeleteButton(finalI, vBox));
+                }
+
+            });
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    hBox.getChildren().add(createDeleteButton(finalI, vBox));
+                }
+
+            });
             vBox.getChildren().add(hBox);
+
         }
     }
 
