@@ -19,7 +19,7 @@ public class SemesterInterface extends Parent {
     private static final int MARK_CH = 2;
 
     //public Subject subject = new Subject();
-    private ArrayList<SubjectInterface> subjectInterfaceArrayList = new ArrayList<>(); //Array of all Subjects
+    public ArrayList<SubjectInterface> subjectInterfaceArrayList = new ArrayList<>(); //Array of all Subjects
 
 
     /*------CLASS-----*/
@@ -128,4 +128,8 @@ public class SemesterInterface extends Parent {
         }
     }
 
+    public ArrayList<SubjectInterface> getSubjectInterfaceArrayList() {
+        return subjectInterfaceArrayList;
+    }
 }
+

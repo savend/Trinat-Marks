@@ -20,7 +20,7 @@ public class SubjectInterface extends Parent {
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
 
-    public Subject subject = new Subject();
+    private Subject subject = new Subject();
     private ArrayList<ExamInterface> examInterfaceArrayList = new ArrayList<>(); //Array of all Exams
 
 
@@ -136,4 +136,11 @@ public class SubjectInterface extends Parent {
         }
     }
 
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public ArrayList<ExamInterface> getExamInterfaceArrayList() {
+        return examInterfaceArrayList;
+    }
 }

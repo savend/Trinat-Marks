@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+import java.awt.*;
 
 public class Main extends Application {
 
@@ -31,8 +31,14 @@ public class Main extends Application {
 
         primaryStage.setTitle("Trinat Marks (in development)");
 
-        SemesterInterface semester1 = new SemesterInterface();
 
+        FileWriter fileWriter = new FileWriter("data.txt");
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+
+        SemesterInterface semester1 = new SemesterInterface();
+        Save.save(semester1, printWriter);
+
+        printWriter.close();
         HBox errorHBox = new HBox();
         Label errorLine = new Label("Error Line : ");
         errorHBox.getChildren().addAll(errorLine, globalErrors);
@@ -49,26 +55,14 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
 
-        /*System.out.println("HelloWorld");
-        Mark mark = new Mark("Mathe", 5, 0.5); //creation of a simple mark
-        System.out.println("note fr : " + mark.getMark() + "\nnote de : " + mark.markConversion(MARK_DE) + "\nnote CH : " + mark.markConversion(MARK_CH)); //display all language of the mark
-        System.out.println(mark.toString()); //display Object caracteristics of the mark
-
-        Exam mathe = new Exam("Mathe"); //building new Exam
-        mathe.addMark(new Mark("kurztest", 6, MARK_CH, 0.2)); //add mark to Exam
-        mathe.addMark(new Mark("test", 5, MARK_CH, 0.4));
-        mathe.addMark(new Mark("test2", 4, MARK_CH, 0.4));
-        System.out.println(mathe.getMark() + " DE : " + mathe.markConversion(MARK_DE)); //display average of the Exam in FRENch and German*/
-        launch(args);
-
-		System.out.println("HellWorld");
+		/*System.out.println("HellWorld");
 		Mark mark = new Mark("Mathe", 5, 0.5); //creation of a simple mark
 		Mark manote = new Mark("Transformation", 5, 0.5);
 		System.out.println("note fr : " + mark.getMark() + "\nnote de : " + mark.markConversion(MARK_DE) + "\nnote CH : " + mark.markConversion(MARK_CH)); //display all language of the mark
-		System.out.println(mark.toString()); //display Object caracteristics of the mark
+		System.out.println(mark.toString()); //display Object caracteristics of the mark*/
 
 		Exam mathe = new Exam("Mathe"); //building new Exam
 

@@ -20,7 +20,8 @@ public class ExamInterface extends Parent {
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
 
-    public Exam exam = new Exam();
+
+    private Exam exam = new Exam();
     private ArrayList<MarkInterface> markInterfaceArrayList = new ArrayList<>(); //Array of all Marks
 
 
@@ -156,6 +157,10 @@ public class ExamInterface extends Parent {
             hBox.getChildren().add(createDeleteButton(i, vBox));
             vBox.getChildren().add(hBox);
         }
+    }
+
+    public Exam getExam() {
+        return exam;
     }
 
 }
