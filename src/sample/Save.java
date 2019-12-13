@@ -1,34 +1,26 @@
 package sample;
-
-import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.io.Writer;
-import java.io.IOException;
-/* Still don't know how to get acces on the object mark to get his Informations
- * like Markname, mark and coefficient
- */
+import java.util.ArrayList;
 
 
 public class Save{
-	public static void save(Mark mark)  {
+	public static void save(Mark mark, PrintWriter printWriter)  {
 		
-		mark.getMarkName();
-		FileWriter fileWriter;
-		PrintWriter printWriter;
-		try {
-			fileWriter = new FileWriter("data.txt");
-			printWriter = new PrintWriter(fileWriter);
-			printWriter.print(mark.getMarkName()+";"+mark.getMark()+";"+mark.getCoefficient() );
-			
-			printWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		printWriter.println("Mark=" + mark.getMarkName()+";"+mark.getMark()+";"+mark.getCoefficient() );
+		
+		
 	   
-	  
-	   // printWriter.printf("Product name is %s and its price is %d $", "iPhone", 1000);
 	    
+	}
+	public static void save (Exam exam, PrintWriter printWriter) {
+		printWriter.println("Exam=" + exam.getMarkName() + ";" + exam.getCoefficient());
+		ArrayList<Mark> noteTable = exam.getMarkArrayList();
+		for(int i =0; i<noteTable.size(); i++) {
+			save(noteTable.get(i), printWriter);
+		}
+		
+		
 	}
 
 	
