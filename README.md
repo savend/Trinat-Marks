@@ -1,16 +1,16 @@
 <h1>Trinat-Marks<h1>
 
 # Table of contents:
-1) Members
-2) Introduction
-3) Goals, boundary conditions
-4) Build Instructions
-5) Operation manual
-6) User Stories
-7) Release plan
-8) Documentation Sprint 1
-9) Documentation Sprint 2
-10) Documentation Sprint 3
+1) ![Members](<https://github.com/savend/Trinat-Marks#members>)
+2) ![Introduction](https://github.com/savend/Trinat-Marks#introduction)
+3) ![Goals, boundary conditions](https://github.com/savend/Trinat-Marks#goals-boundary-conditions)
+4) ![Build Instructions](https://github.com/savend/Trinat-Marks#build-instructions)
+5) ![Operation manual](https://github.com/savend/Trinat-Marks#operation-manual)
+6) ![User Stories](https://github.com/savend/Trinat-Marks#user-stories)
+7) ![Release plan](https://github.com/savend/Trinat-Marks#release-plan)
+8) ![Documentation Sprint 1](https://github.com/savend/Trinat-Marks#documentation-sprint-1)
+9) ![Documentation Sprint 2](https://github.com/savend/Trinat-Marks#documentation-sprint-2)
+10) ![Documentation Sprint 3](https://github.com/savend/Trinat-Marks#documentation-sprint-3)
 
 # Members
 
