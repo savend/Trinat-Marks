@@ -45,8 +45,6 @@ The application should be programmed in JAVA and the classes of the program shou
 
 The project should be published on GitHub.
 
-The build automation should be done with MAVEN.
-
 We want to divide the program into different classes and structure them with methods.
 
 The condition is that this program can be used by MAC, Windows and LinuxComputers.
@@ -70,11 +68,14 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 **A short functional description of our calculator:**
 
-1.Start application according to build instructions
-2.
-3.
-4.
-5.
+1) Start application according to build instructions
+2)
+3)
+4)
+5)
+
+<br>
+
 // Bedienungsanleitung noch fertig schreiben (besser wenn das Programm fertig ist)
 
 
@@ -154,6 +155,8 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |**9**|Basic requirement|||
 |**10**|Basic requirement|||
 
+**Info:** The time between each realese is 1 week.
+
 
 # Documentation Sprint 1
 |**User Story**|**Tasks**|**Time estimation in minutes**|
@@ -161,7 +164,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |**10**|Mark input in any language|40|
 |**9**|Entering a mark, output to the other two|160|
 |**8**|Create own coefficients|40|
-|**6**|adding new marks||40|
+|**6**|Adding new marks|40|
 
 //Enrichment of user stories for implementation
 
@@ -169,7 +172,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |**User Story**|**Tasks**|**Time estimation in minutes**|
 |:-:|:-:|:-:|
 |**3**|Save notes|200|
-|**5**|delete marks, modules and semesters|160|
+|**5**|Delete marks, modules and semesters|160|
 |**7**|Display grade average|60|
 
 //Enrichment of user stories for implementation
@@ -180,6 +183,6 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |:-:|:-:|:-:|
 |**1**|Grade worse than (F10.0) D(4.0) CH(4.0) mark red|20|
 |**2**|Save and share semester configuration|200|
-|**4**|sustainable programm|60|
+|**4**|Sustainable programm|60|
 
 //Enrichment of user stories for implementation
