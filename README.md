@@ -1,6 +1,16 @@
 <h1>Trinat-Marks<h1>
 
-
+# Table of contents:
+1) Members
+2) Introduction
+3) Goals, boundary conditions
+4) Build Instructions
+5) Operation manual
+6) User Stories
+7) Release plan
+8) Documentation Sprint 1
+9) Documentation Sprint 2
+10) Documentation Sprint 3
 
 # Members
 
@@ -27,7 +37,7 @@ In addition, it is possible to save the scores that have been inserted and compl
 
 We want to divide the program into different classes and structure them with methods.
 
-The condition is that this program can be used by any device.
+The condition is that this program can be used by MAC, Windows and LinuxComputers.
 
 
 
@@ -56,72 +66,72 @@ A short functional description of our calculator:
 
 # User Stories
 
-| User Story 1 | prioritisation | Story Point | acceptance criterium |
+| User Story 1 | Prioritisation | Story Point | Acceptance criterium |
 |:-:|:-:|:-:|:-:|
-||high|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on*
 ||||
 
 
-| User Story 2 | prioritisation | Story Point | acceptance criterium |
+| User Story 2 | Prioritisation | Story Point | Acceptance criterium |
 |:-:|:-:|:-:|:-:|
-||realy low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||Realy low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*As a classleader I want to save a semester configuration to share it to all the class*
 ||||
 
 
-| User Story 3 | prioritisation | Story Point | acceptance criterium |
+| User Story 3 | Prioritisation | Story Point | Acceptance criterium |
 |:-:|:-:|:-:|:-:|
-||low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||Low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*As a user I want to save my marks to not reenter all the time my results*
 ||||
 
 
-| User Story 4 | prioritisation | Story Point | acceptance criterium |
+| User Story 4 | Prioritisation | Story Point | Acceptance criterium |
 |:-:|:-:|:-:|:-:|
-||high|5|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||High|5|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*The Semester schould be configurable as I want for a sustainable programm*
 ||||
 
 
-| User Story 5 | prioritisation | Story Point | acceptance criterium |
+| User Story 5 | Prioritisation | Story Point | Acceptance criterium |
 |:-:|:-:|:-:|:-:|
-||low|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||Low|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*As a student, I want to delete marks, modules and semesters*
 ||||
 
 
-| User Story 6 | prioritisation | Story Point | acceptance criterium |
+| User Story 6 | Prioritisation | Story Point | Acceptance criterium |
 |:-:|:-:|:-:|:-:|
-||high|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*As a student, I want to add new marks*
 ||||
 
 
-| User Story 7 | prioritisation | Story Point | acceptance criterium |
+| User Story 7 | Prioritisation | Story Point | Acceptance criterium |
 |-|-|-|-|
-||high|3|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||High|3|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*As a student I would like to have my grade average displayed to know if I have passed my modul*
 ||||
 
 
-| User Story 8 | prioritisation | Story Point | acceptance criterium |
+| User Story 8 | Prioritisation | Story Point | Acceptance criterium |
 |:-:|:-:|:-:|:-:|
-||high|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*As a student I want to define a coefficent for each topic and mark*
 ||||
 
 
-| User Story 9 | prioritisation | Story Point | acceptance criterium |
+| User Story 9 | Prioritisation | Story Point | Acceptance criterium |
 |:-:|:-:|:-:|:-:|
-||realy high|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||Realy high|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*As a student, I want to get from 1 input mark the other two marks*
 ||||
 
 
-| User Story 10 | prioritisation | Story Point | acceptance criterium |
+| User Story 10 | Prioritisation | Story Point | Acceptance criterium |
 |:-:|:-:|:-:|:-:|
-||high|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+||High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
 |*As a User I want to enter with a interface a mark in all nationalities to be flexible*
 ||||
 
@@ -144,27 +154,30 @@ A short functional description of our calculator:
 
 
 # Documentation Sprint 1
-|User Story|short description|Time estimation in minutes|
+|User Story|Tasks|Time estimation in minutes|
 |:-:|:-:|:-:|
-|10||40|
-|9||160|
-|8||40|
-|6||40|
+|10|Mark input in any language|40|
+|9|Entering a mark, output to the other two|160|
+|8|Create own coefficients|40|
+|6|adding new marks||40|
 
+//Enrichment of user stories for implementation
 
 # Documentation Sprint 2
-|User Story|short description|Time estimation in minutes|
+|User Story|Tasks|Time estimation in minutes|
 |:-:|:-:|:-:|
-|3||200|
-|5||160|
-|7||60|
+|3|Save notes|200|
+|5|delete marks, modules and semesters|160|
+|7|Display grade average|60|
+
+//Enrichment of user stories for implementation
 
 
 # Documentation Sprint 3
-|User Story|short description|Time estimation in minutes|
+|User Story|Tasks|Time estimation in minutes|
 |:-:|:-:|:-:|
-|1||20|
-|2||200|
-|4||60|
+|1|Grade worse than (F10.0) D(4.0) Ch(4.0) mark red|20|
+|2|Save and share semester configuration|200|
+|4|sustainable programm|60|
 
-
+//Enrichment of user stories for implementation
