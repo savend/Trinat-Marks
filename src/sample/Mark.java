@@ -20,7 +20,7 @@ public class Mark {
         System.out.println("Create new mark with default Values");
         this.markName = "NoName";
         this.mark = 16;
-        this.coefficient = 1;
+        this.coefficient = 0;
 
     }
 

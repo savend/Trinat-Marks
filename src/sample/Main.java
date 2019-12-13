@@ -5,8 +5,12 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class Main extends Application {
 
@@ -14,23 +18,26 @@ public class Main extends Application {
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
 
+    public static Label globalErrors = new Label("No Error");
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        VBox root = new VBox();
-        VBox vBox = new VBox();
+        BorderPane root = new BorderPane();
+
         primaryStage.setTitle("Trinat Marks (in development)");
 
-        SubjectInterface mathe = new SubjectInterface();
-        Subject mathematik = new Subject();
-        ExamInterface physik = new ExamInterface(mathematik);
-        if (mathe.getClass().equals(new SubjectInterface().getClass()))
-            System.out.println("SUBJEEEECECT");
-        else
-            System.out.println("Fuckyou");
+        SemesterInterface semester1 = new SemesterInterface();
 
+        HBox errorHBox = new HBox();
+        Label errorLine = new Label("Error Line : ");
+        errorHBox.getChildren().addAll(errorLine, globalErrors);
+        errorHBox.setPrefHeight(10);
 
-        root.getChildren().addAll(mathe);
+        root.setLeft(semester1);
+
+        root.setBottom(errorHBox);
+        //root.getChildren().addAll(semester1, errorHBox);
 
         primaryStage.setScene(new Scene(root, 1200, 500));
         primaryStage.show();
@@ -41,7 +48,7 @@ public class Main extends Application {
     public static void main(String[] args) {
 
 
-        System.out.println("HelloWorld");
+        /*System.out.println("HelloWorld");
         Mark mark = new Mark("Mathe", 5, 0.5); //creation of a simple mark
         System.out.println("note fr : " + mark.getMark() + "\nnote de : " + mark.markConversion(MARK_DE) + "\nnote CH : " + mark.markConversion(MARK_CH)); //display all language of the mark
         System.out.println(mark.toString()); //display Object caracteristics of the mark
@@ -50,7 +57,7 @@ public class Main extends Application {
         mathe.addMark(new Mark("kurztest", 6, MARK_CH, 0.2)); //add mark to Exam
         mathe.addMark(new Mark("test", 5, MARK_CH, 0.4));
         mathe.addMark(new Mark("test2", 4, MARK_CH, 0.4));
-        System.out.println(mathe.getMark() + " DE : " + mathe.markConversion(MARK_DE)); //display average of the Exam in FRENch and German
+        System.out.println(mathe.getMark() + " DE : " + mathe.markConversion(MARK_DE)); //display average of the Exam in FRENch and German*/
         launch(args);
 
 

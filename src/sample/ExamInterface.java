@@ -21,7 +21,7 @@ public class ExamInterface extends Parent {
     private static final int MARK_CH = 2;
 
     public Exam exam = new Exam();
-    private ArrayList<MarkInterface> markInterfaceArrayList = new ArrayList<>();
+    private ArrayList<MarkInterface> markInterfaceArrayList = new ArrayList<>(); //Array of all Marks
 
 
     /*------CLASS-----*/
@@ -33,14 +33,15 @@ public class ExamInterface extends Parent {
         private final int number;
         VBox vbox;
 
+        //Constructor of DeleteButtonEvent
         DeleteButtonEvent(int number, VBox box) {
             this.vbox = box;
             this.number = number;
         }
 
+        //EventHandler for every button
         @Override
         public void handle(ActionEvent event) {
-            // gridPane.getChildren().removeIf(node -> GridPane.getRowIndex(node) == number);
             markInterfaceArrayList.remove(number);
             exam.deleteMark(number);
             generateVBox(vbox, markInterfaceArrayList);
@@ -55,6 +56,10 @@ public class ExamInterface extends Parent {
 
         System.out.println("Constructeur of ExamInterface");
 
+
+        //------LAYOUTS-------
+
+
         //Layout Page
         VBox vBox = new VBox(10);
         vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
@@ -63,20 +68,18 @@ public class ExamInterface extends Parent {
         HBox hBoxTitleButton = new HBox(30);
         hBoxTitleButton.setAlignment(Pos.CENTER_LEFT);
 
-        //Layout Subtiles
+        //Layout Subtitles
         HBox hBoxSubtitle = new HBox(30);
         hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-        //Layout Marks and delet boxees
-        GridPane gridPane = new GridPane();
-        //gridPane.setGridLinesVisible(true);
-        gridPane.setPadding(new Insets(0, 0, 0, 0));
-        gridPane.setAlignment(Pos.TOP_LEFT);
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
+        //Layout Marks
+        VBox vBoxMarks = new VBox();
+        vBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
 
-        //Labels
-        Label title = new Label(" Mathematik");
+
+        //-------LABELS--------
+
+        Label title = new Label(" Exam");
         title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
         Label topic = new Label("   Fach                          ");
         topic.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
@@ -89,55 +92,61 @@ public class ExamInterface extends Parent {
         Label chMark = new Label("CH");
         chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
 
-        //Buttons
-        Button neueNoteButton = new Button("Add Mark");
+
+        //------AVERAGE LINE------
+
+        MarkInterface examAverage = new MarkInterface(exam, true);
 
 
-        //------- Set hBox----------
-        hBoxTitleButton.getChildren().addAll(title, neueNoteButton);
-        hBoxSubtitle.getChildren().addAll(topic, coefficient, fMark, dMark, chMark);
+        //------BUTTONS------
 
+        Button newMarkButton = new Button("Add Mark");
 
-        //------- Set GridPane------
-
-        VBox vBoxMarks = new VBox();
-        vBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
-        //markInterfaceArrayList.add(new MarkInterface(exam, false));
-        //generateVBox(vBoxMarks, markInterfaceArrayList);
-        /*gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
-        gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);*/
-
-
-        //-----Action Buttons (Neue Note) -----
-
-
-        neueNoteButton.setOnAction(e -> {
+        newMarkButton.setOnAction(e -> {
 
             markInterfaceArrayList.add(new MarkInterface(exam, false));
             generateVBox(vBoxMarks, markInterfaceArrayList);
-            /*gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
-            gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);*/
 
         });
 
-        /*-----Add average Mark-----*/
-        MarkInterface examAverage = new MarkInterface(exam, true);
 
-        //------ Print GridPane--------
+        /**------- Set GridPane------
 
 
-        vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, neueNoteButton, vBoxMarks, examAverage);
+         //markInterfaceArrayList.add(new MarkInterface(exam, false));
+         //generateVBox(vBoxMarks, markInterfaceArrayList);
+         /*gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
+         gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);**/
+
+
+        //-------ADD DEFAULT MARK------
+
+        markInterfaceArrayList.add(new MarkInterface(exam, false));
+        generateVBox(vBoxMarks, markInterfaceArrayList);
+
+
+        //--------ADD ELEMENTS TO LAYOUTS------
+
+        hBoxTitleButton.getChildren().addAll(title, newMarkButton);
+        hBoxSubtitle.getChildren().addAll(topic, coefficient, fMark, dMark, chMark);
+        vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, newMarkButton, vBoxMarks, examAverage);
         this.getChildren().add(vBox);
         //add exam Mark to Subject
         subject.addMark(exam.getMarkObject());
     }
 
+
+    /*--------METHODS--------*/
+
+
+    //create Delete Button with specific eventHandler for every button
     public Button createDeleteButton(int number, VBox vBox) {
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(new DeleteButtonEvent(number, vBox));
         return deleteButton;
     }
 
+    //update box with all exams
     public void generateVBox(VBox vBox, ArrayList<MarkInterface> markInterfaceArrayList) {
         vBox.getChildren().clear();
         for (int i = 0; i < markInterfaceArrayList.size(); i++) {

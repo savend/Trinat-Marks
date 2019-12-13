@@ -4,24 +4,22 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class SubjectInterface extends Parent {
+public class SemesterInterface extends Parent {
 
 
     private static final int MARK_FR = 0;
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
 
-    public Subject subject = new Subject();
-    private ArrayList<ExamInterface> examInterfaceArrayList = new ArrayList<>(); //Array of all Exams
+    //public Subject subject = new Subject();
+    private ArrayList<SubjectInterface> subjectInterfaceArrayList = new ArrayList<>(); //Array of all Subjects
 
 
     /*------CLASS-----*/
@@ -42,9 +40,8 @@ public class SubjectInterface extends Parent {
         //EventHandler for every button
         @Override
         public void handle(ActionEvent event) {
-            examInterfaceArrayList.remove(number);
-            subject.deleteMark(number);
-            generateHBox(hbox, examInterfaceArrayList);
+            subjectInterfaceArrayList.remove(number);
+            generateHBox(hbox, subjectInterfaceArrayList);
         }
     }
 
@@ -52,9 +49,9 @@ public class SubjectInterface extends Parent {
     /*------CONSTRUCTOR------*/
 
 
-    public SubjectInterface() {
+    public SemesterInterface() {
 
-        System.out.println("Constructor of SubjectInterface");
+        System.out.println("Constructor of SemesterInterface");
 
 
         //------LAYOUTS-------
@@ -79,37 +76,32 @@ public class SubjectInterface extends Parent {
 
         //-------LABELS--------
 
-        Label title = new Label("Subject");
+        Label title = new Label("Semester 1.");
         title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
-
-
-        //------AVERAGE LINE------
-
-        MarkInterface subjectAverage = new MarkInterface(subject, true);
 
 
         //------BUTTONS------
 
-        Button newExamButton = new Button("Add Exam");
+        Button newExamButton = new Button("Add Subject");
 
         newExamButton.setOnAction(e -> {
 
-            examInterfaceArrayList.add(new ExamInterface(subject));
-            generateHBox(hBoxMarks, examInterfaceArrayList);
+            subjectInterfaceArrayList.add(new SubjectInterface());
+            generateHBox(hBoxMarks, subjectInterfaceArrayList);
 
         });
 
 
         //-------ADD DEFAULT EXAM------
 
-        examInterfaceArrayList.add(new ExamInterface(subject));
-        generateHBox(hBoxMarks, examInterfaceArrayList);
+        subjectInterfaceArrayList.add(new SubjectInterface());
+        generateHBox(hBoxMarks, subjectInterfaceArrayList);
 
 
         //--------ADD ELEMENTS TO LAYOUTS------
 
         hBoxTitleButton.getChildren().addAll(title, newExamButton);
-        vBox.getChildren().addAll(hBoxTitleButton, subjectAverage, hBoxMarks, hBoxSubtitle);
+        vBox.getChildren().addAll(hBoxTitleButton, hBoxMarks, hBoxSubtitle);
         this.getChildren().add(vBox);
     }
 
@@ -119,19 +111,19 @@ public class SubjectInterface extends Parent {
 
     //create Delete Button with specific eventHandler for every button
     public Button createDeleteButton(int number, HBox hBox) {
-        Button deleteButton = new Button("Delete Exam");
+        Button deleteButton = new Button("Delete Subject");
         deleteButton.setOnAction(new DeleteButtonEvent(number, hBox));
         return deleteButton;
     }
 
     //update box with all exams
-    public void generateHBox(HBox hBox, ArrayList<ExamInterface> examInterfaceArrayList) {
+    public void generateHBox(HBox hBox, ArrayList<SubjectInterface> subjectInterfaceArrayList) {
         hBox.getChildren().clear();
-        for (int i = 0; i < examInterfaceArrayList.size(); i++) {
+        for (int i = 0; i < subjectInterfaceArrayList.size(); i++) {
             VBox vBox = new VBox();
             vBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
             vBox.getChildren().add(createDeleteButton(i, hBox));
-            vBox.getChildren().add(examInterfaceArrayList.get(i));
+            vBox.getChildren().add(subjectInterfaceArrayList.get(i));
             hBox.getChildren().add(vBox);
         }
     }

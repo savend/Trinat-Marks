@@ -41,9 +41,9 @@ public class MarkInterface extends Parent {
         hBox.setPadding(new Insets(0, 0, 0, 0)); //padding
         hBox.setAlignment(Pos.CENTER_LEFT);
 
+
         /*----Labels for Textfield description----*/
 
-        Label warnLabel = new Label("");
         Label procent = new Label("%    ");
         procent.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
 
@@ -53,11 +53,12 @@ public class MarkInterface extends Parent {
         TextField markNameField = new TextField();
         markNameField.setPromptText("Name Test");
         markNameField.setPrefWidth(150);
-        Label averageLabel = new Label("Average : ");
+        Label examAverageLabel = new Label("Exam Average : ");
+        Label subjectAverageLabel = new Label("Subject Average : ");
 
 
         TextField coefficientField = new TextField();
-        coefficientField.setPromptText(String.valueOf(mark.getCoefficient()));
+        coefficientField.setPromptText(String.valueOf(mark.getCoefficient() * 100));
         coefficientField.setMaxWidth(40);
 
         TextField markFField = new TextField();
@@ -70,8 +71,8 @@ public class MarkInterface extends Parent {
         markCHField.setPromptText(String.valueOf(mark.markConversion(MARK_CH)));
         markCHField.setMaxWidth(40);
 
-        /*-----Eventhandler-----*/
 
+        /*-----Eventhandler-----*/
 
         //Event Handler for french mark entry
         EventHandler<ActionEvent> eventHandlerFField = new EventHandler<ActionEvent>() {
@@ -86,8 +87,8 @@ public class MarkInterface extends Parent {
                     markFField.setText(String.valueOf(mark.getMark()));
                     markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
                     markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
-                    warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
-                    warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
+                    verifyMark(markFField);
+                    verifyCoefficient(coefficientField);
                 }
                 if (examAverage) {
                     updateAverage(markFField, markDField, markCHField);
@@ -111,8 +112,8 @@ public class MarkInterface extends Parent {
                     markFField.setText(String.valueOf(mark.getMark()));
                     markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
                     markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
-                    warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
-                    warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
+                    verifyMark(markFField);
+                    verifyCoefficient(coefficientField);
                 }
                 if (examAverage) {
                     updateAverage(markFField, markDField, markCHField);
@@ -136,8 +137,8 @@ public class MarkInterface extends Parent {
                     markFField.setText(String.valueOf(mark.getMark()));
                     markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
                     markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
-                    warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
-                    warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
+                    verifyMark(markFField);
+                    verifyCoefficient(coefficientField);
                 }
                 if (examAverage) {
                     updateAverage(markFField, markDField, markCHField);
@@ -155,8 +156,8 @@ public class MarkInterface extends Parent {
                 System.out.println("Name or coefficient field activated");
                 if (!examAverage)
                     mark.setMarkName(markNameField.getText());
-                warnLabel.setText(verifyMark(markFField, warnLabel.getText()));
-                warnLabel.setText(verifyCoefficient(coefficientField, warnLabel.getText()));
+                verifyMark(markFField);
+                verifyCoefficient(coefficientField);
                 if (examAverage) {
                     updateAverage(markFField, markDField, markCHField);
                 }
@@ -254,15 +255,22 @@ public class MarkInterface extends Parent {
         markDField.setOnAction(eventHandlerDField);
         markCHField.setOnAction(eventHandlerCHField);
 
+        /*-----Mark adding-----*/
 
         //add mark to exam
         if (!examAverage)
             exam.addMark(mark);
+
+
+        /*-----Add Elements to Layout-----*/
+
         //add all elements to hBox
         if (!examAverage)
             hBox.getChildren().add(markNameField);
-        else
-            hBox.getChildren().add(averageLabel);
+        else if (exam.getClass().equals(new Exam().getClass()))
+            hBox.getChildren().add(examAverageLabel);
+        else if (exam.getClass().equals(new Subject().getClass()))
+            hBox.getChildren().add(subjectAverageLabel);
         if (!exam.getClass().equals(new Subject().getClass()))
             hBox.getChildren().addAll(coefficientField, procent);
         hBox.getChildren().addAll(markFField, markDField, markCHField);
@@ -274,32 +282,25 @@ public class MarkInterface extends Parent {
     /*------METHODS-------*/
 
     //verify if coefficient are entered
-    private String verifyCoefficient(TextField textfield, String warnLabel) {
-        System.out.println("Verification of coefficient entered or not");
-        if (!(textfield.getText().isEmpty()) && (Double.parseDouble(textfield.getText()) >= 0) && (Double.parseDouble(textfield.getText()) <= 1.0)) {
-            System.out.println("yes");
-            mark.setCoefficient(Double.parseDouble(textfield.getText()));
-            if (warnLabel.contains("Enter coefficient !!"))
-                return "";
-            else
-                return (warnLabel + "");
+    private void verifyCoefficient(TextField textfield) {
+        //System.out.println("Verification of coefficient entered or not");
+        if (!(textfield.getText().isEmpty()) && (Double.parseDouble(textfield.getText()) >= 0) && (Double.parseDouble(textfield.getText()) <= 100)) {
+            //System.out.println("yes");
+            mark.setCoefficient(Double.parseDouble(textfield.getText()) / 100);
+            Main.globalErrors.setText(Main.globalErrors.getText() + "");
         } else {
-            System.out.println("no");
-            if (warnLabel.contains("Enter coefficient !!") && warnLabel.contains("Enter Mark !!"))
-                return "Enter Mark !! Enter coefficient !!";
-            else
-                return (warnLabel + " Enter coefficient !!");
+            //System.out.println("no");
+            Main.globalErrors.setText("Enter Coefficient !");
         }
     }
 
-    private String verifyMark(TextField textField, String warnLabel) {
+    private void verifyMark(TextField textField) {
         System.out.println("Verification of mark entered or not");
         if (!textField.getText().isEmpty()) {
             System.out.println("yes");
-            return (warnLabel + "");
+            Main.globalErrors.setText("");
         } else {
-            System.out.println("no");
-            return warnLabel + " Enter Mark !!";
+            Main.globalErrors.setText("Enter Mark Name !");
 
         }
 
