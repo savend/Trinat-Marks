@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -59,7 +61,8 @@ public class SemesterInterface extends Parent {
 
         //Layout Page
         VBox vBox = new VBox(10);
-        vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+       // vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+        vBox.setPadding(new Insets(10, 10, 10, 10));
 
         //Layout Title line
         HBox hBoxTitleButton = new HBox(30);
@@ -71,13 +74,18 @@ public class SemesterInterface extends Parent {
 
         //Layout Exams
         HBox hBoxMarks = new HBox();
-        hBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
-
+        hBoxMarks.setStyle("-fx-border-color: black" +  "-fx-border-width: 5;\n" +"-fx-border-outsets: 5;\n");
+        hBoxMarks.setPadding(new Insets(0, 0, 0, 0)); //padding
 
         //-------LABELS--------
+        Label semester = new Label("Semester");
+        semester.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
 
-        Label title = new Label("Semester 1.");
-        title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+        //-------TEXTFIELDS----
+        TextField semesterNum = new TextField();
+        semesterNum.setPromptText("1");
+        semesterNum.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+        semesterNum.setPrefWidth(55);
 
 
         //------BUTTONS------
@@ -100,7 +108,7 @@ public class SemesterInterface extends Parent {
 
         //--------ADD ELEMENTS TO LAYOUTS------
 
-        hBoxTitleButton.getChildren().addAll(title, newExamButton);
+        hBoxTitleButton.getChildren().addAll(semester, semesterNum, newExamButton);
         vBox.getChildren().addAll(hBoxTitleButton, hBoxMarks, hBoxSubtitle);
         this.getChildren().add(vBox);
     }
@@ -120,8 +128,9 @@ public class SemesterInterface extends Parent {
     public void generateHBox(HBox hBox, ArrayList<SubjectInterface> subjectInterfaceArrayList) {
         hBox.getChildren().clear();
         for (int i = 0; i < subjectInterfaceArrayList.size(); i++) {
-            VBox vBox = new VBox();
-            vBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+            VBox vBox = new VBox(10);
+            vBox.setStyle("-fx-border-color: #F5F1E8;"  + "-fx-background-color: white;" + "-fx-border-width: 10;\n");
+            vBox.setPadding(new Insets(10, 10, 0, 10)); //padding
             vBox.getChildren().add(createDeleteButton(i, hBox));
             vBox.getChildren().add(subjectInterfaceArrayList.get(i));
             hBox.getChildren().add(vBox);

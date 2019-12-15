@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -63,7 +64,8 @@ public class ExamInterface extends Parent {
 
         //Layout Page
         VBox vBox = new VBox(10);
-        vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+     
+        
 
         //Layout Title line
         HBox hBoxTitleButton = new HBox(30);
@@ -75,16 +77,21 @@ public class ExamInterface extends Parent {
 
         //Layout Marks
         VBox vBoxMarks = new VBox();
-        vBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+        
 
 
+        //Text fields
+        TextField examName = new TextField();
+        examName.setPromptText("Exam");
+        examName.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
+        examName.setPrefWidth(220);
+        
+        
         //-------LABELS--------
 
-        Label title = new Label(" Exam");
-        title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
-        Label topic = new Label("   Fach                          ");
-        topic.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label coefficient = new Label("Koeffizient");
+        
+        
+        Label coefficient = new Label("                 Koeffizient");
         coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
         Label fMark = new Label("F   ");
         fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
@@ -128,9 +135,9 @@ public class ExamInterface extends Parent {
 
         //--------ADD ELEMENTS TO LAYOUTS------
 
-        hBoxTitleButton.getChildren().addAll(title, newMarkButton);
-        hBoxSubtitle.getChildren().addAll(topic, coefficient, fMark, dMark, chMark);
-        vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, newMarkButton, vBoxMarks, examAverage);
+        hBoxTitleButton.getChildren().addAll(examName);
+        hBoxSubtitle.getChildren().addAll(newMarkButton, coefficient, fMark, dMark, chMark);
+        vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle,  vBoxMarks, examAverage);
         this.getChildren().add(vBox);
         //add exam Mark to Subject
         subject.addMark(exam.getMarkObject());
@@ -151,8 +158,9 @@ public class ExamInterface extends Parent {
     public void generateVBox(VBox vBox, ArrayList<MarkInterface> markInterfaceArrayList) {
         vBox.getChildren().clear();
         for (int i = 0; i < markInterfaceArrayList.size(); i++) {
-            HBox hBox = new HBox();
-            hBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+            HBox hBox = new HBox(10);
+            hBox.setStyle("-fx-background-color: #F5F1E8;\n");
+            hBox.setPadding(new Insets(5, 5, 5, 5)); //padding
             hBox.getChildren().add(markInterfaceArrayList.get(i));
             hBox.getChildren().add(createDeleteButton(i, vBox));
             vBox.getChildren().add(hBox);
