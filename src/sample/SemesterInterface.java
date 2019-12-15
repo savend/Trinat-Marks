@@ -61,7 +61,6 @@ public class SemesterInterface extends Parent {
 
         //Layout Page
         VBox vBox = new VBox(10);
-       // vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
         vBox.setPadding(new Insets(10, 10, 10, 10));
 
         //Layout Title line
