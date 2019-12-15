@@ -22,14 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.control.ScrollBar;
 
-
-/*
- -fx-background-size: 1200 900;
- -fx-border-radius: 10 10 0 0;
- -fx-background-radius: 10 10 0 0;
- -fx-border-color: #FC3D44;
- */
-
 public class Main extends Application {
 
     private static final int MARK_FR = 0;
