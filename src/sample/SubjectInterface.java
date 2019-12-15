@@ -63,7 +63,7 @@ public class SubjectInterface extends Parent {
 
         //Layout Page
         VBox vBox = new VBox(10);
-        //vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 5;\n" + "-fx-background-color: white;\n");
+        
 
         //Layout Title line
         HBox hBoxTitleButton = new HBox(30);
@@ -76,7 +76,7 @@ public class SubjectInterface extends Parent {
         //Layout Exams
         HBox hBoxMarks = new HBox(10);
         hBoxMarks.setPadding(new Insets(10, 10, 10, 10));
-        //hBoxMarks.setStyle("-fx-border-color: lightgray;\n" + "-fx-border-width: 5;\n" + "-fx-border-insets: 1;\n"  + "-fx-background-color: white;\n");
+     
 
 
         //-------TEXTFIELD--------
