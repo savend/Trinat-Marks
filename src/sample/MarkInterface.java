@@ -1,7 +1,15 @@
 package sample;
 
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
+import javafx.beans.value.ObservableValueBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -13,6 +21,8 @@ import javafx.scene.Parent;
 import javafx.scene.layout.HBox;
 
 import javax.xml.soap.Text;
+import java.security.spec.ECField;
+import java.util.concurrent.Callable;
 
 public class MarkInterface extends Parent {
 
@@ -20,6 +30,9 @@ public class MarkInterface extends Parent {
     private static final int MARK_FR = 0;
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
+    private static final int COEFFICIENT = 3;
+    private static final int NAME = 4;
+    private static final int NULL = 10;
 
 
     Mark mark;
@@ -27,255 +40,214 @@ public class MarkInterface extends Parent {
 
     /*------CONSTRUCTOR------*/
 
+    public MarkInterface(Subject subject) {
+        this(subject, new Exam(), false);
+    }
 
-    public MarkInterface(Exam exam, boolean examAverage) {
-        //Calculation of a new mark or of a existing mark ( average )
-        if (examAverage)
-            mark = exam.getMarkObject();
-        else
-            mark = new Mark();
+
+    public MarkInterface(Mark markBuffer, Exam exam, boolean newMark) {
 
         System.out.println("Constructor of MarkInterface");
-        HBox hBox = new HBox(10); //Horizontal Box with 10px spacing
 
-        hBox.setPadding(new Insets(0, 0, 0, 0)); //padding
-        hBox.setAlignment(Pos.CENTER_LEFT);
+        Platform.runLater(() -> {
 
-
-        /*----Labels for Textfield description----*/
-
-        Label procent = new Label("%    ");
-        procent.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            mark = markBuffer.getMarkObject();
 
 
-        /*----Textfields----*/
+            /*------Layout Boxes-----*/
 
-        TextField markNameField = new TextField();
-        markNameField.setPromptText("Name Test");
-        markNameField.setPrefWidth(150);
-        Label examAverageLabel = new Label("Exam Average : ");
-        Label subjectAverageLabel = new Label("Subject Average : ");
+            HBox hBox = new HBox(10);
+            hBox.setPadding(new Insets(0, 0, 0, 0));
+            hBox.setAlignment(Pos.CENTER_LEFT);
 
 
-        TextField coefficientField = new TextField();
-        coefficientField.setPromptText(String.valueOf(mark.getCoefficient() * 100));
-        coefficientField.setMaxWidth(40);
+            /*----Labels for Textfield description----*/
 
-        TextField markFField = new TextField();
-        markFField.setPromptText(String.valueOf(mark.getMark()));
-        markFField.setMaxWidth(40);
-        TextField markDField = new TextField();
-        markDField.setPromptText(String.valueOf(mark.markConversion(MARK_DE)));
-        markDField.setMaxWidth(40);
-        TextField markCHField = new TextField();
-        markCHField.setPromptText(String.valueOf(mark.markConversion(MARK_CH)));
-        markCHField.setMaxWidth(40);
+            Label procentLabel = new Label("%    ");
+            procentLabel.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label examAverageLabel = new Label("Exam Average : ");
+            Label subjectAverageLabel = new Label("Subject Average : ");
 
 
-        /*-----Eventhandler-----*/
+            /*------Textfields-----*/
 
-        //Event Handler for french mark entry
-        EventHandler<ActionEvent> eventHandlerFField = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (!examAverage)
-                    mark.setMarkName(markNameField.getText());
-                System.out.println("French field activated");
-                if (!markFField.getText().isEmpty()) {
-                    System.out.println("French field activated with a new mark");
-                    mark.setMark(Double.parseDouble(markFField.getText()));
-                    markFField.setText(String.valueOf(mark.getMark()));
-                    markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
-                    markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
-                    verifyMark(markFField);
-                    verifyCoefficient(coefficientField);
+            TextField markNameField = new TextField();
+            markNameField.setPrefWidth(150);
+            if (newMark)
+                markNameField.setPromptText("Test Name");
+            else
+                markNameField.setText(mark.getMarkName());
+
+            TextField markCoefficientField = new TextField();
+            markCoefficientField.setPrefWidth(40);
+            if (newMark)
+                markCoefficientField.setPromptText("100");
+            else
+                markCoefficientField.setText(String.valueOf((int) mark.getCoefficient() * 100));
+
+            TextField markFField = new TextField();
+            markFField.setPrefWidth(40);
+            if (newMark)
+                markFField.setPromptText("16.0");
+            else
+                markFField.setText(String.valueOf(mark.getMark()));
+
+            TextField markDField = new TextField();
+            markDField.setMaxWidth(40);
+            if (newMark)
+                markDField.setPromptText("1.0");
+            else
+                markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
+
+            TextField markCHField = new TextField();
+            markCHField.setMaxWidth(40);
+            if (newMark)
+                markCHField.setPromptText("6.0");
+            else
+                markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
+
+            /*-----Event Handlers-----*/
+
+            EventHandler<ActionEvent> eventHandlerNameField = event -> {
+                if (mark.getClass().equals(Mark.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NAME);
+            };
+
+            markNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!mark.getClass().equals(Mark.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+                else if (oldValue) {
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NAME);
                 }
-                if (examAverage) {
-                    updateAverage(markFField, markDField, markCHField);
+            });
+
+            EventHandler<ActionEvent> eventHandlerCoefficientField = event -> {
+                if (!mark.getClass().equals(Subject.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, COEFFICIENT);
+            };
+
+            markCoefficientField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (markCoefficientField.getText().length() >= 3) {
+                    if (!mark.getClass().equals(Subject.class))
+                        updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, COEFFICIENT);
                 }
+            });
 
-
-                System.out.println(mark.toString());
-            }
-        };
-
-        //Event Handler for german mark entry
-        EventHandler<ActionEvent> eventHandlerDField = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if (!examAverage)
-                    mark.setMarkName(markNameField.getText());
-                System.out.println("German field activated");
-                if (!markDField.getText().isEmpty()) {
-                    System.out.println("German field activated with a new mark");
-                    mark.setMarkConvLine(Double.parseDouble(markDField.getText()), MARK_DE);
-                    markFField.setText(String.valueOf(mark.getMark()));
-                    markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
-                    markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
-                    verifyMark(markFField);
-                    verifyCoefficient(coefficientField);
+            markCoefficientField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (mark.getClass().equals(Subject.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+                else if (oldValue) {
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, COEFFICIENT);
                 }
-                if (examAverage) {
-                    updateAverage(markFField, markDField, markCHField);
-                }
+            });
 
+            EventHandler<ActionEvent> eventHandlerFField = event -> {
+                if (mark.getClass().equals(Mark.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, MARK_FR);
+                else
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
 
-                System.out.println(mark.toString());
-            }
-        };
+            };
 
-        //Event Handler for swiss mark entry
-        EventHandler<ActionEvent> eventHandlerCHField = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Swiss field activated");
-                if (!examAverage)
-                    mark.setMarkName(markNameField.getText());
-                if (!markCHField.getText().isEmpty()) {
-                    System.out.println("Swiss field activated with a new mark");
-                    mark.setMarkConvLine(Double.parseDouble(markCHField.getText()), MARK_CH);
-                    markFField.setText(String.valueOf(mark.getMark()));
-                    markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
-                    markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
-                    verifyMark(markFField);
-                    verifyCoefficient(coefficientField);
-                }
-                if (examAverage) {
-                    updateAverage(markFField, markDField, markCHField);
-                }
-
-
-                System.out.println(mark.toString());
-            }
-        };
-
-        //Event Handler for name and coefficient entry
-        EventHandler<ActionEvent> eventHandlerField = new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Name or coefficient field activated");
-                if (!examAverage)
-                    mark.setMarkName(markNameField.getText());
-                verifyMark(markFField);
-                verifyCoefficient(coefficientField);
-                if (examAverage) {
-                    updateAverage(markFField, markDField, markCHField);
-                }
-                System.out.println(mark.toString());
-            }
-        };
-
-        //Event Handler for french mark no anymore focus
-        markFField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-
-                if (oldValue)
-                    if (!markFField.getText().equals(String.valueOf(mark.getMark()))) {
-                        ActionEvent event = null;
-                        eventHandlerFField.handle(event);
-
+            markFField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (mark.getClass().equals(Mark.class)) {
+                    if (markFField.getText().length() >= 5) {
+                        updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, MARK_FR);
                     }
-                if (examAverage) {
-                    updateAverage(markFField, markDField, markCHField);
+                } else
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+
+            });
+
+            markFField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!mark.getClass().equals(Mark.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+                else if (oldValue) {
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, MARK_FR);
                 }
-            }
-        });
+            });
 
-        //Event Handler for german mark no anymore focus
-        markDField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            EventHandler<ActionEvent> eventHandlerDField = event -> {
+                if (mark.getClass().equals(Mark.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, MARK_DE);
+                else
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+            };
 
-                if (oldValue)
-                    if (!markDField.getText().equals(String.valueOf(mark.markConversion(MARK_DE)))) {
-                        ActionEvent event = null;
-                        eventHandlerDField.handle(event);
-
+            markDField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (mark.getClass().equals(Mark.class)) {
+                    if (markDField.getText().length() >= 4) {
+                        updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, MARK_DE);
                     }
-                if (examAverage) {
-                    updateAverage(markFField, markDField, markCHField);
+                } else
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+
+            });
+
+            markDField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!mark.getClass().equals(Mark.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+                else if (oldValue) {
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, MARK_DE);
                 }
-            }
-        });
+            });
 
-        //Event Handler for Swiss mark no anymore focus
-        markCHField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+            EventHandler<ActionEvent> eventHandlerCHField = event -> {
+                if (mark.getClass().equals(Mark.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, MARK_CH);
+                else
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+            };
 
-                if (oldValue)
-                    if (!markCHField.getText().equals(String.valueOf(mark.markConversion(MARK_CH)))) {
-                        ActionEvent event = null;
-                        eventHandlerCHField.handle(event);
-
+            markCHField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (mark.getClass().equals(Mark.class)) {
+                    if (markCHField.getText().length() >= 4) {
+                        updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, MARK_CH);
                     }
-                if (examAverage) {
-                    updateAverage(markFField, markDField, markCHField);
+                } else
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+
+            });
+
+            markCHField.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!mark.getClass().equals(Mark.class))
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
+                else if (oldValue) {
+                    updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, MARK_CH);
                 }
-            }
+            });
+
+
+            //Set EventHandler to every Field
+            markNameField.setOnAction(eventHandlerNameField);
+            markCoefficientField.setOnAction(eventHandlerCoefficientField);
+            markFField.setOnAction(eventHandlerFField);
+            markDField.setOnAction(eventHandlerDField);
+            markCHField.setOnAction(eventHandlerCHField);
+
+
+            /*-----Add Mark to Exam------*/
+
+            if (!mark.getClass().equals(Subject.class))
+                exam.addMark(mark);
+
+
+            /*-----Add Elements to Layout-----*/
+
+            if (mark.getClass().equals(Mark.class))
+                hBox.getChildren().add(markNameField);
+            else if (mark.getClass().equals(Subject.class))
+                hBox.getChildren().add(subjectAverageLabel);
+            else if (mark.getClass().equals(Exam.class))
+                hBox.getChildren().add(examAverageLabel);
+            if (mark.getClass().equals(Mark.class) || mark.getClass().equals(Exam.class))
+                hBox.getChildren().addAll(markCoefficientField, procentLabel);
+
+            hBox.getChildren().addAll(markFField, markDField, markCHField);
+
+
+            this.getChildren().add(hBox);
         });
-
-        //Event Handler for coefficientField no anymore focus
-        coefficientField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (!coefficientField.getText().equals(String.valueOf(mark.getCoefficient()))) {
-                    ActionEvent event = null;
-                    eventHandlerField.handle(event);
-                }
-                if (examAverage) {
-                    updateAverage(markFField, markDField, markCHField);
-                }
-
-            }
-        });
-
-        //Event Handler for nameField no anymore focus
-        markNameField.focusedProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (!markNameField.getText().equals(String.valueOf(mark.getMarkName()))) {
-                    ActionEvent event = null;
-                    eventHandlerField.handle(event);
-                }
-                if (examAverage) {
-                    updateAverage(markFField, markDField, markCHField);
-                }
-
-
-            }
-        });
-
-
-        //Set Event Handler entry on Textfields
-        markNameField.setOnAction(eventHandlerField);
-        coefficientField.setOnAction(eventHandlerField);
-        markFField.setOnAction(eventHandlerFField);
-        markDField.setOnAction(eventHandlerDField);
-        markCHField.setOnAction(eventHandlerCHField);
-
-        /*-----Mark adding-----*/
-
-        //add mark to exam
-        if (!examAverage)
-            exam.addMark(mark);
-
-
-        /*-----Add Elements to Layout-----*/
-
-        //add all elements to hBox
-        if (!examAverage)
-            hBox.getChildren().add(markNameField);
-        else if (exam.getClass().equals(new Exam().getClass()))
-            hBox.getChildren().add(examAverageLabel);
-        else if (exam.getClass().equals(new Subject().getClass()))
-            hBox.getChildren().add(subjectAverageLabel);
-        if (!exam.getClass().equals(new Subject().getClass()))
-            hBox.getChildren().addAll(coefficientField, procent);
-        hBox.getChildren().addAll(markFField, markDField, markCHField);
-        //add HBox to the actual object
-        this.getChildren().add(hBox);
     }
 
 
@@ -294,14 +266,13 @@ public class MarkInterface extends Parent {
         }
     }
 
-    private void verifyMark(TextField textField) {
+    /*private void verifyMark(TextField textField) {
         System.out.println("Verification of mark entered or not");
         if (!textField.getText().isEmpty()) {
             System.out.println("yes");
             Main.globalErrors.setText("");
         } else {
             Main.globalErrors.setText("Enter Mark Name !");
-
         }
 
 
@@ -314,9 +285,29 @@ public class MarkInterface extends Parent {
     }
 
 
-	public Mark getMark() {
-		return mark;
-	}
+    public Mark getMark() {
+        return mark;
+    }*/
 
+    //update MarkInterface dependent of the activated field
+    private void updateMarkInterface(TextField markNameField, TextField markCoefficientField, TextField markFField, TextField markDField, TextField markCHField, int change) {
+        if (change == MARK_FR) {
+            mark.setMark(Double.parseDouble(markFField.getText()));
+        } else if (change == MARK_DE) {
+            mark.setMarkConvLine(Double.parseDouble(markDField.getText()), MARK_DE);
+        } else if (change == MARK_CH) {
+            mark.setMarkConvLine(Double.parseDouble(markDField.getText()), MARK_CH);
+        } else if (change == COEFFICIENT) {
+            verifyCoefficient(markCoefficientField);
+        } else if (change == NAME) {
+            mark.setMarkName(markNameField.getText());
+        }
+
+        markNameField.setText(mark.getMarkName());
+        markCoefficientField.setText(String.valueOf((int) (mark.getCoefficient() * 100)));
+        markFField.setText(String.valueOf(mark.getMark()));
+        markDField.setText(String.valueOf(mark.markConversion(MARK_DE)));
+        markCHField.setText(String.valueOf(mark.markConversion(MARK_CH)));
+    }
 
 }

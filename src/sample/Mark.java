@@ -1,5 +1,12 @@
 package sample;
 
+import com.sun.deploy.panel.TextFieldProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TextField;
+
 public class Mark {
 
     private static final int MARK_FR = 0;
@@ -19,7 +26,7 @@ public class Mark {
     public Mark() {
         System.out.println("Create new mark with default Values");
         this.markName = "NoName";
-        this.mark = 16;
+        this.mark = 0;
         this.coefficient = 0;
 
     }
@@ -78,6 +85,10 @@ public class Mark {
 
     public void setMark(double mark) {
         this.mark = roundMark(mark); //Force new mark
+        if (this.mark > 20)
+            this.setMark(20);
+        else if (this.mark < 0)
+            this.setMark(0);
         this.setMarkConvLine(this.mark); //update MarkConvLine
     }
 
@@ -96,24 +107,41 @@ public class Mark {
 
     //Setter of MarkConvLine when new mark are setted
     public void setMarkConvLine(double mark) {
-        for (int i = 0; i < markTable.length; i++) {
-            if (roundMark(mark) == markTable[i][MARK_FR]) {
-                this.setMarkConvLine(i);
+        if (mark > 16 && mark <= 20)
+            this.setMarkConvLine(0);
+        else {
+            for (int i = 0; i < markTable.length; i++) {
+                if (roundMark(mark) == markTable[i][MARK_FR]) {
+                    this.setMarkConvLine(i);
+                }
             }
         }
+
     }
 
     //Setter of MarkConvLine for constructor from a given language
     public void setMarkConvLine(double markValue, int markLanguage) {
 
         System.out.println("Mark conversion, Set the Object markConvLine, ( for Mark Object constructor ) ");
-        for (int i = 0; i < markTable.length; i++) {
-            if (roundMark(markValue) == markTable[i][markLanguage]) {
-                this.setMarkConvLine(i);
-            }
-        }
-        this.setMark();
 
+        if (markValue > 5 && markLanguage == MARK_DE)
+            markValue = 5;
+        else if (markValue < 1 && markLanguage == MARK_DE)
+            markValue = 1;
+        if (markValue > 6 && markLanguage == MARK_CH)
+            markValue = 6;
+        else if (markValue < 1 && markLanguage == MARK_CH)
+            markValue = 1;
+        if (markValue > 16 && markValue <= 20 && markLanguage == MARK_FR)
+            this.setMarkConvLine(0);
+        else {
+            for (int i = 0; i < markTable.length; i++) {
+                if (roundMark(markValue) == markTable[i][markLanguage]) {
+                    this.setMarkConvLine(i);
+                }
+            }
+            this.setMark();
+        }
     }
 
 

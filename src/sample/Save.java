@@ -1,27 +1,31 @@
 package sample;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
-public class Save{
-	public static void save(Mark mark, PrintWriter printWriter)  {
-		
+public class Save {
 
-		printWriter.println("Mark=" + mark.getMarkName()+";"+mark.getMark()+";"+mark.getCoefficient() );
-		
-		
-	   
-	    
-	}
-	public static void save (Exam exam, PrintWriter printWriter) {
-		printWriter.println("Exam=" + exam.getMarkName() + ";" + exam.getCoefficient());
+
+    /*-------METHODS------*/
+
+
+    //Save a Mark
+    public static void save(Mark mark, PrintWriter printWriter) {
+        printWriter.println("Mark=" + mark.getMarkName() + ";" + mark.getCoefficient() + ";" + mark.getMark());
+    }
+
+    //Save a Exam
+    public static void save(Exam exam, PrintWriter printWriter) {
+        printWriter.println("Exam=" + exam.getMarkName() + ";" + exam.getCoefficient());
         ArrayList<Mark> markArrayList = exam.getMarkArrayList();
-        for (int i = 0; i < markArrayList.size(); i++) {
-            save(markArrayList.get(i), printWriter);
+        for (Mark mark : markArrayList) {
+            save(mark, printWriter);
         }
 
     }
 
+    //Save a Subject
     public static void save(SubjectInterface subjectInterface, PrintWriter printWriter) {
         printWriter.println("Subject=" + subjectInterface.getSubject().getMarkName() + ";" + subjectInterface.getSubject().getCoefficient());
         ArrayList<ExamInterface> examInterfaceArrayList = subjectInterface.getExamInterfaceArrayList();
@@ -30,6 +34,7 @@ public class Save{
         }
     }
 
+    //Save a Semester
     public static void save(SemesterInterface semesterInterface, PrintWriter printWriter) {
         printWriter.println("Semester=" + 1);
         ArrayList<SubjectInterface> subjectInterfaceArrayList = semesterInterface.getSubjectInterfaceArrayList();
@@ -38,5 +43,5 @@ public class Save{
         }
     }
 
-	
+
 }

@@ -1,6 +1,7 @@
 package sample;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -24,6 +25,8 @@ public class ExamInterface extends Parent {
 
     private Exam exam = new Exam();
     private ArrayList<MarkInterface> markInterfaceArrayList = new ArrayList<>(); //Array of all Marks
+    private VBox vBoxMarks = new VBox();
+
 
 
     /*------CLASS-----*/
@@ -46,7 +49,7 @@ public class ExamInterface extends Parent {
         public void handle(ActionEvent event) {
             markInterfaceArrayList.remove(number);
             exam.deleteMark(number);
-            generateVBox(vbox, markInterfaceArrayList);
+            generateVBox(markInterfaceArrayList);
         }
     }
 
@@ -55,86 +58,86 @@ public class ExamInterface extends Parent {
 
 
     public ExamInterface(Subject subject) {
+        Platform.runLater(() -> {
 
-        System.out.println("Constructeur of ExamInterface");
-
-
-        //------LAYOUTS-------
+            System.out.println("Constructeur of ExamInterface");
 
 
-        //Layout Page
-        VBox vBox = new VBox(10);
-        vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
-
-        //Layout Title line
-        HBox hBoxTitleButton = new HBox(30);
-        hBoxTitleButton.setAlignment(Pos.CENTER_LEFT);
-
-        //Layout Subtitles
-        HBox hBoxSubtitle = new HBox(30);
-        hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
-
-        //Layout Marks
-        VBox vBoxMarks = new VBox();
-        vBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+            //------LAYOUTS-------
 
 
-        //-------LABELS--------
+            //Layout Page
+            VBox vBox = new VBox(10);
+            vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
 
-        Label title = new Label(" Exam");
-        title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
-        Label topic = new Label("   Fach                          ");
-        topic.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label coefficient = new Label("Koeffizient");
-        coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label fMark = new Label("F   ");
-        fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label dMark = new Label("D ");
-        dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label chMark = new Label("CH");
-        chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            //Layout Title line
+            HBox hBoxTitleButton = new HBox(30);
+            hBoxTitleButton.setAlignment(Pos.CENTER_LEFT);
 
+            //Layout Subtitles
+            HBox hBoxSubtitle = new HBox(30);
+            hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-        //------AVERAGE LINE------
+            //Layout Marks
 
-        MarkInterface examAverage = new MarkInterface(exam, true);
+            vBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
 
 
-        //------BUTTONS------
+            //-------LABELS--------
 
-        Button newMarkButton = new Button("Add Mark");
+            Label title = new Label(" Exam");
+            title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+            Label topic = new Label("   Fach                          ");
+            topic.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label coefficient = new Label("Koeffizient");
+            coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label fMark = new Label("F   ");
+            fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label dMark = new Label("D ");
+            dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label chMark = new Label("CH");
+            chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
 
-        newMarkButton.setOnAction(e -> {
 
-            markInterfaceArrayList.add(new MarkInterface(exam, false));
-            generateVBox(vBoxMarks, markInterfaceArrayList);
+            //------AVERAGE LINE------
 
+            MarkInterface examAverage = new MarkInterface(exam, subject, false);
+
+
+            //------BUTTONS------
+
+            Button newMarkButton = new Button("Add Mark");
+
+            newMarkButton.setOnAction(e -> {
+
+                markInterfaceArrayList.add(new MarkInterface(new Mark(), exam, true));
+                generateVBox(markInterfaceArrayList);
+
+            });
+
+
+            /*------- Set GridPane------
+
+
+             //markInterfaceArrayList.add(new MarkInterface(exam, false));
+             //generateVBox(vBoxMarks, markInterfaceArrayList);
+             /*gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
+             gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);*/
+
+
+            //-------ADD DEFAULT MARK------
+
+            //markInterfaceArrayList.add(new MarkInterface(new Mark(), exam, true));
+            //generateVBox(markInterfaceArrayList);
+
+
+            //--------ADD ELEMENTS TO LAYOUTS------
+
+            hBoxTitleButton.getChildren().addAll(title, newMarkButton);
+            hBoxSubtitle.getChildren().addAll(topic, coefficient, fMark, dMark, chMark);
+            vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, newMarkButton, vBoxMarks, examAverage);
+            this.getChildren().add(vBox);
         });
-
-
-        /**------- Set GridPane------
-
-
-         //markInterfaceArrayList.add(new MarkInterface(exam, false));
-         //generateVBox(vBoxMarks, markInterfaceArrayList);
-         /*gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
-         gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);**/
-
-
-        //-------ADD DEFAULT MARK------
-
-        markInterfaceArrayList.add(new MarkInterface(exam, false));
-        generateVBox(vBoxMarks, markInterfaceArrayList);
-
-
-        //--------ADD ELEMENTS TO LAYOUTS------
-
-        hBoxTitleButton.getChildren().addAll(title, newMarkButton);
-        hBoxSubtitle.getChildren().addAll(topic, coefficient, fMark, dMark, chMark);
-        vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, newMarkButton, vBoxMarks, examAverage);
-        this.getChildren().add(vBox);
-        //add exam Mark to Subject
-        subject.addMark(exam.getMarkObject());
     }
 
 
@@ -149,38 +152,32 @@ public class ExamInterface extends Parent {
     }
 
     //update box with all exams
-    public void generateVBox(VBox vBox, ArrayList<MarkInterface> markInterfaceArrayList) {
-        vBox.getChildren().clear();
+    public void generateVBox(ArrayList<MarkInterface> markInterfaceArrayList) {
+        this.vBoxMarks.getChildren().clear();
         for (int i = 0; i < markInterfaceArrayList.size(); i++) {
+
+            System.out.println(Thread.currentThread().getName());
+
             HBox hBox = new HBox();
             hBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
-            //hBox.getChildren().add(markInterfaceArrayList.get(i));
-            int finalI = i;
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    hBox.getChildren().add(markInterfaceArrayList.get(finalI));
-                }
+            MarkInterface buff = markInterfaceArrayList.get(i);
 
+            Button buttbuff = createDeleteButton(i, this.vBoxMarks);
+            Platform.runLater(() -> {
+                hBox.getChildren().add(buff);
+                hBox.getChildren().add(buttbuff);
+                this.vBoxMarks.getChildren().add(hBox);
             });
-            //hBox.getChildren().add(createDeleteButton(i, vBox));
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    hBox.getChildren().add(createDeleteButton(finalI, vBox));
-                }
-
-            });
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    hBox.getChildren().add(createDeleteButton(finalI, vBox));
-                }
-
-            });
-            vBox.getChildren().add(hBox);
 
         }
+    }
+
+
+    /*--------GETTER--------*/
+
+
+    public ArrayList<MarkInterface> getMarkInterfaceArrayList() {
+        return markInterfaceArrayList;
     }
 
     public Exam getExam() {
