@@ -27,6 +27,7 @@ public class SemesterInterface extends Parent {
     //public Subject subject = new Subject();
     private ArrayList<SubjectInterface> subjectInterfaceArrayList = new ArrayList<>(); //Array of all Subjects
     private HBox hBoxMarks = new HBox();
+    private String name = "1";
 
 
     /*------CLASS-----*/
@@ -64,9 +65,9 @@ public class SemesterInterface extends Parent {
             //------LAYOUTS-------
 
 
-        //Layout Page
-        VBox vBox = new VBox(10);
-        vBox.setPadding(new Insets(10, 10, 10, 10));
+            //Layout Page
+            VBox vBox = new VBox(10);
+            vBox.setPadding(new Insets(10, 10, 10, 10));
 
             //Layout Title line
             HBox hBoxTitleButton = new HBox(30);
@@ -76,19 +77,19 @@ public class SemesterInterface extends Parent {
             HBox hBoxSubtitle = new HBox(30);
             hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-        //Layout Exams
-        hBoxMarks.setStyle("-fx-border-color: black" +  "-fx-border-width: 5;\n" +"-fx-border-outsets: 5;\n");
-        hBoxMarks.setPadding(new Insets(0, 0, 0, 0)); //padding
+            //Layout Exams
+            hBoxMarks.setStyle("-fx-border-color: black" + "-fx-border-width: 5;\n" + "-fx-border-outsets: 5px;\n");
+            hBoxMarks.setPadding(new Insets(0, 0, 0, 0)); //padding
 
-        //-------LABELS--------
-        Label semester = new Label("Semester");
-        semester.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+            //-------LABELS--------
+            Label semester = new Label("Semester");
+            semester.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
 
-        //-------TEXTFIELDS----
-        TextField semesterNum = new TextField();
-        semesterNum.setPromptText("1");
-        semesterNum.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
-        semesterNum.setPrefWidth(55);
+            //-------TEXTFIELDS----
+            TextField semesterNum = new TextField();
+            semesterNum.setText(name);
+            semesterNum.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+            semesterNum.setPrefWidth(55);
 
 
             //------BUTTONS------
@@ -124,11 +125,11 @@ public class SemesterInterface extends Parent {
 
             //--------ADD ELEMENTS TO LAYOUTS------
 
-        hBoxTitleButton.getChildren().addAll(semester, semesterNum, newExamButton, saveSemesterButton);
-        vBox.getChildren().addAll(hBoxTitleButton, hBoxMarks, hBoxSubtitle);
-        this.getChildren().add(vBox);
+            hBoxTitleButton.getChildren().addAll(semester, semesterNum, newExamButton, saveSemesterButton);
+            vBox.getChildren().addAll(hBoxTitleButton, hBoxMarks, hBoxSubtitle);
+            this.getChildren().add(vBox);
+        });
     }
-
 
     /*--------METHODS--------*/
 
@@ -156,6 +157,13 @@ public class SemesterInterface extends Parent {
 
     /*--------GETTER--------*/
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public ArrayList<SubjectInterface> getSubjectInterfaceArrayList() {
         return subjectInterfaceArrayList;

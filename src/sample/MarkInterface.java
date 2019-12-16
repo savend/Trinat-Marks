@@ -296,7 +296,7 @@ public class MarkInterface extends Parent {
         } else if (change == MARK_DE) {
             mark.setMarkConvLine(Double.parseDouble(markDField.getText()), MARK_DE);
         } else if (change == MARK_CH) {
-            mark.setMarkConvLine(Double.parseDouble(markDField.getText()), MARK_CH);
+            mark.setMarkConvLine(Double.parseDouble(markCHField.getText()), MARK_CH);
         } else if (change == COEFFICIENT) {
             verifyCoefficient(markCoefficientField);
         } else if (change == NAME) {

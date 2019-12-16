@@ -27,6 +27,7 @@ public class Read {
         SubjectSplit = reader.split("\nSubject=");
 
         SemesterInterface semester = new SemesterInterface();
+        semester.setName(SubjectSplit[0].replaceAll("Semester=", ""));
         for (int l = 1; l < SubjectSplit.length; l++) {
             //Split at every new Exam
             ExamSplit = SubjectSplit[l].split("\nExam=");
@@ -58,7 +59,7 @@ public class Read {
                     //Split at every new semi-colon to have all mark information
                     MarkAttributeSplit = MarkSplit[j].split(";");
 
-                    Mark newMark = new Mark(MarkAttributeSplit[0], Double.parseDouble(MarkAttributeSplit[2]), Double.parseDouble(MarkAttributeSplit[1]));
+                    Mark newMark = new Mark(MarkAttributeSplit[0], Double.parseDouble(MarkAttributeSplit[1]), Double.parseDouble(MarkAttributeSplit[2]));
                     MarkInterface markInterface = new MarkInterface(newMark, examInterface.getExam(), false);
 
                     examInterface.getMarkInterfaceArrayList().add(j - 1, markInterface);

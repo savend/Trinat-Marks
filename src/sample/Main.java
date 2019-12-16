@@ -43,8 +43,6 @@ public class Main extends Application {
         primaryStage.setTitle("Trinat Marks (in development)");
 
 
-        SemesterInterface semester1 = Read.read();
-
         //----PROGRAMMTITEL----
         HBox titelBoxLeft = new HBox();
         HBox titelBoxRight = new HBox();

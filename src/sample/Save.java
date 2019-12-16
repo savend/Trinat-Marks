@@ -12,7 +12,7 @@ public class Save {
 
     //Save a Mark
     public static void save(Mark mark, PrintWriter printWriter) {
-        printWriter.println("Mark=" + mark.getMarkName() + ";" + mark.getCoefficient() + ";" + mark.getMark());
+        printWriter.println("Mark=" + mark.getMarkName() + ";" + mark.getMark() + ";" + mark.getCoefficient());
     }
 
     //Save a Exam

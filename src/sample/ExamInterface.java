@@ -67,9 +67,8 @@ public class ExamInterface extends Parent {
             //------LAYOUTS-------
 
 
-        //Layout Page
-        VBox vBox = new VBox(10);
-
+            //Layout Page
+            VBox vBox = new VBox(10);
 
 
             //Layout Title line
@@ -81,30 +80,29 @@ public class ExamInterface extends Parent {
             hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
 
+            //Text fields
+            TextField examName = new TextField();
+            examName.setText(exam.getMarkName());
+            examName.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
+            examName.setPrefWidth(220);
+
+            examName.textProperty().addListener((observable, oldValue, newValue) -> exam.setMarkName(examName.getText()));
 
 
-        //Text fields
-        TextField examName = new TextField();
-        examName.setPromptText("Exam");
-        examName.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
-        examName.setPrefWidth(220);
+            //-------LABELS--------
 
 
-        //-------LABELS--------
+            Label coefficient = new Label("                 Koeffizient");
+            coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label fMark = new Label("F   ");
+            fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label dMark = new Label("D ");
+            dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label chMark = new Label("CH");
+            chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
 
 
-
-        Label coefficient = new Label("                 Koeffizient");
-        coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label fMark = new Label("F   ");
-        fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label dMark = new Label("D ");
-        dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-        Label chMark = new Label("CH");
-        chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-
-
-        //------AVERAGE LINE------
+            //------AVERAGE LINE------
 
             MarkInterface examAverage = new MarkInterface(exam, subject, false);
 

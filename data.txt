@@ -1,4 +1,6 @@
 Semester=1
-Subject=NoName;0.0
-Exam=NoName;0.0
-Mark=NoName;16.0;0.0
+Subject=Mathematik;0.0
+Exam=lineare algebra;0.5
+Mark=kurztest;0.0;1.0
+Mark=kurztest;6.0;0.0
+Mark=NoName;10.0;0.0

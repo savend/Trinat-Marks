@@ -61,11 +61,11 @@ public class SubjectInterface extends Parent {
             System.out.println("Constructor of SubjectInterface");
 
 
-        //------LAYOUTS-------
+            //------LAYOUTS-------
 
 
-        //Layout Page
-        VBox vBox = new VBox(10);
+            //Layout Page
+            VBox vBox = new VBox(10);
 
 
             //Layout Title line
@@ -76,18 +76,20 @@ public class SubjectInterface extends Parent {
             HBox hBoxSubtitle = new HBox(30);
             hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-        //Layout Exams
-        hBoxMarks.setPadding(new Insets(10, 10, 10, 10));
+            //Layout Exams
+            hBoxMarks.setPadding(new Insets(10, 10, 10, 10));
 
 
+            //-------TEXTFIELD--------
 
-        //-------TEXTFIELD--------
+            TextField subjectName = new TextField();
+            subjectName.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+            subjectName.setText(subject.getMarkName());
 
-        TextField title = new TextField();
-        title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
-        title.setPromptText("Subject");
-        title.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
-        title.setPrefWidth(220);
+            subjectName.textProperty().addListener((observable, oldValue, newValue) -> subject.setMarkName(subjectName.getText()));
+
+            subjectName.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
+            subjectName.setPrefWidth(220);
 
 
             //------AVERAGE LINE------
@@ -115,7 +117,7 @@ public class SubjectInterface extends Parent {
 
             //--------ADD ELEMENTS TO LAYOUTS------
 
-            hBoxTitleButton.getChildren().addAll(title, newExamButton);
+            hBoxTitleButton.getChildren().addAll(subjectName, newExamButton);
             vBox.getChildren().addAll(hBoxTitleButton, subjectAverage, hBoxMarks, hBoxSubtitle);
             this.getChildren().add(vBox);
         });
