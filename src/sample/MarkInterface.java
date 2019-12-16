@@ -26,12 +26,12 @@ public class MarkInterface extends Parent {
 
     /*------CONSTRUCTOR------*/
 
-    public MarkInterface(Subject subject) {
-        this(subject, new Exam(), false);
+    public MarkInterface(Module module) {
+        this(module, new Subject(), false);
     }
 
 
-    public MarkInterface(Mark markBuffer, Exam exam, boolean newMark) {
+    public MarkInterface(Mark markBuffer, Subject subject, boolean newMark) {
 
         System.out.println("Constructor of MarkInterface");
 
@@ -51,8 +51,8 @@ public class MarkInterface extends Parent {
 
             Label procentLabel = new Label("%    ");
             procentLabel.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-            Label examAverageLabel = new Label("Exam Average : ");
             Label subjectAverageLabel = new Label("Subject Average : ");
+            Label moduleAverageLabel = new Label("Module Average : ");
 
 
             /*------Textfields-----*/
@@ -108,19 +108,19 @@ public class MarkInterface extends Parent {
             });
 
             EventHandler<ActionEvent> eventHandlerCoefficientField = event -> {
-                if (!mark.getClass().equals(Subject.class))
+                if (!mark.getClass().equals(Module.class))
                     updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, COEFFICIENT);
             };
 
             markCoefficientField.textProperty().addListener((observable, oldValue, newValue) -> {
                 if (markCoefficientField.getText().length() >= 3) {
-                    if (!mark.getClass().equals(Subject.class))
+                    if (!mark.getClass().equals(Module.class))
                         updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, COEFFICIENT);
                 }
             });
 
             markCoefficientField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-                if (mark.getClass().equals(Subject.class))
+                if (mark.getClass().equals(Module.class))
                     updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
                 else if (oldValue) {
                     updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, COEFFICIENT);
@@ -212,21 +212,21 @@ public class MarkInterface extends Parent {
             markCHField.setOnAction(eventHandlerCHField);
 
 
-            /*-----Add Mark to Exam------*/
+            /*-----Add Mark to Subject------*/
 
-            if (!mark.getClass().equals(Subject.class))
-                exam.addMark(mark);
+            if (!mark.getClass().equals(Module.class))
+                subject.addMark(mark);
 
 
             /*-----Add Elements to Layout-----*/
 
             if (mark.getClass().equals(Mark.class))
                 hBox.getChildren().add(markNameField);
+            else if (mark.getClass().equals(Module.class))
+                hBox.getChildren().add(moduleAverageLabel);
             else if (mark.getClass().equals(Subject.class))
                 hBox.getChildren().add(subjectAverageLabel);
-            else if (mark.getClass().equals(Exam.class))
-                hBox.getChildren().add(examAverageLabel);
-            if (mark.getClass().equals(Mark.class) || mark.getClass().equals(Exam.class))
+            if (mark.getClass().equals(Mark.class) || mark.getClass().equals(Subject.class))
                 hBox.getChildren().addAll(markCoefficientField, procentLabel);
 
             hBox.getChildren().addAll(markFField, markDField, markCHField);

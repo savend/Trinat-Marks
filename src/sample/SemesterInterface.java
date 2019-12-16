@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,8 +25,8 @@ public class SemesterInterface extends Parent {
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
 
-    //public Subject subject = new Subject();
-    private ArrayList<SubjectInterface> subjectInterfaceArrayList = new ArrayList<>(); //Array of all Subjects
+    //public Module module = new Module();
+    private ArrayList<ModuleInterface> moduleInterfaceArrayList = new ArrayList<>(); //Array of all Modules
     private HBox hBoxMarks = new HBox();
     private String name = "1";
 
@@ -48,8 +49,8 @@ public class SemesterInterface extends Parent {
         //EventHandler for every button
         @Override
         public void handle(ActionEvent event) {
-            subjectInterfaceArrayList.remove(number);
-            generateHBox(subjectInterfaceArrayList);
+            moduleInterfaceArrayList.remove(number);
+            generateHBox(moduleInterfaceArrayList);
         }
     }
 
@@ -77,8 +78,8 @@ public class SemesterInterface extends Parent {
             HBox hBoxSubtitle = new HBox(30);
             hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-            //Layout Exams
-            hBoxMarks.setStyle("-fx-border-color: black;" + "-fx-border-width: 5px;\n" + "-fx-border-outsets: 5px;\n");
+            //Layout Subjects
+            hBoxMarks.setStyle("-fx-border-color: black;" + "-fx-border-width: 1px;\n" + "-fx-border-outsets: 5px;\n");
             hBoxMarks.setPadding(new Insets(0, 0, 0, 0)); //padding
 
             //-------LABELS--------
@@ -94,12 +95,12 @@ public class SemesterInterface extends Parent {
 
             //------BUTTONS------
 
-            Button newExamButton = new Button("Add Subject");
+            Button newSubjectButton = new Button("Add Module");
 
-            newExamButton.setOnAction(e -> {
+            newSubjectButton.setOnAction(e -> {
 
-                subjectInterfaceArrayList.add(new SubjectInterface());
-                generateHBox(subjectInterfaceArrayList);
+                moduleInterfaceArrayList.add(new ModuleInterface());
+                generateHBox(moduleInterfaceArrayList);
 
             });
 
@@ -119,13 +120,13 @@ public class SemesterInterface extends Parent {
 
             //-------ADD DEFAULT EXAM------
 
-            //subjectInterfaceArrayList.add(new SubjectInterface());
-            //generateHBox(subjectInterfaceArrayList);
+            //moduleInterfaceArrayList.add(new ModuleInterface());
+            //generateHBox(moduleInterfaceArrayList);
 
 
             //--------ADD ELEMENTS TO LAYOUTS------
 
-            hBoxTitleButton.getChildren().addAll(semester, newExamButton, saveSemesterButton);
+            hBoxTitleButton.getChildren().addAll(semester, newSubjectButton, saveSemesterButton);
             vBox.getChildren().addAll(hBoxTitleButton, hBoxMarks, hBoxSubtitle);
             this.getChildren().add(vBox);
         });
@@ -136,20 +137,20 @@ public class SemesterInterface extends Parent {
 
     //create Delete Button with specific eventHandler for every button
     public Button createDeleteButton(int number, HBox hBox) {
-        Button deleteButton = new Button("Delete Subject");
+        Button deleteButton = new Button("Delete Module");
         deleteButton.setOnAction(new DeleteButtonEvent(number, hBox));
         return deleteButton;
     }
 
-    //update box with all exams
-    public void generateHBox(ArrayList<SubjectInterface> subjectInterfaceArrayList) {
+    //update box with all subjects
+    public void generateHBox(ArrayList<ModuleInterface> moduleInterfaceArrayList) {
         this.hBoxMarks.getChildren().clear();
-        for (int i = 0; i < subjectInterfaceArrayList.size(); i++) {
+        for (int i = 0; i < moduleInterfaceArrayList.size(); i++) {
             VBox vBox = new VBox();
             vBox.setStyle("-fx-border-color: #F5F1E8;" + "-fx-background-color: white;" + "-fx-border-width: 10;\n");
             vBox.setPadding(new Insets(10, 10, 0, 10)); //padding
             vBox.getChildren().add(createDeleteButton(i, this.hBoxMarks));
-            vBox.getChildren().add(subjectInterfaceArrayList.get(i));
+            vBox.getChildren().add(moduleInterfaceArrayList.get(i));
             this.hBoxMarks.getChildren().add(vBox);
         }
     }
@@ -165,8 +166,8 @@ public class SemesterInterface extends Parent {
         this.name = name;
     }
 
-    public ArrayList<SubjectInterface> getSubjectInterfaceArrayList() {
-        return subjectInterfaceArrayList;
+    public ArrayList<ModuleInterface> getModuleInterfaceArrayList() {
+        return moduleInterfaceArrayList;
     }
 }
 

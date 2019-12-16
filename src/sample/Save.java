@@ -15,31 +15,31 @@ public class Save {
         printWriter.println("Mark=" + mark.getMarkName() + ";" + mark.getMark() + ";" + mark.getCoefficient());
     }
 
-    //Save a Exam
-    public static void save(Exam exam, PrintWriter printWriter) {
-        printWriter.println("Exam=" + exam.getMarkName() + ";" + exam.getCoefficient());
-        ArrayList<Mark> markArrayList = exam.getMarkArrayList();
+    //Save a Subject
+    public static void save(Subject subject, PrintWriter printWriter) {
+        printWriter.println("Subject=" + subject.getMarkName() + ";" + subject.getCoefficient());
+        ArrayList<Mark> markArrayList = subject.getMarkArrayList();
         for (Mark mark : markArrayList) {
             save(mark, printWriter);
         }
 
     }
 
-    //Save a Subject
-    public static void save(SubjectInterface subjectInterface, PrintWriter printWriter) {
-        printWriter.println("Subject=" + subjectInterface.getSubject().getMarkName());
-        ArrayList<ExamInterface> examInterfaceArrayList = subjectInterface.getExamInterfaceArrayList();
-        for (ExamInterface examInterface : examInterfaceArrayList) {
-            save(examInterface.getExam(), printWriter);
+    //Save a Module
+    public static void save(ModuleInterface moduleInterface, PrintWriter printWriter) {
+        printWriter.println("Module=" + moduleInterface.getModule().getMarkName());
+        ArrayList<SubjectInterface> subjectInterfaceArrayList = moduleInterface.getSubjectInterfaceArrayList();
+        for (SubjectInterface subjectInterface : subjectInterfaceArrayList) {
+            save(subjectInterface.getSubject(), printWriter);
         }
     }
 
     //Save a Semester
     public static void save(SemesterInterface semesterInterface, PrintWriter printWriter) {
         printWriter.print("Semester=" + semesterInterface.getName());
-        ArrayList<SubjectInterface> subjectInterfaceArrayList = semesterInterface.getSubjectInterfaceArrayList();
-        for (SubjectInterface subjectInterface : subjectInterfaceArrayList) {
-            save(subjectInterface, printWriter);
+        ArrayList<ModuleInterface> moduleInterfaceArrayList = semesterInterface.getModuleInterfaceArrayList();
+        for (ModuleInterface moduleInterface : moduleInterfaceArrayList) {
+            save(moduleInterface, printWriter);
         }
     }
 

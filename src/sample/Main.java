@@ -28,7 +28,6 @@ public class Main extends Application {
 
         VBox content = new VBox(5);
 
-        Pane root = new Pane();
 
         ScrollPane scroller = new ScrollPane(content);
         scroller.setFitToWidth(true);
@@ -70,7 +69,7 @@ public class Main extends Application {
         errorHBox.getChildren().addAll(errorLine, globalErrors);
         errorHBox.setPrefHeight(10);
 
-        content.getChildren().addAll(titelBoxGeneral, semester1, semester2, semester3, semester4, semester5, semester6, root, errorHBox);
+        content.getChildren().addAll(titelBoxGeneral, semester1, semester2, semester3, semester4, semester5, semester6);
         content.setStyle("-fx-background-color: white;");
 
 
@@ -90,9 +89,9 @@ public class Main extends Application {
 		System.out.println("note fr : " + mark.getMark() + "\nnote de : " + mark.markConversion(MARK_DE) + "\nnote CH : " + mark.markConversion(MARK_CH)); //display all language of the mark
 		System.out.println(mark.toString()); //display Object caracteristics of the mark
 
-		Exam mathe = new Exam("Mathe"); //building new Exam
+		Subject mathe = new Subject("Mathe"); //building new Subject
 
-		mathe.addMark(new Mark("kurztest", 6, MARK_CH, 0.2)); //add mark to Exam
+		mathe.addMark(new Mark("kurztest", 6, MARK_CH, 0.2)); //add mark to Subject
 		mathe.addMark(new Mark("test", 5, MARK_CH, 0.4));
 		mathe.addMark(new Mark("test2", 4, MARK_CH, 0.4));*/
 

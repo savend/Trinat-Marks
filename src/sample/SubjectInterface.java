@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -20,9 +21,12 @@ public class SubjectInterface extends Parent {
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
 
+
     private Subject subject = new Subject();
-    private ArrayList<ExamInterface> examInterfaceArrayList = new ArrayList<>(); //Array of all Exams
-    private HBox hBoxMarks = new HBox();
+    private ArrayList<MarkInterface> markInterfaceArrayList = new ArrayList<>(); //Array of all Marks
+    private VBox vBoxMarks = new VBox();
+
+
 
     /*------CLASS-----*/
     //EventHandler Class to assign specific event to every DeleteButton -----
@@ -31,20 +35,20 @@ public class SubjectInterface extends Parent {
     class DeleteButtonEvent implements EventHandler<ActionEvent> {
 
         private final int number;
-        HBox hbox;
+        VBox vbox;
 
         //Constructor of DeleteButtonEvent
-        DeleteButtonEvent(int number, HBox box) {
-            this.hbox = box;
+        DeleteButtonEvent(int number, VBox box) {
+            this.vbox = box;
             this.number = number;
         }
 
         //EventHandler for every button
         @Override
         public void handle(ActionEvent event) {
-            examInterfaceArrayList.remove(number);
+            markInterfaceArrayList.remove(number);
             subject.deleteMark(number);
-            generateHBox(examInterfaceArrayList);
+            generateVBox(markInterfaceArrayList);
         }
     }
 
@@ -52,11 +56,10 @@ public class SubjectInterface extends Parent {
     /*------CONSTRUCTOR------*/
 
 
-    public SubjectInterface() {
+    public SubjectInterface(Module module) {
         Platform.runLater(() -> {
 
-
-            System.out.println("Constructor of SubjectInterface");
+            System.out.println("Constructeur of SubjectInterface");
 
 
             //------LAYOUTS-------
@@ -64,6 +67,7 @@ public class SubjectInterface extends Parent {
 
             //Layout Page
             VBox vBox = new VBox(10);
+            vBox.setPadding(new Insets(0, 0, 20, 0));
 
 
             //Layout Title line
@@ -74,52 +78,70 @@ public class SubjectInterface extends Parent {
             HBox hBoxSubtitle = new HBox(30);
             hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-            //Layout Exams
-            hBoxMarks.setPadding(new Insets(10, 10, 10, 10));
+            vBoxMarks.setPadding(new Insets(0, 0, 20, 0));
 
 
-            //-------TEXTFIELD--------
-
+            //Text fields
             TextField subjectName = new TextField();
-            subjectName.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
             subjectName.setText(subject.getMarkName());
+            subjectName.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
+            subjectName.setPrefWidth(220);
 
             subjectName.textProperty().addListener((observable, oldValue, newValue) -> subject.setMarkName(subjectName.getText()));
 
-            subjectName.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
-            subjectName.setPrefWidth(220);
+
+            //-------LABELS--------
+
+
+            Label coefficient = new Label("                 Koeffizient");
+            coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label fMark = new Label("F   ");
+            fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label dMark = new Label("D ");
+            dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+            Label chMark = new Label("CH");
+            chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
 
 
             //------AVERAGE LINE------
 
-            MarkInterface subjectAverage = new MarkInterface(subject);
+            MarkInterface subjectAverage = new MarkInterface(subject, module, false);
 
 
             //------BUTTONS------
 
-            Button newExamButton = new Button("Add Exam");
+            Button newMarkButton = new Button("Add Mark");
 
-            newExamButton.setOnAction(e -> {
+            newMarkButton.setOnAction(e -> {
 
-                examInterfaceArrayList.add(new ExamInterface(subject));
-                generateHBox(examInterfaceArrayList);
+                markInterfaceArrayList.add(new MarkInterface(new Mark(), subject, true));
+                generateVBox(markInterfaceArrayList);
 
             });
 
 
-            //-------ADD DEFAULT EXAM------
+            /*------- Set GridPane------
 
-            //examInterfaceArrayList.add(new ExamInterface(subject));
-            //generateHBox(examInterfaceArrayList);
+
+             //markInterfaceArrayList.add(new MarkInterface(subject, false));
+             //generateVBox(vBoxMarks, markInterfaceArrayList);
+             /*gridPane.add(createDeleteButton(markInterfaceArrayList.size() + 1, gridPane), 1, markInterfaceArrayList.size() + 1);
+             gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);*/
+
+
+            //-------ADD DEFAULT MARK------
+
+            //markInterfaceArrayList.add(new MarkInterface(new Mark(), subject, true));
+            //generateVBox(markInterfaceArrayList);
 
 
             //--------ADD ELEMENTS TO LAYOUTS------
 
-            hBoxTitleButton.getChildren().addAll(subjectName, newExamButton);
-            vBox.getChildren().addAll(hBoxTitleButton, subjectAverage, hBoxMarks, hBoxSubtitle);
+            hBoxTitleButton.getChildren().addAll(subjectName);
+            hBoxSubtitle.getChildren().addAll(newMarkButton, coefficient, fMark, dMark, chMark);
+            vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, vBoxMarks, subjectAverage);
             this.getChildren().add(vBox);
         });
-
     }
 
 
@@ -127,22 +149,31 @@ public class SubjectInterface extends Parent {
 
 
     //create Delete Button with specific eventHandler for every button
-    public Button createDeleteButton(int number, HBox hBox) {
-        Button deleteButton = new Button("Delete Exam");
-        deleteButton.setOnAction(new DeleteButtonEvent(number, hBox));
+    public Button createDeleteButton(int number, VBox vBox) {
+        Button deleteButton = new Button("Delete");
+        deleteButton.setOnAction(new DeleteButtonEvent(number, vBox));
         return deleteButton;
     }
 
-    //update box with all exams
-    public void generateHBox(ArrayList<ExamInterface> examInterfaceArrayList) {
-        this.hBoxMarks.getChildren().clear();
-        for (int i = 0; i < examInterfaceArrayList.size(); i++) {
-            VBox vBox = new VBox(10);
-            vBox.setStyle("-fx-border-color: black;\n" + "-fx-border-width: 1;\n" + "-fx-background-color: #F5F1E8;\n");
-            vBox.setPadding(new Insets(10, 10, 10, 10)); //padding
-            vBox.getChildren().add(createDeleteButton(i, this.hBoxMarks));
-            vBox.getChildren().add(examInterfaceArrayList.get(i));
-            this.hBoxMarks.getChildren().add(vBox);
+    //update box with all subjects
+    public void generateVBox(ArrayList<MarkInterface> markInterfaceArrayList) {
+        this.vBoxMarks.getChildren().clear();
+        for (int i = 0; i < markInterfaceArrayList.size(); i++) {
+
+            System.out.println(Thread.currentThread().getName());
+
+            HBox hBox = new HBox();
+            //hBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+            hBox.setPadding(new Insets(5, 5, 5, 5)); //padding
+            MarkInterface buff = markInterfaceArrayList.get(i);
+
+            Button buttbuff = createDeleteButton(i, this.vBoxMarks);
+            Platform.runLater(() -> {
+                hBox.getChildren().add(buff);
+                hBox.getChildren().add(buttbuff);
+                this.vBoxMarks.getChildren().add(hBox);
+            });
+
         }
     }
 
@@ -150,13 +181,12 @@ public class SubjectInterface extends Parent {
     /*--------GETTER--------*/
 
 
+    public ArrayList<MarkInterface> getMarkInterfaceArrayList() {
+        return markInterfaceArrayList;
+    }
+
     public Subject getSubject() {
         return subject;
     }
-
-    public ArrayList<ExamInterface> getExamInterfaceArrayList() {
-        return examInterfaceArrayList;
-    }
-
 
 }

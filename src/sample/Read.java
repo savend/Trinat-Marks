@@ -15,8 +15,8 @@ public class Read {
         File fileW = new File(file);
         int i;
         String reader = "";
+        String[] ModuleSplit;
         String[] SubjectSplit;
-        String[] ExamSplit;
         String[] MarkSplit;
         String[] MarkAttributeSplit;
 
@@ -25,52 +25,52 @@ public class Read {
             reader = (reader + (char) i);
         }
 
-        //Split at every new Subject
-        SubjectSplit = reader.split("Subject=");
+        //Split at every new Module
+        ModuleSplit = reader.split("Module=");
 
         SemesterInterface semester = new SemesterInterface(fileW);
-        semester.setName(SubjectSplit[0].replaceAll("Semester=", ""));
-        for (int l = 1; l < SubjectSplit.length; l++) {
-            //Split at every new Exam
-            ExamSplit = SubjectSplit[l].split("\nExam=");
+        semester.setName(ModuleSplit[0].replaceAll("Semester=", ""));
+        for (int l = 1; l < ModuleSplit.length; l++) {
+            //Split at every new Subject
+            SubjectSplit = ModuleSplit[l].split("\nSubject=");
 
-            MarkSplit = ExamSplit[0].split("\nMark=");
-            //Split at every new semi-colon to have all Subject information
+            MarkSplit = SubjectSplit[0].split("\nMark=");
+            //Split at every new semi-colon to have all Module information
             MarkAttributeSplit = MarkSplit[0].split(";");
 
-            SubjectInterface subjectInterface = new SubjectInterface();
-            subjectInterface.getSubject().setMarkName(MarkAttributeSplit[0]);
+            ModuleInterface moduleInterface = new ModuleInterface();
+            moduleInterface.getModule().setMarkName(MarkAttributeSplit[0]);
 
-            semester.getSubjectInterfaceArrayList().add(subjectInterface);
+            semester.getModuleInterfaceArrayList().add(moduleInterface);
 
-            for (int p = 1; p < ExamSplit.length; p++) {
+            for (int p = 1; p < SubjectSplit.length; p++) {
                 //Split at every new Mark
-                MarkSplit = ExamSplit[p].split("\nMark=");
+                MarkSplit = SubjectSplit[p].split("\nMark=");
 
-                //Split at every new semi-colon to have all Exam information
+                //Split at every new semi-colon to have all Subject information
                 MarkAttributeSplit = MarkSplit[0].split(";");
 
-                ExamInterface examInterface = new ExamInterface(subjectInterface.getSubject());
+                SubjectInterface subjectInterface = new SubjectInterface(moduleInterface.getModule());
 
-                examInterface.getExam().setMarkName(MarkAttributeSplit[0]);
-                examInterface.getExam().setCoefficient(Double.parseDouble(MarkAttributeSplit[1]));
+                subjectInterface.getSubject().setMarkName(MarkAttributeSplit[0]);
+                subjectInterface.getSubject().setCoefficient(Double.parseDouble(MarkAttributeSplit[1]));
 
-                subjectInterface.getExamInterfaceArrayList().add(p - 1, examInterface);
+                moduleInterface.getSubjectInterfaceArrayList().add(p - 1, subjectInterface);
 
                 for (int j = 1; j < MarkSplit.length; j++) {
                     //Split at every new semi-colon to have all mark information
                     MarkAttributeSplit = MarkSplit[j].split(";");
 
                     Mark newMark = new Mark(MarkAttributeSplit[0], Double.parseDouble(MarkAttributeSplit[1]), Double.parseDouble(MarkAttributeSplit[2]));
-                    MarkInterface markInterface = new MarkInterface(newMark, examInterface.getExam(), false);
+                    MarkInterface markInterface = new MarkInterface(newMark, subjectInterface.getSubject(), false);
 
-                    examInterface.getMarkInterfaceArrayList().add(j - 1, markInterface);
+                    subjectInterface.getMarkInterfaceArrayList().add(j - 1, markInterface);
                 }
-                examInterface.generateVBox(examInterface.getMarkInterfaceArrayList());
+                subjectInterface.generateVBox(subjectInterface.getMarkInterfaceArrayList());
             }
-            subjectInterface.generateHBox(subjectInterface.getExamInterfaceArrayList());
+            moduleInterface.generateHBox(moduleInterface.getSubjectInterfaceArrayList());
         }
-        semester.generateHBox(semester.getSubjectInterfaceArrayList());
+        semester.generateHBox(semester.getModuleInterfaceArrayList());
 
 
         fileReader.close();
