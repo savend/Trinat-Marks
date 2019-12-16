@@ -11,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -66,9 +67,10 @@ public class ExamInterface extends Parent {
             //------LAYOUTS-------
 
 
-            //Layout Page
-            VBox vBox = new VBox(10);
-            vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+        //Layout Page
+        VBox vBox = new VBox(10);
+
+
 
             //Layout Title line
             HBox hBoxTitleButton = new HBox(30);
@@ -78,28 +80,31 @@ public class ExamInterface extends Parent {
             HBox hBoxSubtitle = new HBox(30);
             hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-            //Layout Marks
-
-            vBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
 
 
-            //-------LABELS--------
 
-            Label title = new Label(" Exam");
-            title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
-            Label topic = new Label("   Fach                          ");
-            topic.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-            Label coefficient = new Label("Koeffizient");
-            coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-            Label fMark = new Label("F   ");
-            fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-            Label dMark = new Label("D ");
-            dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-            Label chMark = new Label("CH");
-            chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+        //Text fields
+        TextField examName = new TextField();
+        examName.setPromptText("Exam");
+        examName.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
+        examName.setPrefWidth(220);
 
 
-            //------AVERAGE LINE------
+        //-------LABELS--------
+
+
+
+        Label coefficient = new Label("                 Koeffizient");
+        coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+        Label fMark = new Label("F   ");
+        fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+        Label dMark = new Label("D ");
+        dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+        Label chMark = new Label("CH");
+        chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+
+
+        //------AVERAGE LINE------
 
             MarkInterface examAverage = new MarkInterface(exam, subject, false);
 
@@ -133,9 +138,9 @@ public class ExamInterface extends Parent {
 
             //--------ADD ELEMENTS TO LAYOUTS------
 
-            hBoxTitleButton.getChildren().addAll(title, newMarkButton);
-            hBoxSubtitle.getChildren().addAll(topic, coefficient, fMark, dMark, chMark);
-            vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, newMarkButton, vBoxMarks, examAverage);
+            hBoxTitleButton.getChildren().addAll(examName);
+            hBoxSubtitle.getChildren().addAll(newMarkButton, coefficient, fMark, dMark, chMark);
+            vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, vBoxMarks, examAverage);
             this.getChildren().add(vBox);
         });
     }
@@ -160,6 +165,7 @@ public class ExamInterface extends Parent {
 
             HBox hBox = new HBox();
             hBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+            hBox.setPadding(new Insets(5, 5, 5, 5)); //padding
             MarkInterface buff = markInterfaceArrayList.get(i);
 
             Button buttbuff = createDeleteButton(i, this.vBoxMarks);

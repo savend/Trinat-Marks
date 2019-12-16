@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -60,12 +61,12 @@ public class SubjectInterface extends Parent {
             System.out.println("Constructor of SubjectInterface");
 
 
-            //------LAYOUTS-------
+        //------LAYOUTS-------
 
 
-            //Layout Page
-            VBox vBox = new VBox(10);
-            vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+        //Layout Page
+        VBox vBox = new VBox(10);
+
 
             //Layout Title line
             HBox hBoxTitleButton = new HBox(30);
@@ -75,15 +76,18 @@ public class SubjectInterface extends Parent {
             HBox hBoxSubtitle = new HBox(30);
             hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-            //Layout Exams
+        //Layout Exams
+        hBoxMarks.setPadding(new Insets(10, 10, 10, 10));
 
-            hBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
 
 
-            //-------LABELS--------
+        //-------TEXTFIELD--------
 
-            Label title = new Label("Subject");
-            title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+        TextField title = new TextField();
+        title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+        title.setPromptText("Subject");
+        title.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
+        title.setPrefWidth(220);
 
 
             //------AVERAGE LINE------
@@ -133,9 +137,9 @@ public class SubjectInterface extends Parent {
     public void generateHBox(ArrayList<ExamInterface> examInterfaceArrayList) {
         this.hBoxMarks.getChildren().clear();
         for (int i = 0; i < examInterfaceArrayList.size(); i++) {
-
-            VBox vBox = new VBox();
-            vBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+            VBox vBox = new VBox(10);
+            vBox.setStyle("-fx-border-color: black;\n" + "-fx-border-width: 1;\n" + "-fx-background-color: #F5F1E8;\n");
+            vBox.setPadding(new Insets(10, 10, 10, 10)); //padding
             vBox.getChildren().add(createDeleteButton(i, this.hBoxMarks));
             vBox.getChildren().add(examInterfaceArrayList.get(i));
             this.hBoxMarks.getChildren().add(vBox);

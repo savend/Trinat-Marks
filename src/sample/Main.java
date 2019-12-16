@@ -1,12 +1,24 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.ArrayList;
+import javafx.scene.control.ScrollBar;
 
 public class Main extends Application {
 
@@ -16,28 +28,58 @@ public class Main extends Application {
 
     public static Label globalErrors = new Label("No Error");
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        BorderPane root = new BorderPane();
+
+
+    	VBox content = new VBox(5);
+
+    	Pane root = new Pane();
+
+    	ScrollPane scroller = new ScrollPane(content);
+        scroller.setFitToWidth(true);
 
         primaryStage.setTitle("Trinat Marks (in development)");
 
 
         SemesterInterface semester1 = Read.read();
 
+        //----PROGRAMMTITEL----
+        HBox titelBoxLeft = new HBox();
+        HBox titelBoxRight = new HBox();
+        HBox titelBoxGeneral = new HBox();
+
+        Image logo = new Image("file:logo_trinational.jpg");
+        ImageView logoView = new ImageView();
+        logoView.setImage(logo);
+
+
+        Label titel = new Label("Notenberechnung");
+        titel.setStyle("-fx-font: 45 berlin; -fx-font-weight: bold;");
+        titel.setMinWidth(450);
+
+        titelBoxLeft.getChildren().add(titel);
+        titelBoxLeft.setAlignment(Pos.TOP_LEFT);
+        titelBoxRight.getChildren().add(logoView);
+        titelBoxRight.setAlignment(Pos.TOP_RIGHT);
+        titelBoxGeneral.getChildren().addAll(titelBoxLeft, titelBoxRight);
+
+
+        SemesterInterface semester1 = Read.read();
+
+
         HBox errorHBox = new HBox();
         Label errorLine = new Label("Error Line : ");
         errorHBox.getChildren().addAll(errorLine, globalErrors);
         errorHBox.setPrefHeight(10);
 
-        root.setLeft(semester1);
+        content.getChildren().addAll( titelBoxGeneral, semester1, root, errorHBox);
+        content.setStyle("-fx-background-color: white;");
 
-        root.setBottom(errorHBox);
 
-        System.out.println("THREAD : " + Thread.currentThread().getName() + Thread.currentThread().getState());
-        //root.getChildren().addAll(semester1, errorHBox);
-        primaryStage.setScene(new Scene(root, 1200, 500));
+        primaryStage.setScene(new Scene(new BorderPane(scroller, null, null, null, null), 1000, 625));
+
         primaryStage.show();
 
     }

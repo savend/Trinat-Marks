@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -62,9 +64,9 @@ public class SemesterInterface extends Parent {
             //------LAYOUTS-------
 
 
-            //Layout Page
-            VBox vBox = new VBox(10);
-            vBox.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+        //Layout Page
+        VBox vBox = new VBox(10);
+        vBox.setPadding(new Insets(10, 10, 10, 10));
 
             //Layout Title line
             HBox hBoxTitleButton = new HBox(30);
@@ -74,14 +76,19 @@ public class SemesterInterface extends Parent {
             HBox hBoxSubtitle = new HBox(30);
             hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-            //Layout Exams
-            hBoxMarks.setStyle("-fx-border-color: red;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+        //Layout Exams
+        hBoxMarks.setStyle("-fx-border-color: black" +  "-fx-border-width: 5;\n" +"-fx-border-outsets: 5;\n");
+        hBoxMarks.setPadding(new Insets(0, 0, 0, 0)); //padding
 
+        //-------LABELS--------
+        Label semester = new Label("Semester");
+        semester.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
 
-            //-------LABELS--------
-
-            Label title = new Label("Semester 1.");
-            title.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+        //-------TEXTFIELDS----
+        TextField semesterNum = new TextField();
+        semesterNum.setPromptText("1");
+        semesterNum.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+        semesterNum.setPrefWidth(55);
 
 
             //------BUTTONS------
@@ -96,6 +103,7 @@ public class SemesterInterface extends Parent {
             });
 
             Button saveSemesterButton = new Button("Save Semester");
+
             saveSemesterButton.setOnAction(e -> {
                 try {
                     FileWriter fileWriter = new FileWriter("data.txt");
@@ -116,10 +124,9 @@ public class SemesterInterface extends Parent {
 
             //--------ADD ELEMENTS TO LAYOUTS------
 
-            hBoxTitleButton.getChildren().addAll(title, newExamButton, saveSemesterButton);
-            vBox.getChildren().addAll(hBoxTitleButton, hBoxMarks, hBoxSubtitle);
-            this.getChildren().add(vBox);
-        });
+        hBoxTitleButton.getChildren().addAll(semester, semesterNum, newExamButton, saveSemesterButton);
+        vBox.getChildren().addAll(hBoxTitleButton, hBoxMarks, hBoxSubtitle);
+        this.getChildren().add(vBox);
     }
 
 
@@ -138,7 +145,8 @@ public class SemesterInterface extends Parent {
         this.hBoxMarks.getChildren().clear();
         for (int i = 0; i < subjectInterfaceArrayList.size(); i++) {
             VBox vBox = new VBox();
-            vBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+            vBox.setStyle("-fx-border-color: #F5F1E8;"  + "-fx-background-color: white;" + "-fx-border-width: 10;\n");
+            vBox.setPadding(new Insets(10, 10, 0, 10)); //padding
             vBox.getChildren().add(createDeleteButton(i, this.hBoxMarks));
             vBox.getChildren().add(subjectInterfaceArrayList.get(i));
             this.hBoxMarks.getChildren().add(vBox);
