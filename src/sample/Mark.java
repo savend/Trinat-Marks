@@ -1,12 +1,5 @@
 package sample;
 
-import com.sun.deploy.panel.TextFieldProperty;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TextField;
-
 public class Mark {
 
     private static final int MARK_FR = 0;

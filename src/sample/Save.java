@@ -27,7 +27,7 @@ public class Save {
 
     //Save a Subject
     public static void save(SubjectInterface subjectInterface, PrintWriter printWriter) {
-        printWriter.println("Subject=" + subjectInterface.getSubject().getMarkName() + ";" + subjectInterface.getSubject().getCoefficient());
+        printWriter.println("Subject=" + subjectInterface.getSubject().getMarkName());
         ArrayList<ExamInterface> examInterfaceArrayList = subjectInterface.getExamInterfaceArrayList();
         for (ExamInterface examInterface : examInterfaceArrayList) {
             save(examInterface.getExam(), printWriter);
@@ -36,7 +36,7 @@ public class Save {
 
     //Save a Semester
     public static void save(SemesterInterface semesterInterface, PrintWriter printWriter) {
-        printWriter.println("Semester=" + 1);
+        printWriter.print("Semester=" + semesterInterface.getName());
         ArrayList<SubjectInterface> subjectInterfaceArrayList = semesterInterface.getSubjectInterfaceArrayList();
         for (SubjectInterface subjectInterface : subjectInterfaceArrayList) {
             save(subjectInterface, printWriter);

@@ -1,24 +1,17 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.ArrayList;
-import javafx.scene.control.ScrollBar;
 
 public class Main extends Application {
 
@@ -33,11 +26,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
 
 
-    	VBox content = new VBox(5);
+        VBox content = new VBox(5);
 
-    	Pane root = new Pane();
+        Pane root = new Pane();
 
-    	ScrollPane scroller = new ScrollPane(content);
+        ScrollPane scroller = new ScrollPane(content);
         scroller.setFitToWidth(true);
 
         primaryStage.setTitle("Trinat Marks (in development)");
@@ -64,7 +57,12 @@ public class Main extends Application {
         titelBoxGeneral.getChildren().addAll(titelBoxLeft, titelBoxRight);
 
 
-        SemesterInterface semester1 = Read.read();
+        SemesterInterface semester1 = Read.read("Semester1.txt");
+        SemesterInterface semester2 = Read.read("Semester2.txt");
+        SemesterInterface semester3 = Read.read("Semester3.txt");
+        SemesterInterface semester4 = Read.read("Semester4.txt");
+        SemesterInterface semester5 = Read.read("Semester5.txt");
+        SemesterInterface semester6 = Read.read("Semester6.txt");
 
 
         HBox errorHBox = new HBox();
@@ -72,7 +70,7 @@ public class Main extends Application {
         errorHBox.getChildren().addAll(errorLine, globalErrors);
         errorHBox.setPrefHeight(10);
 
-        content.getChildren().addAll( titelBoxGeneral, semester1, root, errorHBox);
+        content.getChildren().addAll(titelBoxGeneral, semester1, semester2, semester3, semester4, semester5, semester6, root, errorHBox);
         content.setStyle("-fx-background-color: white;");
 
 
@@ -96,20 +94,10 @@ public class Main extends Application {
 
 		mathe.addMark(new Mark("kurztest", 6, MARK_CH, 0.2)); //add mark to Exam
 		mathe.addMark(new Mark("test", 5, MARK_CH, 0.4));
-		mathe.addMark(new Mark("test2", 4, MARK_CH, 0.4));
+		mathe.addMark(new Mark("test2", 4, MARK_CH, 0.4));*/
 
 
-
-		//btn.set.on.action ->
-		FileWriter fileWriter = new FileWriter("data.txt");
-		PrintWriter printWriter = new PrintWriter(fileWriter);
-		Save.save(mathe, printWriter);
-		printWriter.close();
-
-		System.out.println(mathe.getMark() + " DE : " + mathe.markConversion(MARK_DE)); //display average of the Exam in FRENch and German
-        */
-		launch(args);
-
+        launch(args);
 
 
     }

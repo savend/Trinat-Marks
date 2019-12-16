@@ -1,90 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Mark">
-   <children>
-      <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="267.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.333251953125" minWidth="0.0" prefWidth="52.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.333251953125" minWidth="10.0" prefWidth="34.666748046875" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="49.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.3333740234375" minWidth="10.0" prefWidth="46.3333740234375" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.3333740234375" minWidth="10.0" prefWidth="104.6666259765625" />
-            <ColumnConstraints />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints maxHeight="129.33331298828125" minHeight="7.999998092651367" prefHeight="35.33331298828125" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="129.33331298828125" minHeight="0.0" prefHeight="18.66668701171875" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="259.66668701171875" minHeight="0.0" prefHeight="33.3333740234375" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="341.0" minHeight="10.0" prefHeight="307.6666259765625" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label prefHeight="18.0" prefWidth="241.0" text="Test" GridPane.rowIndex="1">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-            <Label prefHeight="25.0" prefWidth="67.0" text="Koeffizient" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" prefHeight="25.0" prefWidth="52.0" text="F" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" prefHeight="25.0" prefWidth="49.0" text="CH" GridPane.columnIndex="4" GridPane.columnSpan="4" GridPane.rowIndex="1" />
-            <Label alignment="CENTER" prefHeight="27.0" prefWidth="58.0" text="D" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <TextField prefHeight="26.0" prefWidth="208.0" promptText="Neues Fach" style="-fx-border-style: 1pt;" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" right="10.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField cache="true" prefHeight="26.0" prefWidth="46.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField GridPane.columnIndex="5" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label text="\%" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
-               </GridPane.margin>
-            </TextField>
-            <Button contentDisplay="TEXT_ONLY" mnemonicParsing="false" prefHeight="33.0" prefWidth="54.0" text="Delet" GridPane.columnIndex="6" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-            </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" text="+" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets bottom="250.0" left="10.0" />
-               </GridPane.margin>
-            </Button>
-            <Button contentDisplay="CENTER" minHeight="21.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="54.0" text="Sync" GridPane.columnIndex="6">
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-            </Button>
-            <Label prefHeight="18.0" prefWidth="106.0" text="Fach">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </Label>
-         </children>
-      </GridPane>
-   </children>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sample.Mark">
+    <children>
+        <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="267.0" minWidth="10.0" prefWidth="267.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.333251953125" minWidth="0.0" prefWidth="52.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.333251953125" minWidth="10.0"
+                                   prefWidth="34.666748046875"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.0" minWidth="10.0" prefWidth="49.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.3333740234375" minWidth="10.0"
+                                   prefWidth="46.3333740234375"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.3333740234375" minWidth="10.0"
+                                   prefWidth="104.6666259765625"/>
+                <ColumnConstraints/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="129.33331298828125" minHeight="7.999998092651367"
+                                prefHeight="35.33331298828125" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="129.33331298828125" minHeight="0.0" prefHeight="18.66668701171875"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="259.66668701171875" minHeight="0.0" prefHeight="33.3333740234375"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="341.0" minHeight="10.0" prefHeight="307.6666259765625" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Label prefHeight="18.0" prefWidth="241.0" text="Test" GridPane.rowIndex="1">
+                    <padding>
+                        <Insets left="10.0"/>
+                    </padding>
+                </Label>
+                <Label prefHeight="25.0" prefWidth="67.0" text="Koeffizient" GridPane.columnIndex="1"
+                       GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+                <Label alignment="CENTER" prefHeight="25.0" prefWidth="52.0" text="F" GridPane.columnIndex="3"
+                       GridPane.rowIndex="1"/>
+                <Label alignment="CENTER" prefHeight="25.0" prefWidth="49.0" text="CH" GridPane.columnIndex="4"
+                       GridPane.columnSpan="4" GridPane.rowIndex="1"/>
+                <Label alignment="CENTER" prefHeight="27.0" prefWidth="58.0" text="D" GridPane.columnIndex="5"
+                       GridPane.rowIndex="1"/>
+                <TextField prefHeight="26.0" prefWidth="208.0" promptText="Neues Fach" style="-fx-border-style: 1pt;"
+                           GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="10.0" right="10.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <TextField cache="true" prefHeight="26.0" prefWidth="46.0" GridPane.columnIndex="3"
+                           GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="5.0" right="5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <TextField GridPane.columnIndex="4" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="5.0" right="5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <TextField GridPane.columnIndex="5" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="5.0" right="5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <Label text="\%" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="5.0" right="5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <Button contentDisplay="TEXT_ONLY" mnemonicParsing="false" prefHeight="33.0" prefWidth="54.0"
+                        text="Delet" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="20.0"/>
+                    </GridPane.margin>
+                </Button>
+                <Button contentDisplay="TOP" mnemonicParsing="false" text="+" GridPane.rowIndex="3">
+                    <GridPane.margin>
+                        <Insets bottom="250.0" left="10.0"/>
+                    </GridPane.margin>
+                </Button>
+                <Button contentDisplay="CENTER" minHeight="21.0" mnemonicParsing="false" prefHeight="33.0"
+                        prefWidth="54.0" text="Sync" GridPane.columnIndex="6">
+                    <GridPane.margin>
+                        <Insets left="20.0"/>
+                    </GridPane.margin>
+                </Button>
+                <Label prefHeight="18.0" prefWidth="106.0" text="Fach">
+                    <padding>
+                        <Insets left="10.0"/>
+                    </padding>
+                </Label>
+            </children>
+        </GridPane>
+    </children>
 </AnchorPane>

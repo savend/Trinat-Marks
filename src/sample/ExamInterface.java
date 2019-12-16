@@ -1,8 +1,5 @@
 package sample;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,9 +9,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 public class ExamInterface extends Parent {
 
@@ -69,6 +67,7 @@ public class ExamInterface extends Parent {
 
             //Layout Page
             VBox vBox = new VBox(10);
+            vBox.setPadding(new Insets(0, 0, 20, 0));
 
 
             //Layout Title line
@@ -78,6 +77,8 @@ public class ExamInterface extends Parent {
             //Layout Subtitles
             HBox hBoxSubtitle = new HBox(30);
             hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
+
+            vBoxMarks.setPadding(new Insets(0, 0, 20, 0));
 
 
             //Text fields
@@ -162,7 +163,7 @@ public class ExamInterface extends Parent {
             System.out.println(Thread.currentThread().getName());
 
             HBox hBox = new HBox();
-            hBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
+            //hBox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 1;\n");
             hBox.setPadding(new Insets(5, 5, 5, 5)); //padding
             MarkInterface buff = markInterfaceArrayList.get(i);
 
