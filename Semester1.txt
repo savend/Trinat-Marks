@@ -1,0 +1,5 @@
+Semester=1
+Subject=NoName
+Exam=NoName;0.0
+Mark=NoName;0.0;0.0
+Subject=NoName

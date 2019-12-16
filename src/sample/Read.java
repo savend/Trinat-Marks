@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.File;
 import java.io.FileReader;
 
 public class Read {
@@ -9,8 +10,9 @@ public class Read {
 
 
     //read a Semester File
-    public static SemesterInterface read() throws Exception {
-        FileReader fileReader = new FileReader("data.txt");
+    public static SemesterInterface read(String file) throws Exception {
+        FileReader fileReader = new FileReader(file);
+        File fileW = new File(file);
         int i;
         String reader = "";
         String[] SubjectSplit;
@@ -24,9 +26,9 @@ public class Read {
         }
 
         //Split at every new Subject
-        SubjectSplit = reader.split("\nSubject=");
+        SubjectSplit = reader.split("Subject=");
 
-        SemesterInterface semester = new SemesterInterface();
+        SemesterInterface semester = new SemesterInterface(fileW);
         semester.setName(SubjectSplit[0].replaceAll("Semester=", ""));
         for (int l = 1; l < SubjectSplit.length; l++) {
             //Split at every new Exam
