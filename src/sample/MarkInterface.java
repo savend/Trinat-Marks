@@ -78,6 +78,7 @@ public class MarkInterface extends Parent {
             else
                 markFField.setText(String.valueOf(mark.getMark()));
 
+
             TextField markDField = new TextField();
             markDField.setMaxWidth(40);
             if (newMark)
@@ -287,6 +288,16 @@ public class MarkInterface extends Parent {
             verifyCoefficient(markCoefficientField);
         } else if (change == NAME) {
             mark.setMarkName(markNameField.getText());
+        }
+        if (mark.getMark() < 10) {
+            markFField.setStyle("-fx-text-fill : red;");
+            markDField.setStyle("-fx-text-fill : red;");
+            markCHField.setStyle("-fx-text-fill : red;");
+        } else {
+            markFField.setStyle("-fx-text-fill : green;");
+            markDField.setStyle("-fx-text-fill : green;");
+            markCHField.setStyle("-fx-text-fill : green;");
+
         }
 
         markNameField.setText(mark.getMarkName());
