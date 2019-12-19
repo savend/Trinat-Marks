@@ -1,5 +1,3 @@
-package sample;
-
 public class Mark {
 
     private static final int MARK_FR = 0;

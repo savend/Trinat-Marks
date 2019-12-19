@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -32,7 +29,7 @@ public class Main extends Application {
         ScrollPane scroller = new ScrollPane(content);
         scroller.setFitToWidth(true);
 
-        primaryStage.setTitle("Trinat Marks (in development)");
+        primaryStage.setTitle("Trinat Marks");
 
 
         //----PROGRAMMTITEL----
@@ -45,7 +42,7 @@ public class Main extends Application {
         logoView.setImage(logo);
 
 
-        Label titel = new Label("Notenberechnung");
+        Label titel = new Label("Trinat-Marks Calculator");
         titel.setStyle("-fx-font: 45 berlin; -fx-font-weight: bold;");
         titel.setMinWidth(450);
 

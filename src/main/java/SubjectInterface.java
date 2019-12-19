@@ -1,5 +1,3 @@
-package sample;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,7 +21,7 @@ public class SubjectInterface extends Parent {
 
 
     private Subject subject = new Subject();
-    private ArrayList<MarkInterface> markInterfaceArrayList = new ArrayList<>(); //Array of all Marks
+    private ArrayList<MarkInterface> markInterfaceArrayList = new ArrayList<MarkInterface>(); //Array of all Marks
     private VBox vBoxMarks = new VBox();
 
 
@@ -57,67 +55,69 @@ public class SubjectInterface extends Parent {
 
 
     public SubjectInterface(Module module) {
-        Platform.runLater(() -> {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
 
-            System.out.println("Constructeur of SubjectInterface");
-
-
-            //------LAYOUTS-------
-
-
-            //Layout Page
-            VBox vBox = new VBox(10);
-            vBox.setPadding(new Insets(0, 0, 20, 0));
+                System.out.println("Constructeur of SubjectInterface");
 
 
-            //Layout Title line
-            HBox hBoxTitleButton = new HBox(30);
-            hBoxTitleButton.setAlignment(Pos.CENTER_LEFT);
-
-            //Layout Subtitles
-            HBox hBoxSubtitle = new HBox(30);
-            hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
-
-            vBoxMarks.setPadding(new Insets(0, 0, 20, 0));
+                //------LAYOUTS-------
 
 
-            //Text fields
-            TextField subjectName = new TextField();
-            subjectName.setText(subject.getMarkName());
-            subjectName.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
-            subjectName.setPrefWidth(220);
-
-            subjectName.textProperty().addListener((observable, oldValue, newValue) -> subject.setMarkName(subjectName.getText()));
+                //Layout Page
+                VBox vBox = new VBox(10);
+                vBox.setPadding(new Insets(0, 0, 20, 0));
 
 
-            //-------LABELS--------
+                //Layout Title line
+                HBox hBoxTitleButton = new HBox(30);
+                hBoxTitleButton.setAlignment(Pos.CENTER_LEFT);
+
+                //Layout Subtitles
+                HBox hBoxSubtitle = new HBox(30);
+                hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
+
+                vBoxMarks.setPadding(new Insets(0, 0, 20, 0));
 
 
-            Label coefficient = new Label("                 Koeffizient");
-            coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-            Label fMark = new Label("F   ");
-            fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-            Label dMark = new Label("D ");
-            dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
-            Label chMark = new Label("CH");
-            chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+                //Text fields
+                TextField subjectName = new TextField();
+                subjectName.setText(subject.getMarkName());
+                subjectName.setStyle("-fx-font: 20 berlin; -fx-font-weight: bold;");
+                subjectName.setPrefWidth(220);
+
+                subjectName.textProperty().addListener((observable, oldValue, newValue) -> subject.setMarkName(subjectName.getText()));
 
 
-            //------AVERAGE LINE------
-
-            MarkInterface subjectAverage = new MarkInterface(subject, module, false);
+                //-------LABELS--------
 
 
-            //------BUTTONS------
+                Label coefficient = new Label("                 Koeffizient");
+                coefficient.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+                Label fMark = new Label("F   ");
+                fMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+                Label dMark = new Label("D ");
+                dMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
+                Label chMark = new Label("CH");
+                chMark.setStyle("-fx-font: 14 berlin; -fx-font-weight: bold;");
 
-            Button newMarkButton = new Button("Add Mark");
 
-            newMarkButton.setOnAction(e -> {
+                //------AVERAGE LINE------
 
-                markInterfaceArrayList.add(new MarkInterface(new Mark(), subject, true));
-                generateVBox(markInterfaceArrayList);
+                MarkInterface subjectAverage = new MarkInterface(subject, module, false);
 
-            });
+
+                //------BUTTONS------
+
+                Button newMarkButton = new Button("Add Mark");
+
+                newMarkButton.setOnAction(e -> {
+
+                    markInterfaceArrayList.add(new MarkInterface(new Mark(), subject, true));
+                    SubjectInterface.this.generateVBox(markInterfaceArrayList);
+
+                });
 
 
             /*------- Set GridPane------
@@ -129,18 +129,19 @@ public class SubjectInterface extends Parent {
              gridPane.add(markInterfaceArrayList.get(markInterfaceArrayList.size() - 1), 0, markInterfaceArrayList.size() + 1);*/
 
 
-            //-------ADD DEFAULT MARK------
+                //-------ADD DEFAULT MARK------
 
-            //markInterfaceArrayList.add(new MarkInterface(new Mark(), subject, true));
-            //generateVBox(markInterfaceArrayList);
+                //markInterfaceArrayList.add(new MarkInterface(new Mark(), subject, true));
+                //generateVBox(markInterfaceArrayList);
 
 
-            //--------ADD ELEMENTS TO LAYOUTS------
+                //--------ADD ELEMENTS TO LAYOUTS------
 
-            hBoxTitleButton.getChildren().addAll(subjectName);
-            hBoxSubtitle.getChildren().addAll(newMarkButton, coefficient, fMark, dMark, chMark);
-            vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, vBoxMarks, subjectAverage);
-            this.getChildren().add(vBox);
+                hBoxTitleButton.getChildren().addAll(subjectName);
+                hBoxSubtitle.getChildren().addAll(newMarkButton, coefficient, fMark, dMark, chMark);
+                vBox.getChildren().addAll(hBoxTitleButton, hBoxSubtitle, vBoxMarks, subjectAverage);
+                SubjectInterface.this.getChildren().add(vBox);
+            }
         });
     }
 

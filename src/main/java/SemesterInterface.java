@@ -1,7 +1,4 @@
-package sample;
-
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,7 +11,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -59,76 +55,79 @@ public class SemesterInterface extends Parent {
 
 
     public SemesterInterface(File fileWriter) {
-        Platform.runLater(() -> {
-            System.out.println("Constructor of SemesterInterface");
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Constructor of SemesterInterface");
 
 
-            //------LAYOUTS-------
+                //------LAYOUTS-------
 
 
-            //Layout Page
-            VBox vBox = new VBox(10);
-            vBox.setPadding(new Insets(10, 10, 10, 10));
+                //Layout Page
+                VBox vBox = new VBox(10);
+                vBox.setPadding(new Insets(10, 10, 10, 10));
 
-            //Layout Title line
-            HBox hBoxTitleButton = new HBox(30);
-            hBoxTitleButton.setAlignment(Pos.TOP_LEFT);
+                //Layout Title line
+                HBox hBoxTitleButton = new HBox(30);
+                hBoxTitleButton.setAlignment(Pos.TOP_LEFT);
 
-            //Layout Subtitles
-            HBox hBoxSubtitle = new HBox(30);
-            hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
+                //Layout Subtitles
+                HBox hBoxSubtitle = new HBox(30);
+                hBoxSubtitle.setAlignment(Pos.BOTTOM_LEFT);
 
-            //Layout Subjects
-            hBoxMarks.setStyle("-fx-border-color: black;" + "-fx-border-width: 1px;\n" + "-fx-border-outsets: 5px;\n");
-            hBoxMarks.setPadding(new Insets(0, 0, 0, 0)); //padding
+                //Layout Subjects
+                hBoxMarks.setStyle("-fx-border-color: black;" + "-fx-border-width: 1px;\n" + "-fx-border-outsets: 5px;\n");
+                hBoxMarks.setPadding(new Insets(0, 0, 0, 0)); //padding
 
-            //-------LABELS--------
-            Label semester = new Label("Semester " + name);
-            semester.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+                //-------LABELS--------
+                Label semester = new Label("Semester " + name);
+                semester.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
 
-            //-------TEXTFIELDS----
-            //TextField semesterNum = new TextField();
-            //semesterNum.setText(name);
-            //semesterNum.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
-            //semesterNum.setPrefWidth(55);
-
-
-            //------BUTTONS------
-
-            Button newSubjectButton = new Button("Add Module");
-
-            newSubjectButton.setOnAction(e -> {
-
-                moduleInterfaceArrayList.add(new ModuleInterface());
-                generateHBox(moduleInterfaceArrayList);
-
-            });
-
-            Button saveSemesterButton = new Button("Save Semester");
-
-            saveSemesterButton.setOnAction(e -> {
-                try {
-                    fileWriter.delete();
-                    PrintWriter printWriter = new PrintWriter(fileWriter);
-                    Save.save(this, printWriter);
-                    printWriter.close();
-                } catch (IOException ex) {
-                    System.out.println("oups");
-                }
-            });
+                //-------TEXTFIELDS----
+                //TextField semesterNum = new TextField();
+                //semesterNum.setText(name);
+                //semesterNum.setStyle("-fx-font: 30 berlin; -fx-font-weight: bold;");
+                //semesterNum.setPrefWidth(55);
 
 
-            //-------ADD DEFAULT EXAM------
+                //------BUTTONS------
 
-            //moduleInterfaceArrayList.add(new ModuleInterface());
-            //generateHBox(moduleInterfaceArrayList);
+                Button newSubjectButton = new Button("Add Module");
+
+                newSubjectButton.setOnAction(e -> {
+
+                    moduleInterfaceArrayList.add(new ModuleInterface());
+                    SemesterInterface.this.generateHBox(moduleInterfaceArrayList);
+
+                });
+
+                Button saveSemesterButton = new Button("Save Semester");
+
+                saveSemesterButton.setOnAction(e -> {
+                    try {
+                        fileWriter.delete();
+                        PrintWriter printWriter = new PrintWriter(fileWriter);
+                        Save.save(SemesterInterface.this, printWriter);
+                        printWriter.close();
+                    } catch (IOException ex) {
+                        System.out.println("oups");
+                    }
+                });
 
 
-            //--------ADD ELEMENTS TO LAYOUTS------
+                //-------ADD DEFAULT EXAM------
 
-            hBoxTitleButton.getChildren().addAll(semester, newSubjectButton, saveSemesterButton);
-            vBox.getChildren().addAll(hBoxTitleButton, hBoxMarks, hBoxSubtitle);
-            this.getChildren().add(vBox);
+                //moduleInterfaceArrayList.add(new ModuleInterface());
+                //generateHBox(moduleInterfaceArrayList);
+
+
+                //--------ADD ELEMENTS TO LAYOUTS------
+
+                hBoxTitleButton.getChildren().addAll(semester, newSubjectButton, saveSemesterButton);
+                vBox.getChildren().addAll(hBoxTitleButton, hBoxMarks, hBoxSubtitle);
+                SemesterInterface.this.getChildren().add(vBox);
+            }
         });
     }
 
