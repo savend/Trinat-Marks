@@ -74,11 +74,11 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 **OR**
 
 
-4) **Copy** *(Strg+c)* **the path of the desired version file** *(.jar)* **to the clipboard.**
+4) **Copy** *(Strg+c)* **the path of the** *Trinat-Marks* **file** *(.jar)* **to the clipboard.**
 
 5) **Open the console of your computer.**
 
-6) **Enter java -jar followed by the copied path** *(.jar).*
+6) **Enter java -jar followed by the copied path** *(.jar).* **java -jar ____/Trinat-Marks.jar**
 
 7) **Confirm your entry with Enter.**
 
