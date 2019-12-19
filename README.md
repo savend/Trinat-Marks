@@ -98,7 +98,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 <br>
 
-5) Afterwards you have the possibility to insert your mark.It doesn't make any difference in which grading system you insert the marks. The program automatically converts the marks in the other two grading systems.
+5) Afterwards you have the possibility to insert your mark. It doesn't make any difference in which grading system you insert the mark. The program automatically converts the marks in the other two grading systems.
 
 ![Folie5](Folie5.JPG)
 <br>
@@ -111,7 +111,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 7) If the mark isn´t sufficient, the mark should be displayed in red, otherwise in green.
 
-8) Next to the "Add Module" button there is another button "Save Semester". Click that button before you close the window, so your newly added elements can be saved. Note: you have to save each semester separately.
+8) Next to the "Add Module" button there is another button with the name "Save Semester". Click that button before you close the window, so your newly added elements can be saved. Note: you have to save each semester separately.
 
 <br>
 
