@@ -69,10 +69,20 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 **A short functional description of our calculator:**
 
 1) Start application according to build instructions
-2)
-3)
-4)
-5)
+
+2) A window will open where you have the possibility to add a module.
+
+3) After the module has been added, you can add a subject.
+
+4) You can now use a test with the associated coefficient in this compartment.
+
+5) Afterwards you have the possibility to enter your mark in one of the 3 country scales.
+
+6) The mark is then displayed in all scales.
+
+7) If the mark Sufficient is not reached, the number is displayed in red, otherwise in green.
+
+8) Furthermore there is the possibility to reset all marks.
 
 <br>
 
