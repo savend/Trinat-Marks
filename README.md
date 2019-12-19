@@ -14,7 +14,7 @@
 9) [Documentation Sprint 1](https://github.com/savend/Trinat-Marks#documentation-sprint-1)
 10) [Documentation Sprint 2](https://github.com/savend/Trinat-Marks#documentation-sprint-2)
 11) [Documentation Sprint 3](https://github.com/savend/Trinat-Marks#documentation-sprint-3)
-12) [Test cases due to acceptance criterion](https://github.com/savend/Trinat-Marks#test-case-due-to-acceptance-criterion)
+12) [Test cases due to acceptance criterion](https://github.com/savend/Trinat-Marks#test-cases-due-to-acceptance-criterion)
 
 <br>
 
