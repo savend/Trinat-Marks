@@ -192,6 +192,7 @@ If you pass the module , the average will be displayed in green, on the other ha
 
 //Enrichment of user stories for implementation
 
+![Sprint2](Sprint2.png)
 
 # Documentation Sprint 3
 |**User Story**|**Tasks**|**Time estimation in minutes**|
