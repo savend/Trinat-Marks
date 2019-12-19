@@ -7,7 +7,7 @@
 2) [Introduction](https://github.com/savend/Trinat-Marks#introduction)
 3) [Goals](https://github.com/savend/Trinat-Marks#goals)
 4) [Boundary conditions](https://github.com/savend/Trinat-Marks#boundary-conditions)
-5) [Build Instructions](https://github.com/savend/Trinat-Marks#build-instructions)
+5) [Build Instructions](https://github.com/savend/Trinat-Marks#build-instruction)
 6) [Operation manual](https://github.com/savend/Trinat-Marks#operation-manual)
 7) [User Stories](https://github.com/savend/Trinat-Marks#user-stories)
 8) [Release plan](https://github.com/savend/Trinat-Marks#release-plan)
@@ -20,7 +20,7 @@
 
 # Members
 
-Adrian Rosser, Audric Strümpler, David Buchleither, Remy Meyer, Thomas Penner 
+Adrian Rosser,  Audric Strümpler,  David Buchleither,  Remy Meyer,  Thomas Penner 
 
 <br>
 
@@ -64,11 +64,11 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 2) **Extract the downloaded file into the desired folder.**
 
-3) **Copy** *(Strg+c)* **the path of the desired version file (.jar) to the clipboard.**
+3) **Copy** *(Strg+c)* **the path of the desired version file** *(.jar)* **to the clipboard.**
 
 4) **Open the console of your computer.**
 
-5) **Enter java -jar followed by the copied path (.jar).**
+5) **Enter java -jar followed by the copied path** *(.jar).*
 
 6) **Confirm your entry with Enter.**
 
@@ -78,29 +78,37 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 **A short functional description of our calculator:**
 
-<br>
-
 1) Start application according to build instructions
 
 2) A window will open where you have the possibility to add a module.
 
 ![Folie1](Folie1.JPG)
 
+<br>
+
 3) After the module has been added, you can add a subject.
 
 ![Folie2](Folie2.JPG)
+
+<br>
 
 4) You can now use a test with the associated coefficient in this compartment.
 
 ![Folie3](Folie3.JPG)
 
+<br>
+
 5) Afterwards you have the possibility to enter your mark in one of the 3 country scales.
 
 ![Folie4](Folie4.JPG)
 
+<br>
+
 6) The mark is then displayed in all scales.
 
 ![Folie5](Folie5.JPG)
+
+<br>
 
 7) If the mark isn´t sufficient, the mark should be displayed in red, otherwise in green.
 
