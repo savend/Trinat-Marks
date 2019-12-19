@@ -113,6 +113,9 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 8) Next to the "Add Module" button there is another button with the name "Save Semester". Click that button before you close the window, so your newly added elements can be saved. Note: you have to save each semester separately.
 
+
+![Instruction](Instruction.jpg)
+
 <br>
 
 # User Stories
