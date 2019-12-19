@@ -86,68 +86,67 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 <br>
 
-// Bedienungsanleitung noch fertig schreiben (besser wenn das Programm fertig ist)
-
 
 # User Stories
 
 | **User Story 1** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-|**As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on**|High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**As a user I want to have the bars turn red if my marks are not good so that I can see easely which Modul I have focus on**|High|2|The program should mark all notes which are worse than the French 10.0 in red, otherwise in green.|
 
 <br>
 
 | **User Story 2** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-|**As a classleader I want to save a semester configuration to share it to all the class**|Realy low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**As a classleader I want to save a semester configuration to share it with all class members**|Realy low|13|The file can be saved and can be made available to other students.|
 
 <br>
 
 | **User Story 3** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-|**As a user I want to save my marks to not reenter all the time my results**|Low|13|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**As a user I want to save my marks so I dont have to reenter my results every time I use the programm**|Low|13|by pressing the "save" button, all inserted marks will be saved.|
 
 <br>
 
 | **User Story 4** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-|**The Semester schould be configurable as I want for a sustainable programm**|High|5|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**The Semester schould be configurable as I want for a sustainable programm**|High|5|Each function has its own button which allows you to add more marks and modules.|
 
 <br>
 
 | **User Story 5** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-|**As a student, I want to delete marks, modules and semesters**|Low|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**As a student, I want to delete marks and modules**|Low|8|Each function has its own button which allows you to remove marks and modules.|
 
 <br>
 
 | **User Story 6** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-|**As a student, I want to add new marks**|High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**As a student, I want to add new marks**|High|2|There is a button which allows you to add marks.|
 
 <br>
 
 | **User Story 7** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |-|-|-|-|
-|**As a student I would like to have my grade average displayed to know if I have passed my modul**|High|3|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**As a student I would like to have my grade average displayed to know if I have passed my modul**|High|3|The program calculates the inserted marks with the respective coefficients and calculates the total average, which is displayed.
+If you pass the module , the average will be displayed in green, on the other hand in red.|
 
 <br>
 
 | **User Story 8** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-|**As a student I want to define a coefficent for each topic and mark**|High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**As a student I want to define a coefficent for each topic and mark**|High|2|There is a text field in which the respective coefficients can be entered.|
 
 <br>
 
 | **User Story 9** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-|**As a student, I want to get from 1 input mark the other two marks**|Realy high|8|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**As a student, I want to get from 1 input mark the other two marks**|Realy high|8|There are 3 text fields for the mark of each country. If the mark is inserted there it will also be displayed in the other 2 text fields.|
 
 <br>
 
 | **User Story 10** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |:-:|:-:|:-:|:-:|
-|**As a User I want to enter with a interface a mark in all nationalities to be flexible**|High|2|hier kommt das akzeptanzkriterium ausführlich eingesetzt ein, dieser text ist ein lückenfüller|
+|**As a User I want to enter with a interface a mark in all nationalities to be flexible**|High|2|There are 3 text fields for the respective country mark, so the user has the possibility to fill these as desired.|
 
 
 # Release plan
@@ -176,6 +175,8 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |**8**|Create own coefficients|40|
 |**6**|Adding new marks|40|
 
+<br>
+
 //Enrichment of user stories for implementation
 
 ![Inteface Mark](interface_mark.png)
@@ -187,9 +188,10 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |**5**|Delete marks, modules and semesters|160|
 |**7**|Display grade average|60|
 
+<br>
+
 //Enrichment of user stories for implementation
 
-![Sprint2](Sprint2.png)
 
 # Documentation Sprint 3
 |**User Story**|**Tasks**|**Time estimation in minutes**|
@@ -197,5 +199,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |**1**|Grade worse than (F10.0) D(4.0) CH(4.0) mark red|20|
 |**2**|Save and share semester configuration|200|
 |**4**|Sustainable programm|60|
+
+<br>
 
 //Enrichment of user stories for implementation
