@@ -32,7 +32,7 @@ The goal is to give the student an overview of his academic achievements.
 
 He has the possibility to create individual modules and to equip them with subordinated subjects. 
 
-Furthermore, the grades obtained during the course can be used in the languages German, French and Swiss German, whereby the student receives his grades in all 3 country scales.
+The students study in three different countries (Germany, France, Switzerland) and receive grades in three different grading systems. It should therefore be possible to use the grading calculator independently of the grading system.
 
 The passed modules are highlighted in green, the failed modules in red. 
 
@@ -80,7 +80,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 6) The mark is then displayed in all scales.
 
-7) If the mark Sufficient is not reached, the number is displayed in red, otherwise in green.
+7) If the mark isn´t sufficient, the mark should be displayed in red, otherwise in green.
 
 8) Furthermore there is the possibility to reset all marks.
 
@@ -127,8 +127,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 | **User Story 7** | **Prioritisation** |**Story Point** | **Acceptance criterium** |
 |-|-|-|-|
-|**As a student I would like to have my grade average displayed to know if I have passed my modul**|High|3|The program calculates the inserted marks with the respective coefficients and calculates the total average, which is displayed.
-If you pass the module , the average will be displayed in green, on the other hand in red.|
+|**As a student I would like to have my grade average displayed to know if I have passed my modul**|High|3|The program calculates the inserted marks with the respective coefficients and calculates the total average, which is displayed.|
 
 <br>
 
@@ -192,7 +191,6 @@ If you pass the module , the average will be displayed in green, on the other ha
 
 //Enrichment of user stories for implementation
 
-![Sprint2](Sprint2.png)
 
 # Documentation Sprint 3
 |**User Story**|**Tasks**|**Time estimation in minutes**|
@@ -204,5 +202,3 @@ If you pass the module , the average will be displayed in green, on the other ha
 <br>
 
 //Enrichment of user stories for implementation
-
-![Sprint3_1](Sprint3_1.png)
