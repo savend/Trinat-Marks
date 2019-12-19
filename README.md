@@ -6,7 +6,7 @@
 1) [Members](<https://github.com/savend/Trinat-Marks#members>)
 2) [Introduction](https://github.com/savend/Trinat-Marks#introduction)
 3) [Goals](https://github.com/savend/Trinat-Marks#goals)
-4) [Boundary conditions](https://github.com/savend/Trinat-Marks#boudary-conditions)
+4) [Boundary conditions](https://github.com/savend/Trinat-Marks#boundary-conditions)
 5) [Build Instructions](https://github.com/savend/Trinat-Marks#build-instructions)
 6) [Operation manual](https://github.com/savend/Trinat-Marks#operation-manual)
 7) [User Stories](https://github.com/savend/Trinat-Marks#user-stories)
