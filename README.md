@@ -92,7 +92,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 <br>
 
-4) You can now use a test with the associated coefficient in this compartment.
+4) Inside the subject you are now able to add all the marks from that particular subject. It doesn't make any difference in which grading system you insert the marks. The program automatically converts the marks in the other two grading systems. There is also a textfield where you can set the coefficient for each mark.
 
 ![Folie3](Folie3.JPG)
 
