@@ -14,15 +14,21 @@
 9) [Documentation Sprint 1](https://github.com/savend/Trinat-Marks#documentation-sprint-1)
 10) [Documentation Sprint 2](https://github.com/savend/Trinat-Marks#documentation-sprint-2)
 11) [Documentation Sprint 3](https://github.com/savend/Trinat-Marks#documentation-sprint-3)
+12) [Test cases due to acceptance criterion](https://github.com/savend/Trinat-Marks#test-case-due-to-acceptance-criterion)
+
+<br>
 
 # Members
 
 Adrian Rosser, Audric Strümpler, David Buchleither, Remy Meyer, Thomas Penner 
 
+<br>
 
 # Introduction
 
 The project **"Trinat Marks"** and the corresponding Git repository was developed as part of a project work in the course Software Engineering in the study course Mechatronics trinational. The implementation was realized with Java. 
+
+<br>
 
 # Goals
 
@@ -38,6 +44,7 @@ The passed modules are highlighted in green, the failed modules in red.
 
 In addition, it is possible to save the scores that have been inserted and completed.
 
+<br>
 
 # Boundary conditions
 
@@ -48,6 +55,8 @@ The project should be published on GitHub.
 We want to divide the program into different classes and structure them with methods.
 
 The condition is that this program can be used by MAC, Windows and LinuxComputers.
+
+<br>
 
 # Build Instruction
 
@@ -63,10 +72,13 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 6) **Confirm your entry with Enter.**
 
+<br>
 
 # Operation manual
 
 **A short functional description of our calculator:**
+
+<br>
 
 1) Start application according to build instructions
 
@@ -95,7 +107,6 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 8) Furthermore there is the possibility to reset all marks.
 
 <br>
-
 
 # User Stories
 
@@ -157,6 +168,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |:-:|:-:|:-:|:-:|
 |**As a User I want to enter with a interface a mark in all nationalities to be flexible**|High|2|There are 3 text fields for the respective country mark, so the user has the possibility to fill these as desired.|
 
+<br>
 
 # Release plan
 
@@ -175,6 +187,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 **Info:** The time between each realese is 1 week.
 
+<br>
 
 # Documentation Sprint 1
 |**User Story**|**Tasks**|**Time estimation in minutes**|
@@ -214,8 +227,15 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 <br>
 
-
 ![Sprint3_1](Sprint3_1.png)
 
 <br>
+<br>
+
+# Test cases due to acceptance criterion
+
+Our program has been extensively tested by all contributors over 5 days.
+
+Afterwards we programmed two JUnits tests.
+
 <br>
