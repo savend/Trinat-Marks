@@ -178,6 +178,8 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 //Enrichment of user stories for implementation
 
+![Inteface Mark](interface_mark.png)
+
 # Documentation Sprint 2
 |**User Story**|**Tasks**|**Time estimation in minutes**|
 |:-:|:-:|:-:|
@@ -196,5 +198,3 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |**4**|Sustainable programm|60|
 
 //Enrichment of user stories for implementation
-
-![Inteface Mark](interface_mark.png)
