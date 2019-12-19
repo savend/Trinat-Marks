@@ -191,6 +191,8 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 //Enrichment of user stories for implementation
 
+![Sprint2](Sprint2.png)
+
 
 # Documentation Sprint 3
 |**User Story**|**Tasks**|**Time estimation in minutes**|
@@ -202,3 +204,5 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 <br>
 
 //Enrichment of user stories for implementation
+
+![Sprint3_1](Sprint3_1.png)
