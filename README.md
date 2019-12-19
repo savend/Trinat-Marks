@@ -162,9 +162,9 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 |**Userstory**|**Release 1**|**Release 2**|**Release 3**|
 |:-:|:-:|:-:|:-:|
-|**1**|||Expansion stage 2|
+|**1**||Expansion stage 1||
 |**2**|||Expansion stage 2|
-|**3**||Expansion stage 1||
+|**3**|||Expansion stage 2|
 |**4**|||Expansion stage 2|
 |**5**||Expansion stage 1||
 |**6**|Basic requirement|||
@@ -186,33 +186,36 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 <br>
 
-//Enrichment of user stories for implementation
-
 ![Inteface Mark](interface_mark.png)
+
+<br>
+<br>
 
 # Documentation Sprint 2
 |**User Story**|**Tasks**|**Time estimation in minutes**|
 |:-:|:-:|:-:|
-|**3**|Save notes|200|
+|**1**|Grade worse than (F10.0) D(4.0) CH(4.0) mark red|20|
 |**5**|Delete marks, modules and semesters|160|
 |**7**|Display grade average|60|
 
 <br>
 
-//Enrichment of user stories for implementation
-
 ![Sprint2](Sprint2.png)
 
+<br>
+<br>
 
 # Documentation Sprint 3
 |**User Story**|**Tasks**|**Time estimation in minutes**|
 |:-:|:-:|:-:|
-|**1**|Grade worse than (F10.0) D(4.0) CH(4.0) mark red|20|
 |**2**|Save and share semester configuration|200|
+|**3**|Save notes|200|
 |**4**|Sustainable programm|60|
 
 <br>
 
-//Enrichment of user stories for implementation
 
 ![Sprint3_1](Sprint3_1.png)
+
+<br>
+<br>
