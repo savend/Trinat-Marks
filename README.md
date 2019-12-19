@@ -80,13 +80,13 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 1) Start application according to build instructions
 
-2) A window will open where you have the possibility to add a module.
+2) A window will open with six semsters and two buttons. With the button "Add Module" you have the possibility to add a module.
 
 ![Folie1](Folie1.JPG)
 
 <br>
 
-3) After the module has been added, you can add a subject.
+3) After the module has been added, you can add a subject. If you want to, you can give the module and subject a name.
 
 ![Folie2](Folie2.JPG)
 
