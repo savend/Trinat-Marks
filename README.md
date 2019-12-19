@@ -205,4 +205,4 @@ If you pass the module , the average will be displayed in green, on the other ha
 
 //Enrichment of user stories for implementation
 
-![Sprint3](Sprint3.png)
+![Sprint3_1](Sprint3_1.png)
