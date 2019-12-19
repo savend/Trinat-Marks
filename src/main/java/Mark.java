@@ -1,13 +1,180 @@
-package sample;
-
-
-public class Methods { /*
+public class Mark {
 
     private static final int MARK_FR = 0;
     private static final int MARK_DE = 1;
     private static final int MARK_CH = 2;
 
-    public static double [][] markTable = new double [][] { //markTable[value][language]
+    private String markName; //Name of the Mark
+    private double mark;    //Value of Mark in french system
+    private double coefficient; //Mark coefficient
+    private int markConvLine; //Line of MarkTable
+
+
+    /*-----CONSTRUCTORS-----*/
+
+
+    //Default constructor *best Mark* *Coefficient 0*
+    public Mark() {
+        System.out.println("Create new mark with default Values");
+        this.markName = "NoName";
+        this.mark = 0;
+        this.coefficient = 0;
+
+    }
+
+    //Constructor if mark are given in FRENCH
+    public Mark(String markName, double mark, double coefficient) {
+        System.out.println("Create new mark with no specific language (FRENCH)");
+        this.markName = markName;
+        this.mark = roundMark(mark); //directly assign the mark to instance variable
+        this.coefficient = coefficient;
+        setMarkConvLine(this.mark, MARK_FR); //set the markConvLine from given mark
+
+    }
+
+    //Constructor if mark are given in specific language
+    public Mark(String markName, double rawMark, int markLanguage, double coefficient) {
+        System.out.println("Create new mark with specific language");
+        setMarkConvLine(rawMark, markLanguage); //set the MarkConvLine to initialise the right mark
+        this.markName = markName;
+        setMark(); //set FRENCH mark from MarkConvLine Variable
+        this.coefficient = coefficient;
+
+    }
+
+
+    /*-----GETTER-----*/
+
+
+    public String getMarkName() {
+        return markName;
+    }
+
+    public double getMark() {
+        return mark;
+    }
+
+    public double getCoefficient() {
+        return coefficient;
+    }
+
+    public int getMarkConvLine() {
+        return markConvLine;
+    }
+
+    public Mark getMarkObject() {
+        return this;
+    }
+
+    public static double getMarkTable(int line, int colonne) {
+        return markTable[line][colonne];
+    }
+
+    /*-----SETTER-----*/
+
+
+    public void setMarkName(String markName) {
+        this.markName = markName;
+    }
+
+    public void setMark(double mark) {
+        this.mark = roundMark(mark); //Force new mark
+        if (this.mark > 20)
+            this.setMark(20);
+        else if (this.mark < 0)
+            this.setMark(0);
+        this.setMarkConvLine(this.mark); //update MarkConvLine
+    }
+
+    //Setter if another marklanguage are given
+    public void setMark() {
+        this.mark = markTable[markConvLine][MARK_FR];
+    }
+
+    public void setCoefficient(double coefficient) {
+        this.coefficient = coefficient;
+    }
+
+    public void setMarkConvLine(int markConvLine) {
+        this.markConvLine = markConvLine;
+    }
+
+    //Setter of MarkConvLine when new mark are setted
+    public void setMarkConvLine(double mark) {
+        if (mark > 16 && mark <= 20)
+            this.setMarkConvLine(0);
+        else {
+            for (int i = 0; i < markTable.length; i++) {
+                if (roundMark(mark) == markTable[i][MARK_FR]) {
+                    this.setMarkConvLine(i);
+                }
+            }
+        }
+
+    }
+
+    //Setter of MarkConvLine for constructor from a given language
+    public void setMarkConvLine(double markValue, int markLanguage) {
+
+        System.out.println("Mark conversion, Set the Object markConvLine, ( for Mark Object constructor ) ");
+
+        if (markValue > 5 && markLanguage == MARK_DE)
+            markValue = 5;
+        else if (markValue < 1 && markLanguage == MARK_DE)
+            markValue = 1;
+        if (markValue > 6 && markLanguage == MARK_CH)
+            markValue = 6;
+        else if (markValue < 1 && markLanguage == MARK_CH)
+            markValue = 1;
+        if (markValue > 16 && markValue <= 20 && markLanguage == MARK_FR)
+            this.setMarkConvLine(0);
+        else {
+            for (int i = 0; i < markTable.length; i++) {
+                if (roundMark(markValue) == markTable[i][markLanguage]) {
+                    this.setMarkConvLine(i);
+                }
+            }
+            this.setMark();
+        }
+    }
+
+
+    /*-----PRINT-----*/
+
+
+    public String toString() {
+        return "Mark{" +
+                "markName='" + markName + '\'' +
+                ", mark=" + mark +
+                ", coefficient=" + coefficient +
+                ", markConvLine=" + markConvLine +
+                '}';
+    }
+
+
+    /*-----MARK CONVERSION METHODS-----*/
+
+
+    //Method to return a mark in specific language
+    public double markConversion(int outMarkLanguage) {
+        System.out.println("Mark conversion, Get the Object markConvLine, return the specific Language Mark ");
+        return markTable[this.getMarkConvLine()][outMarkLanguage];
+    }
+
+
+    /*-----ROUND MARK METHOD-----*/
+
+
+    public double roundMark(double mark) {
+        return ((double) Math.round(mark * 10)) / 10;
+    }
+
+
+    /*-----MARK TABLE-----*/
+
+
+    //markTable[value][language]
+    private static double[][] markTable = new double[][]{
             {16.0, 1.0, 6.0},   //french //German //Swiss
             {15.9, 1.1, 5.9},
             {15.8, 1.1, 5.9},
@@ -170,54 +337,4 @@ public class Methods { /*
             {0.1, 5.0, 1.0},
             {0.0, 5.0, 1.0},
     };
-
-    public static double markConversion(Mark mark) {
-        System.out.println("Simple Set the Object markConvLine, return the french Mark  ( for Mark Object constructor )");
-        for (int i = 0 ; i < markTable.length ; i++) {
-            if(mark.getMark() == markTable[i][MARK_FR]){
-                for(int j =0; j<3; j++) {
-                    System.out.println(markTable[i][j]);
-                }
-                mark.setMarkConvLine(i);
-            }
-        }
-        return markTable[mark.getMarkConvLine()][MARK_FR];
-    }
-
-    public static double markConversion(Mark mark, double markValue, int markLanguage) {
-        System.out.println("Mark conversion, Set the Object markConvLine, return the french Mark ( for Mark Object constructor ) ");
-        for (int i = 0 ; i < markTable.length ; i++) {
-            if(markValue == markTable[i][markLanguage]){
-                mark.setMarkConvLine(i);
-                mark.setMark(markTable[i][MARK_FR]);
-                System.out.println(mark.getMark());
-                break;
-            }
-
-        }
-        return markTable[mark.getMarkConvLine()][MARK_FR];
-    }
-
-    public static double markConversion(Mark mark, double markValue, int inMarkLanguage, int outMarkLanguage) {
-        System.out.println("Mark conversion, Set the Object markConvLine, return the out Language Mark");
-        for (int i = 0 ; i < markTable.length ; i++) {
-            if(markValue == markTable[i][inMarkLanguage]){
-                mark.setMarkConvLine(i);
-                mark.setMark(markTable[i][MARK_FR]);
-                System.out.println(mark.getMark());
-                break;
-            }
-
-        }
-        return markTable[mark.getMarkConvLine()][outMarkLanguage];
-    }
-
-    public static double markConversion(Mark mark, int outMarkLanguage) {
-        System.out.println("Mark conversion, Get the Object markConvLine, return the out Language Mark ");
-        return markTable[mark.getMarkConvLine()][outMarkLanguage];
-    }
-*/
 }
-
-
-
