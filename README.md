@@ -186,9 +186,10 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 |**3**|Save notes|200|
 |**5**|Delete marks, modules and semesters|160|
 |**7**|Display grade average|60|
-![Sprint2](Sprint2.png)
+
 //Enrichment of user stories for implementation
 
+![Sprint2](Sprint2.png)
 
 # Documentation Sprint 3
 |**User Story**|**Tasks**|**Time estimation in minutes**|
