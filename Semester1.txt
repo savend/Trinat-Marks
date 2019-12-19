@@ -1,14 +1,4 @@
 Semester=1
-Module=NoName
+Module=NoName
 Subject=NoName;1.0
-Mark=NoName;14.0;1.0
-Mark=NoName;14.0;1.0
-Subject=NoName;0.0
-Mark=NoName;0.0;0.0
-Subject=NoName;0.0
-Module=NoName
-
-Module=NoName
-
-Module=NoName
 

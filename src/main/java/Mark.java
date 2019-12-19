@@ -66,6 +66,9 @@ public class Mark {
         return this;
     }
 
+    public static double getMarkTable(int line, int colonne) {
+        return markTable[line][colonne];
+    }
 
     /*-----SETTER-----*/
 
