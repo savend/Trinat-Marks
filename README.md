@@ -64,13 +64,25 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 2) **Extract the downloaded file into the desired folder.**
 
-3) **Copy** *(Strg+c)* **the path of the desired version file** *(.jar)* **to the clipboard.**
+3) **Trinat-Marks need the** *(Trinat-Marks.jar)* **and** *(Semester1.txt* **to** *Semester6.txt)* **files to be launch** 
 
-4) **Open the console of your computer.**
+4) **Copy this files to your work / study folder to launch everytime the Trinat-Marks calculator**
 
-5) **Enter java -jar followed by the copied path** *(.jar).*
+5) **Double-click on the** *Trinat-Marks.jar"* **file to launch the Calculator**
 
-6) **Confirm your entry with Enter.**
+
+**OR**
+
+
+4) **Copy** *(Strg+c)* **the path of the desired version file** *(.jar)* **to the clipboard.**
+
+5) **Open the console of your computer.**
+
+6) **Enter java -jar followed by the copied path** *(.jar).*
+
+7) **Confirm your entry with Enter.**
+
+
 
 <br>
 
