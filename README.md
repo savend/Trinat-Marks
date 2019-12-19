@@ -72,13 +72,23 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 2) A window will open where you have the possibility to add a module.
 
+![Folie1](Folie1.JPG)
+
 3) After the module has been added, you can add a subject.
+
+![Folie2](Folie2.JPG)
 
 4) You can now use a test with the associated coefficient in this compartment.
 
+![Folie3](Folie3.JPG)
+
 5) Afterwards you have the possibility to enter your mark in one of the 3 country scales.
 
+![Folie4](Folie4.JPG)
+
 6) The mark is then displayed in all scales.
+
+![Folie5](Folie5.JPG)
 
 7) If the mark isn´t sufficient, the mark should be displayed in red, otherwise in green.
 
