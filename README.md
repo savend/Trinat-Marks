@@ -92,27 +92,26 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 
 <br>
 
-4) Inside the subject you are now able to add all the marks from that particular subject. It doesn't make any difference in which grading system you insert the marks. The program automatically converts the marks in the other two grading systems. There is also a textfield where you can set the coefficient for each mark.
+4) Inside the subject you are now able to add all the marks from that particular subject.
 
 ![Folie3](Folie3.JPG)
 
 <br>
 
-5) Afterwards you have the possibility to enter your mark in one of the 3 country scales.
+5) Afterwards you have the possibility to insert your mark.It doesn't make any difference in which grading system you insert the marks. The program automatically converts the marks in the other two grading systems.
+
+![Folie5](Folie5.JPG)
+<br>
+
+6) There is also a textfield where you can set the coefficient for each mark. Make sure that all the coefficients add up to 100%.
 
 ![Folie4](Folie4.JPG)
 
 <br>
 
-6) The mark is then displayed in all scales.
-
-![Folie5](Folie5.JPG)
-
-<br>
-
 7) If the mark isn´t sufficient, the mark should be displayed in red, otherwise in green.
 
-8) Furthermore there is the possibility to reset all marks.
+8) Next to the "Add Module" button there is another button "Save Semester". Click that button before you close the window, so your newly added elements can be saved. Note: you have to save each semester separately.
 
 <br>
 
