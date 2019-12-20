@@ -79,7 +79,7 @@ The condition is that this program can be used by MAC, Windows and LinuxComputer
 5) **Open the console of your computer.**
 
 6) **Enter java -jar followed by the copied path** *(.jar)* **.**
-'''java -jar */Trinat-Marks.jar'''
+```java -jar */Trinat-Marks.jar```
 
 7) **Confirm your entry with Enter.**
 
