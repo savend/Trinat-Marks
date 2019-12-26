@@ -126,6 +126,8 @@ public class MarkInterface extends Parent {
                     else if (oldValue) {
                         MarkInterface.this.updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, COEFFICIENT);
                     }
+                    else
+                        MarkInterface.this.updateMarkInterface(markNameField, markCoefficientField, markFField, markDField, markCHField, NULL);
                 });
 
                 EventHandler<ActionEvent> eventHandlerFField = event -> {
